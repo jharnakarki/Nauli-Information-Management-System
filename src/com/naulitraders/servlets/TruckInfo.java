@@ -1,6 +1,8 @@
+package com.naulitraders.servlets;
 import java.io.*;
 import java.sql.*;
 import javax.servlet.http.*;
+
 public class TruckInfo extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html");
