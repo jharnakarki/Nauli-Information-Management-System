@@ -24,4 +24,20 @@
     <servlet-name>three</servlet-name>
     <url-pattern>/TruckTrip</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>five</servlet-name>
+    <servlet-class>CreateAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>five</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Six</servlet-name>
+    <servlet-class>EditTrips</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Six</servlet-name>
+    <url-pattern>/Edit</url-pattern>
+  </servlet-mapping>
 </web-app>

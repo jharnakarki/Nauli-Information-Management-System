@@ -17,7 +17,7 @@ public class TruckInfo extends HttpServlet {
 		    int year=Integer.parseInt(request.getParameter("year"));
 			try {
 				//load the database driver
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 				//create connection to database
 				Connection con= DriverManager.getConnection(url,uname,pwd);
 				String sql="insert into tckInfo(vehNumber,brand,model,capacity,tyres,year) values(?,?,?,?,?,?)";

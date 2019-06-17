@@ -1,7 +1,8 @@
 package com.naulitraders.servlets;
 import java.io.*;
-import java.util.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.*;
 
 public class Trip extends HttpServlet {
@@ -10,37 +11,36 @@ public class Trip extends HttpServlet {
 		String url="jdbc:mysql://localhost:3306/Project";
 		String uname="root";
 		String pwd="";
-			int Tnum=Integer.parseInt(request.getParameter("vehNum"));
-			//String Start=request.getParameter("dtStart");
-			//String End=request.getParameter("dtEnd");
-			int Start=Integer.parseInt(request.getParameter("dtStart"));
-			int End=Integer.parseInt(request.getParameter("dtEnd"));
-			int MStart=Integer.parseInt(request.getParameter("mastart"));
-			int MEnd=Integer.parseInt(request.getParameter("maEnd"));
-			String origin=request.getParameter("org");
-			String des=request.getParameter("mulDes");
+			int number=Integer.parseInt(request.getParameter("vehNum"));
+			int sMil=Integer.parseInt(request.getParameter("maStart"));
+			int eMil=Integer.parseInt(request.getParameter("maEnd"));
+			String orig=request.getParameter("org");
+			String mul=request.getParameter("mulDes");
 			int reve=Integer.parseInt(request.getParameter("rev"));
-			String dName=request.getParameter("dName");
+			String nam=request.getParameter("dName");
 			String rem=request.getParameter("remarks");
 			
 			try {
+				 java.util.Date start = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("Sdate"));
+				 java.util.Date end = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("Edate")); 
+				 java.sql.Date sqlDate = new java.sql.Date(start.getTime());
+				 java.sql.Date sqlEndDate = new java.sql.Date(end.getTime());
 				//load the database driver
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 				//create connection to database
 				Connection con= DriverManager.getConnection(url,uname,pwd);
-				String sql="insert into trip(vehNum,dtStart,dtEnd,maStart,maEnd,org,mulDes,rev,dName,remarks) values(?,?,?,?,?,?,?,?,?,?)";
+				String sql="insert into trip(vehNum,stDate,edDate,maStart,maEng,origin,mulDes,rev,dName,remarks) values(?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement pst=con.prepareStatement(sql);
-				pst.setInt(1,Tnum);
-				pst.setInt(2,Start);
-				pst.setInt(3, End);
-				pst.setInt(4, MStart);
-				pst.setInt(5, MEnd);
-				pst.setString(6, origin );
-				pst.setString(7,des);
+				pst.setInt(1, number);
+				pst.setDate(2,sqlDate);
+				pst.setDate(3,sqlEndDate);
+				pst.setInt(4,sMil );
+				pst.setInt(5, eMil);
+				pst.setString(6, orig);
+				pst.setString(7, mul);
 				pst.setInt(8, reve);
-				pst.setString(9,dName );
-				pst.setString(10, rem);
-				
+				pst.setString(9,nam );
+				pst.setString(10,rem);
 			
 				pst.execute();
 				con.close();
@@ -53,8 +53,5 @@ public class Trip extends HttpServlet {
 		
 	}
 }
-
-
-
 
 
