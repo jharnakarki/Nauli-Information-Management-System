@@ -11,7 +11,7 @@ public class EditTrips extends HttpServlet{
 		String pwd="";
 		try{
 			// load the database driver
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection(url,uname,pwd);
 			String sql="select * from trip";
 			Statement st=con.createStatement();

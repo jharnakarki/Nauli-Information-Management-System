@@ -18,11 +18,13 @@ public class CreateAdmin extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				//create connection to database
 				Connection con= DriverManager.getConnection(url,uname,pwd);
-				String sql="insert into Admins(username,password) values(username,password)";
-			Statement st=con.createStatement();
+				String sql="insert into Admins(username,password) values(?,?)";
+				PreparedStatement pst=con.prepareStatement(sql);
+				pst.setString(2,username);
+				pst.setString(2,password);
 				
 			
-				st.execute(sql);
+				pst.execute();
 				con.close();
 				System.out.println("Admin created");
 		}
