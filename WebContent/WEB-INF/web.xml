@@ -40,4 +40,12 @@
     <servlet-name>Six</servlet-name>
     <url-pattern>/Edit</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Seven</servlet-name>
+    <servlet-class>Expenses</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Seven</servlet-name>
+    <url-pattern>/Exp</url-pattern>
+  </servlet-mapping>
 </web-app>

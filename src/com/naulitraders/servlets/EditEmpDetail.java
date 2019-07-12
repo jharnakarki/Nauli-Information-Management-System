@@ -1,8 +1,8 @@
 package com.naulitraders.servlets;
-import java.io.*;
+import java.io.PrintWriter;
 import java.sql.*;
 import javax.servlet.http.*;
-public class EditTrips extends HttpServlet{
+public class EditEmpDetail extends HttpServlet{
 	public void doGet(HttpServletRequest request,HttpServletResponse response) {
 		response.setContentType("text/html");
 		// TODO Auto-generated method stub
@@ -11,24 +11,26 @@ public class EditTrips extends HttpServlet{
 		String pwd="";
 		try{
 			// load the database driver
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection con=DriverManager.getConnection(url,uname,pwd);
-			String sql="select * from trip";
+			String sql="select * from Employee";
 			Statement st=con.createStatement();
 			ResultSet rs=st.executeQuery(sql);
 			PrintWriter pw=response.getWriter();
 			pw.println("<html><body>");
 			pw.println("<table border=1 width='1000'>");
-			pw.println("<tr><th>ID</th><th>Truck NO.</th><th>StartDate</th><th>EndDate</th><th>Start Mileage</th><th>End Mileage</th><th>Origin</th><th>Mul Destination</th><th>revenue</th><th>driver</th><th>Remarks</th></tr>");
+			pw.println("<tr><th>ID</th><th>Emp ID</th><th>Name</th><th>Age</th><th>address</th><th>Phone</th><th>Position</th><th>Salary</th><th>Id Prove</th></tr>");
+
+
 			while(rs.next()) {
 				pw.println("<tr>");
-				for(int i=1;i<=11;i++) {
+				for(int i=1;i<=9;i++) {
 					pw.println("<td>"+rs.getString(i)+"</td>");
 				}
 				pw.println("</tr>");
 			}
 			pw.println("</table></body></html>");
-			pw.println("<a href='Form.html'>Edit Trip</a>");
+			
 			pw.close();
 			con.close();
 		}
@@ -37,4 +39,5 @@ public class EditTrips extends HttpServlet{
 		}
 	}
 }
+
 
