@@ -2,39 +2,78 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Add Vehicle</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<table>
-<form method="get" action="Truckinfo"/>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container">
+			<a class="navbar-brand" href="#">Nauli</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item active"><a class="nav-link" href="#">Home</a>
+					</li>
 
-	<tr>
-		<th><label>Vehicle Number</label></th>
-		<td><input type="text" name="num"/></td>
-	</tr>
-	
-	<tr>
-		<th><label>Brand</label></th>
-		<td><input type="text" name="brand"/></td>
-	</tr>
-	<tr>
-		<th><label>Model</label></th>
-		<td><input type="Number" name="model"/></td>
-	</tr>
-	
-	<tr>
-		<th><label>No.of Tyres</label></th>
-		<td><input type="Number" name="tyres"/></td>
-	</tr>
-	<tr>
-		<th><label>Year</label></th>
-		<td><input type="date" name="year"/></td>
-	</tr>
-	
-		<td><input type="submit" value="submit"/></td>
+					<li class="nav-item active"><a class="nav-link"
+						href="AddVehicle.html">Add Vehicle</a></li>
 
-	</form>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> Trip </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="NewTrip.html">Add Trip</a> <a
+								class="dropdown-item" href="EditTrip.java">Edit Trip</a>
+						</div></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="Employee.html">Add Employee</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="Expense.html">Add Expense</a></li>
+				</ul>
+			</div>
+		</div>
 
-</table>
+	</nav>
+	<div class="container">
+		<article>
+			<div class="row">
+				<h2>Add a new vehicle</h2>
+			</div>
+			<br />
+			<div class="row">
+				<form method="get" action="Truckinfo" />
+				<div class="form-group">
+					<label>Vehicle Number</label> <input class="form-control" type="text" name="num" />
+				</div>
+				<div class="form-group">
+					<label>Brand</label> <input class="form-control" type="text" name="brand" />
+				</div>
+				<div class="form-group">
+					<label>Model</label> <input class="form-control" type="Number" name="model" />
+				</div>
+				<div class="form-group">
+					<label>No.of Tyres</label> <input class="form-control" type="Number" name="tyres" />
+				</div>
+				<div class="form-group">
+					<label>Year</label> <input class="form-control" type="number" min="1990" name="year" />
+				</div>
+
+				<button class="btn btn-primary" type="submit">Add</button>
+				</form>
+			</div>
+		</article>
+
+
+
+
+	</div>
+
 </body>
 </html>
