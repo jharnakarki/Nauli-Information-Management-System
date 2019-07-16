@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <servlet>
-    <servlet-name>one</servlet-name>
+    <servlet-name>loginServlet</servlet-name>
     <servlet-class>com.naulitraders.servlets.ValidateUser</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>one</servlet-name>
+    <servlet-name>loginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>two</servlet-name>
-    <servlet-class>TruckInfo</servlet-class>
+    <servlet-name>truckInfoServlet</servlet-name>
+    <servlet-class>com.naulitraders.servlets.TruckInfo</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>two</servlet-name>
-    <url-pattern>/Truckinfo</url-pattern>
+    <servlet-name>truckInfoServlet</servlet-name>
+    <url-pattern>/TruckInfo</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>three</servlet-name>
-    <servlet-class>Trip</servlet-class>
+    <servlet-name>tripServlet</servlet-name>
+    <servlet-class>com.naulitraders.servlets.Trip</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>three</servlet-name>
+    <servlet-name>tripServlet</servlet-name>
     <url-pattern>/TruckTrip</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>five</servlet-name>
-    <servlet-class>CreateAdmin</servlet-class>
+    <servlet-name>adminServlet</servlet-name>
+    <servlet-class>com.naulitraders.servlets.CreateAdmin</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>five</servlet-name>
+    <servlet-name>adminServlet</servlet-name>
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Six</servlet-name>
-    <servlet-class>EditTrips</servlet-class>
+    <servlet-name>editTripsServlet</servlet-name>
+    <servlet-class>com.naulitraders.servlets.EditTrips</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Six</servlet-name>
+    <servlet-name>editTripsServlet</servlet-name>
     <url-pattern>/Edit</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>Seven</servlet-name>
-    <servlet-class>Expenses</servlet-class>
+    <servlet-name>expensesServlets</servlet-name>
+    <servlet-class>com.naulitraders.servlets.Expenses</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Seven</servlet-name>
+    <servlet-name>expensesServlets</servlet-name>
     <url-pattern>/Exp</url-pattern>
   </servlet-mapping>
 </web-app>

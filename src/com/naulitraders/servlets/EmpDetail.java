@@ -1,12 +1,14 @@
 package com.naulitraders.servlets;
 import java.io.*;
 import java.sql.*;
+import java.util.TimeZone;
+
 import javax.servlet.http.*;
 
 public class EmpDetail extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html");
-		String url="jdbc:mysql://localhost:3306/Project";
+		String url="jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
 		String uname="root";
 		String pwd="";
 			
