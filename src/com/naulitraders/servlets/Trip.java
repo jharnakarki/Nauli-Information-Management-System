@@ -12,7 +12,7 @@ public class Trip extends HttpServlet {
 		String url="jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
 		String uname="root";
 		String pwd="";
-			int number=Integer.parseInt(request.getParameter("vehNum"));
+			String number=request.getParameter("vehNum");
 			int sMil=Integer.parseInt(request.getParameter("maStart"));
 			int eMil=Integer.parseInt(request.getParameter("maEnd"));
 			String orig=request.getParameter("org");
@@ -22,8 +22,8 @@ public class Trip extends HttpServlet {
 			String rem=request.getParameter("remarks");
 			
 			try {
-				 java.util.Date start = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("Sdate"));
-				 java.util.Date end = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("Edate")); 
+				 java.util.Date start = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dtStart"));
+				 java.util.Date end = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dtEnd")); 
 				 java.sql.Date sqlDate = new java.sql.Date(start.getTime());
 				 java.sql.Date sqlEndDate = new java.sql.Date(end.getTime());
 				//load the database driver
@@ -32,7 +32,7 @@ public class Trip extends HttpServlet {
 				Connection con= DriverManager.getConnection(url,uname,pwd);
 				String sql="insert into trip(vehNum,stDate,edDate,maStart,maEng,origin,mulDes,rev,dName,remarks) values(?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement pst=con.prepareStatement(sql);
-				pst.setInt(1, number);
+				pst.setString(1, number);
 				pst.setDate(2,sqlDate);
 				pst.setDate(3,sqlEndDate);
 				pst.setInt(4,sMil );

@@ -13,7 +13,7 @@ public class TruckInfo extends HttpServlet {
 		String url = "jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
 		String uname = "root";
 		String pwd = "";
-		int number = Integer.parseInt(request.getParameter("num"));
+		String number = request.getParameter("num");
 		String brand = request.getParameter("brand");
 		int model = Integer.parseInt(request.getParameter("model"));
 		int capacity = Integer.parseInt(request.getParameter("capacity"));
@@ -26,7 +26,7 @@ public class TruckInfo extends HttpServlet {
 			Connection con = DriverManager.getConnection(url, uname, pwd);
 			String sql = "insert into tckInfo(vehNumber,brand,model,capacity,tyres,year) values(?,?,?,?,?,?)";
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, number);
+			pst.setString(1, number);
 			pst.setString(2, brand);
 			pst.setInt(3, model);
 			pst.setInt(4, capacity);
@@ -35,7 +35,7 @@ public class TruckInfo extends HttpServlet {
 
 			pst.execute();
 			con.close();
-			
+
 			System.out.println("Record inserted");
 		} catch (Exception ex) {
 			System.out.println(ex);

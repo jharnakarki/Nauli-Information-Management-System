@@ -1,71 +1,107 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
- <style type="text/css">
-        body {
-            background-color:white;
-            
-        }
-        label {
-            font-style: italic;
-        }
-      </style>
+<title>Add New Trip</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container">
+			<a class="navbar-brand" href="#">Nauli</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item active"><a class="nav-link" href="#">Home</a>
+					</li>
 
-<table>
-<form method="get" action="TruckTrip"/>
+					<li class="nav-item active"><a class="nav-link"
+						href="AddVehicle.html">Add Vehicle</a></li>
+
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#"id="navbarDropdownMenuLink" role="button" 
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Trip </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="NewTrip.html">Add Trip</a> 
+							<a class="dropdown-item" href="EditTrip.java">Edit Trip</a>
+						</div></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="Employee.html">Add Employee</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="Expense.html">Add Expense</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</nav>
+	<div class="container">
+		<article>
+			<div class="row">
+				<h2>Add a new Trip</h2>
+			</div>
+			<br />
+			<div class="row">
+
+				<form method="get" action="TruckTrip" />
+				<div class="form-group">
+					<label>Truck Number</label> 
+					<input class="form-control" type="Text" name="vehNum" />
+				</div>
+				<div class="form-group">
+					<label>Start Date</label> 
+					<input class="form-control" type="Date" name="dtStart" />
+				</div>
+
+				<div class="form-group">
+					<label>Ending Date</label> 
+					<input class="form-control" type="Date" name="dtEnd" />
+				</div>
+
+				<div class="form-group">
+					<label>Start Mileage</label> <input class="form-control" type="Number" name="maStart" />
+				</div>
+
+				<div class="form-group">
+					<label>End Mileage</label> <input class="form-control" type="Number" name="maEnd" />
+				</div>
+
+				<div class="form-group">
+					<label>Origin</label> <input class="form-control" type="text" name="org" />
+				</div>
+
+				<div class="form-group">
+					<label>Multiple Destination</label> <input class="form-control" type="text" name="mulDes" />
+				</div>
+
+				<div class="form-group">
+					<label>Revenue</label> <input class="form-control" type="Number" min="1" name="rev" />
+				</div>
+
+				<div class="form-group">
+					<label>Driver</label> <input class="form-control" type="text" name="dName" />
+				</div>
+
+				<div class="form-group">
+					<label>Remarks</label> <input class="form-control" type="Text" name="remarks" />
+				</div>
+
+				<button class="btn btn-primary" type="submit">Add</button>
+
+				</form>
+			</div>
+		</article>
 
 
-	
-	<tr>
-		<th><label>TruckNumber</label></th>
-		<td><input type="number" name="vehNum"/></td>
-	</tr>
-	<tr>
-		<th><label>Start Date</label></th>
-		<td><input type="Date" name="dtStart"/></td>
-	</tr>
-	<tr>
-		<th><label>Ending Date</label></th>
-		<td><input type="Date" name="dtEnd"/></td>
-	</tr>
-	<tr>
-		<th><label>Start Mileage</label></th>
-		<td><input type="Number" name="maStart"/></td>
-	</tr>
-	<tr>
-		<th><label>End Mileage</label></th>
-		<td><input type="Number" name="maEnd"/></td>
-	</tr>
-	<tr>
-		<th><label>Origin</label></th>
-		<td><input type="text" name="org"/></td>
-	</tr>
-	<tr>
-		<th><label>Multiple Destination</label></th>
-		<td><input type="text" name="mulDes"/></td>
-	</tr>
-	<tr>
-		<th><label>Revenue</label></th>
-		<td><input type="Number" name="rev"/></td>
-	</tr>
-	<tr>
-		<th><label>Driver</label></th>
-		<td><input type="text" name="dName"/></td>
-	</tr>
-	<tr>
-		<th><label>Remarks</label></th>
-		<td><input type="Text" name="remarks"/></td>
-	</tr>
-		<td><input type="submit" value="submit"/></td>
 
-	</form>
 
-</table>
+	</div>
+
+
 
 </body>
 </html>

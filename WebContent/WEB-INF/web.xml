@@ -48,4 +48,20 @@
     <servlet-name>expensesServlets</servlet-name>
     <url-pattern>/Exp</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>employeeServlets</servlet-name>
+    <servlet-class>com.naulitraders.servlets.EmpDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>exployeeServlets</servlet-name>
+    <url-pattern>/Emp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>adminServlets</servlet-name>
+    <servlet-class>com.naulitraders.servlets.AddAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adminServlets</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
 </web-app>
