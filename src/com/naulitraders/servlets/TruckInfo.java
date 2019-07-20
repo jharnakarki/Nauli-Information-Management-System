@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 
 public class TruckInfo extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
-		response.setContentType("text/html");
+		response.setContentType("tsext/html");
 		String url = "jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
 		String uname = "root";
 		String pwd = "";

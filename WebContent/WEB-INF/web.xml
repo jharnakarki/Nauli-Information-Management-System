@@ -53,7 +53,7 @@
     <servlet-class>com.naulitraders.servlets.EmpDetail</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>exployeeServlets</servlet-name>
+    <servlet-name>employeeServlets</servlet-name>
     <url-pattern>/Emp</url-pattern>
   </servlet-mapping>
   <servlet>

@@ -1,11 +1,15 @@
 package com.naulitraders.servlets;
+
 import java.io.*;
+import java.util.*;
 import java.sql.*;
 import java.util.TimeZone;
 import javax.servlet.http.*;
+
 public class EmpDetail extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html");
+		
 		String url="jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
 		String uname="root";
 		String pwd="";
@@ -17,7 +21,9 @@ public class EmpDetail extends HttpServlet {
 			String position=request.getParameter("pos");
 		    int salary=Integer.parseInt(request.getParameter("salary"));
 		    //String cid=request.getParameter("prove");
+		   
 			try {
+				
 				//load the database driver
 				Class.forName("com.mysql.jdbc.Driver");
 				//create connection to database
@@ -34,16 +40,11 @@ public class EmpDetail extends HttpServlet {
 				pst.execute();
 				con.close();
 				System.out.println("Record inserted");
-		}
-		catch(Exception ex) {
-			System.out.println(ex);
-			
-		}
 		
+			}catch(Exception ex)
+	{
+		System.out.println(ex);
+
 	}
-}
 
-
-
-
-
+}}
