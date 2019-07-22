@@ -20,7 +20,7 @@ public class AddAdmin extends HttpServlet {
 				Connection con= DriverManager.getConnection(url,uname,pwd);
 				String sql="insert into Admins(username,password) values(?,?)";
 				PreparedStatement pst=con.prepareStatement(sql);
-				pst.setString(2,username);
+				pst.setString(1,username);
 				pst.setString(2,password);
 				
 			

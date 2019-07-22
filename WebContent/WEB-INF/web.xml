@@ -26,7 +26,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>adminServlet</servlet-name>
-    <servlet-class>com.naulitraders.servlets.CreateAdmin</servlet-class>
+    <servlet-class>com.naulitraders.servlets.AddAdmin</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>adminServlet</servlet-name>
@@ -56,12 +56,5 @@
     <servlet-name>employeeServlets</servlet-name>
     <url-pattern>/Emp</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>adminServlets</servlet-name>
-    <servlet-class>com.naulitraders.servlets.AddAdmin</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>adminServlets</servlet-name>
-    <url-pattern>/admin</url-pattern>
-  </servlet-mapping>
+  
 </web-app>

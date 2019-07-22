@@ -22,8 +22,8 @@ public class Trip extends HttpServlet {
 			String rem=request.getParameter("remarks");
 			
 			try {
-				 java.util.Date start = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dtStart"));
-				 java.util.Date end = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dtEnd")); 
+				 java.util.Date start = new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("dtStart"));
+				 java.util.Date end = new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("dtEnd")); 
 				 java.sql.Date sqlDate = new java.sql.Date(start.getTime());
 				 java.sql.Date sqlEndDate = new java.sql.Date(end.getTime());
 				//load the database driver
