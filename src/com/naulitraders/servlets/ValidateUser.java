@@ -20,7 +20,7 @@ public class ValidateUser extends HttpServlet {
 			PrintWriter pw = response.getWriter();
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			// create connection to database
-			Connection con = DriverManager.getConnection(url, uname, pwd);
+			Connection con = DriverManager.getConnection(url,uname, pwd);
 			String sql = "select * from admins";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -35,7 +35,9 @@ public class ValidateUser extends HttpServlet {
 				}
 
 				else {
-					pw.println("Wrong username or password");
+					pw.println("<html><body>");
+					pw.println("<h2>Your record is successfully uploaded</h2>");
+					pw.println("</body></html>");
 				}
 
 			}

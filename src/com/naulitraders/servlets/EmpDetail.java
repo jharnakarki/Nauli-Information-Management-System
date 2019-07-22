@@ -28,6 +28,7 @@ public class EmpDetail extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				//create connection to database
 				Connection con= DriverManager.getConnection(url,uname,pwd);
+				PrintWriter pw=response.getWriter();
 				String sql="insert into Employee(name,age,address,phone,position,salary) values(?,?,?,?,?,?)";
 				PreparedStatement pst=con.prepareStatement(sql);
 				pst.setString(1, name);
@@ -36,15 +37,17 @@ public class EmpDetail extends HttpServlet {
 				pst.setInt(4, contact);
 				pst.setString(5,position);
 				pst.setInt(6, salary);
-				
 				pst.execute();
+				pw.println("<html><body>");
+				pw.println("<h2>Your record is successfully uploaded");
+				pw.println("</body></html>");
+				pw.close();
 				con.close();
-				System.out.println("Record inserted");
 		
-			}catch(Exception ex)
-	{
-		System.out.println(ex);
+			}
+			catch(Exception ex){
+				System.out.println(ex);
 
+			}
+}
 	}
-
-}}

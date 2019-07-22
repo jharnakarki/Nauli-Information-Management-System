@@ -24,6 +24,7 @@ public class TruckInfo extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			// create connection to database
 			Connection con = DriverManager.getConnection(url, uname, pwd);
+			PrintWriter pw=response.getWriter();
 			String sql = "insert into tckInfo(vehNumber,brand,model,capacity,tyres,year) values(?,?,?,?,?,?)";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, number);
@@ -32,12 +33,14 @@ public class TruckInfo extends HttpServlet {
 			pst.setInt(4, capacity);
 			pst.setInt(5, tyres);
 			pst.setInt(6, year);
-
 			pst.execute();
+			pw.println("<html><body>");
+			pw.println("<h2>Your record is successfully uploaded</h2>");
+			pw.println("</body></html>");
+			pw.close();
 			con.close();
-
-			System.out.println("Record inserted");
-		} catch (Exception ex) {
+			} 
+		catch (Exception ex) {
 			System.out.println(ex);
 
 		}

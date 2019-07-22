@@ -30,6 +30,7 @@ public class Trip extends HttpServlet {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				//create connection to database
 				Connection con= DriverManager.getConnection(url,uname,pwd);
+				PrintWriter pw=response.getWriter();
 				String sql="insert into trip(vehNum,stDate,edDate,maStart,maEng,origin,mulDes,rev,dName,remarks) values(?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement pst=con.prepareStatement(sql);
 				pst.setString(1, number);
@@ -42,10 +43,12 @@ public class Trip extends HttpServlet {
 				pst.setInt(8, reve);
 				pst.setString(9,nam );
 				pst.setString(10,rem);
-			
 				pst.execute();
+				pw.println("<html><body>");
+				pw.println("<h2>Your record is successfully uploaded</h2>");
+				pw.println("</body></html>");
+				pw.close();
 				con.close();
-				System.out.println("Record inserted");
 		}
 		catch(Exception ex) {
 			System.out.println(ex);

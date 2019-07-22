@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="NewTrip.html">Add Trip</a> <a
-								class="dropdown-item" href="EditTrip.java">Edit Trip</a>
+								class="dropdown-item" href="EditTrips.java">Edit Trip</a>
 						</div></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="Employee.html">Add Employee</a></li>
@@ -48,7 +49,7 @@
 			</div>
 			<br />
 			<div class="row">
-				<form method="get" action="Exp" />
+				<form method="post" action="Exp" enctype="multipart/form-data" />
 				<div class="form-group">
 					<label>Vehicle Number</label> <input class="form-control"
 						type="text" name="num" />
@@ -62,7 +63,7 @@
 						name="amt" min="1" />
 				</div>
 				<div class="form-group">
-					<label>Bill</label> <input class="form-control" type="text"
+					<label>Bill</label> <input class="form-control" type="file" 
 						name="bill" />
 				</div>
 				<div class="form-group">

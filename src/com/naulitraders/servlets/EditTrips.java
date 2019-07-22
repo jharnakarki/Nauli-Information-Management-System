@@ -30,7 +30,7 @@ public class EditTrips extends HttpServlet{
 				pw.println("</tr>");
 			}
 			pw.println("</table></body></html>");
-			pw.println("<a href='Form.html'>Edit Trip</a>");
+			
 			pw.close();
 			con.close();
 		}

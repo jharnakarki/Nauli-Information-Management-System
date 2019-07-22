@@ -33,15 +33,7 @@
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>editTripsServlet</servlet-name>
-    <servlet-class>com.naulitraders.servlets.EditTrips</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>editTripsServlet</servlet-name>
-    <url-pattern>/Edit</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>expensesServlets</servlet-name>
+      <servlet-name>expensesServlets</servlet-name>
     <servlet-class>com.naulitraders.servlets.Expenses</servlet-class>
   </servlet>
   <servlet-mapping>
@@ -56,5 +48,6 @@
     <servlet-name>employeeServlets</servlet-name>
     <url-pattern>/Emp</url-pattern>
   </servlet-mapping>
+  
   
 </web-app>
