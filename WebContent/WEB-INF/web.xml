@@ -10,7 +10,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>truckInfoServlet</servlet-name>
-    <servlet-class>com.naulitraders.servlets.TruckInfo</servlet-class>
+    <servlet-class>com.naulitraders.servlets.TruckInfoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>truckInfoServlet</servlet-name>

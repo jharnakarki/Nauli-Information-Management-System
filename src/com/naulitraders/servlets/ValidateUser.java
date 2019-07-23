@@ -6,6 +6,8 @@ import java.util.TimeZone;
 
 import javax.servlet.http.*;
 
+import com.mysql.cj.util.StringUtils;
+
 public class ValidateUser extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -16,8 +18,12 @@ public class ValidateUser extends HttpServlet {
 		String pwd = "";
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+	
+		PrintWriter pw = null;
+		
 		try {
-			PrintWriter pw = response.getWriter();
+			pw = response.getWriter();
+			validateUser(username, password);
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			// create connection to database
 			Connection con = DriverManager.getConnection(url,uname, pwd);
@@ -44,8 +50,23 @@ public class ValidateUser extends HttpServlet {
 
 			con.close();
 
+		} catch (IllegalArgumentException e) {
+			if(pw != null) {
+				pw.println(e.getMessage());
+			}
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
 	}
+	
+	private void validateUser(String username, String password) {
+		if(username == null || username == "") {
+			throw new IllegalArgumentException("Username cannot be empty");
+		}
+		
+		if(password == null || password == "") {
+			throw new IllegalArgumentException("Password cannot be empty");
+		}
+	}
+			
 }
