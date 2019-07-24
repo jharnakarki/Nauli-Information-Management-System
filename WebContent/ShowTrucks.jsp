@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Nauli Dashboard</title>
+<title>Nauli IMS - Show Trucks</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 
@@ -28,8 +28,8 @@
 						aria-haspopup="true" aria-expanded="false"> Vehicle </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="ShowTrucks">Show Vehicle</a>
-							<a class="dropdown-item" href="AddTruck">Add Vehicle</a>
+							<a class="dropdown-item" href="/ShowTrucks">Show Vehicle</a>
+							<a class="dropdown-item" href="/AddTruck">Add Vehicle</a>
 						</div>
 					</li>
 						
@@ -57,7 +57,31 @@
 	</nav>
 	<div class="container">
 		<article>
-			<h2>Welcome to Nauli trader</h2>
+			<div class="row">
+				<h2>Trucks</h2>
+			</div>
+			
+			<div class="row">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Truck Number</th>
+							<th>Make</th>
+							<th>Model</th>
+							<th>Capacity</th>
+							<th>Tyres</th>
+							<th>Year</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr>
+						
+						<tr>
+					</tbody>
+				</table>
+			</div>
+			
 		</article>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

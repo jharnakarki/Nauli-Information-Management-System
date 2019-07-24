@@ -9,12 +9,20 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>truckInfoServlet</servlet-name>
+    <servlet-name>addTruckServlet</servlet-name>
+    <servlet-class>com.naulitraders.servlets.AddTruckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addTruckServlet</servlet-name>
+    <url-pattern>/AddTruck</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>showTruckServlet</servlet-name>
     <servlet-class>com.naulitraders.servlets.TruckInfoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>truckInfoServlet</servlet-name>
-    <url-pattern>/TruckInfo</url-pattern>
+    <servlet-name>showTruckServlet</servlet-name>
+    <url-pattern>/ShowTrucks</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>tripServlet</servlet-name>
