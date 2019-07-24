@@ -26,7 +26,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>tripServlet</servlet-name>
-    <servlet-class>com.naulitraders.servlets.Trip</servlet-class>
+    <servlet-class>com.naulitraders.servlets.AddTripServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>tripServlet</servlet-name>
@@ -42,7 +42,7 @@
   </servlet-mapping>
   <servlet>
       <servlet-name>expensesServlets</servlet-name>
-    <servlet-class>com.naulitraders.servlets.Expenses</servlet-class>
+    <servlet-class>com.naulitraders.servlets.AddExpServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>expensesServlets</servlet-name>
@@ -50,7 +50,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>employeeServlets</servlet-name>
-    <servlet-class>com.naulitraders.servlets.EmpDetail</servlet-class>
+    <servlet-class>com.naulitraders.servlets.AddEmpServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>employeeServlets</servlet-name>
