@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.WebServlet;
 
 import com.naulitraders.dao.TruckDao;
 import com.naulitraders.model.TruckInfo;
@@ -15,6 +16,7 @@ import com.naulitraders.model.TruckInfo;
 /*
  * This class will display the list of all the trucks in the system
  */
+@WebServlet("/ShowTrucks")
 public class TruckInfoServlet extends HttpServlet {
 	
 	private TruckDao truckDao = new TruckDao();
