@@ -37,7 +37,7 @@ public class ValidateUser extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setMaxInactiveInterval(60);
 
-					response.sendRedirect("home.html");
+					response.sendRedirect("home");
 				}
 
 				else {
