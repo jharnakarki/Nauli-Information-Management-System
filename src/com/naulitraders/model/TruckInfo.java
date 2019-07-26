@@ -9,7 +9,10 @@ public class TruckInfo {
 	private int tyres;
 	private int year;
 	
-
+	public TruckInfo() {
+		
+	}
+	
 	public TruckInfo(String truckNumber, String brand, int model, int capacity, int tyres, int year) {
 		super();
 		this.truckNumber = truckNumber;

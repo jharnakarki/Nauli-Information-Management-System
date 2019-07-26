@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.naulitraders.dao.ApplicationDao;
+import com.naulitraders.dao.TruckDao;
 import com.naulitraders.model.TruckInfo;
 
 @WebServlet("/addVehicle")
@@ -45,7 +45,7 @@ public class AddTruckServlet extends HttpServlet {
 		}
 		
 		// call the DAO layer and save the truck info
-		ApplicationDao applicationDao = new ApplicationDao();
+		TruckDao applicationDao = new TruckDao();
 		applicationDao.insertTruckInfo(truckInfo);
 		
 		// set the success message and send it through dispatcher
