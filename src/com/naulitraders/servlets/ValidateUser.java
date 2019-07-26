@@ -4,13 +4,22 @@ import java.io.*;
 import java.sql.*;
 import java.util.TimeZone;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.mysql.cj.util.StringUtils;
 
+@WebServlet("/login")
 public class ValidateUser extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.html");
+		dispatcher.forward(request, response);
+	}
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html");
 
 		String url = "jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
