@@ -1,6 +1,7 @@
 package com.naulitraders.servlets;
 
 import java.io.IOException;
+import java.util.*;
 import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
@@ -67,5 +68,6 @@ public class AddTruckServlet extends HttpServlet {
 		if (truckInfo.getYear() > LocalDate.now().getYear()) {
 			throw new IllegalArgumentException("Year of a truck cannot be future year");
 		}
+		
 	}
 }

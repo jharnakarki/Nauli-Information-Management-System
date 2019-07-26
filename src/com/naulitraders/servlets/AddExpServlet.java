@@ -49,7 +49,7 @@ public class AddExpServlet extends HttpServlet {
 		} catch (IllegalArgumentException e) {
 			// write the message back to the page in client browser\
 			String errorMessage = e.getMessage();
-			String page = getHTMLString(request.getServletContext().getRealPath("expense.html"), "alert-danger",
+			String page = getHTMLString(request.getServletContext().getRealPath("expense.jsp"), "alert-danger",
 					errorMessage);
 			response.getWriter().write(page);
 			return;
@@ -62,14 +62,14 @@ public class AddExpServlet extends HttpServlet {
 		String successMessage = "Truck Info successfully added";
 
 		// write the message back to the page in client browser\
-		String page = getHTMLString(request.getServletContext().getRealPath("expense.html"), "alert-success",
+		String page = getHTMLString(request.getServletContext().getRealPath("expense.jsp"), "alert-success",
 				successMessage);
 		response.getWriter().write(page);
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String page = getHTMLString(req.getServletContext().getRealPath("Expense.html"), "", "");
+		String page = getHTMLString(req.getServletContext().getRealPath("Expense.jsp"), "", "");
 		resp.getWriter().write(page);
 	}
 

@@ -36,7 +36,7 @@ public class AddEmpServlet extends HttpServlet {
 		} catch(IllegalArgumentException e) {
 		// write the message back to the page in client browser\
 		String errorMessage = e.getMessage();
-		String page = getHTMLString(request.getServletContext().getRealPath("Employee.html"), "alert-danger", errorMessage);
+		String page = getHTMLString(request.getServletContext().getRealPath("Employee.jsp"), "alert-danger", errorMessage);
 		response.getWriter().write(page);
 		return;
 		}
@@ -45,12 +45,12 @@ public class AddEmpServlet extends HttpServlet {
 		applicationDao.insertEmployeeInfo(employeeInfo);
 		String successMessage = "Truck Info successfully added";
 		// write the message back to the page in client browser\
-		String page = getHTMLString(request.getServletContext().getRealPath("Employee.html"), "alert-success", successMessage);
+		String page = getHTMLString(request.getServletContext().getRealPath("Employee.jsp"), "alert-success", successMessage);
 		response.getWriter().write(page);
 		}
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String page = getHTMLString(req.getServletContext().getRealPath("Employee.html"), "", "");
+		String page = getHTMLString(req.getServletContext().getRealPath("Employee.jsp"), "", "");
 		resp.getWriter().write(page);
 		}
 		public String getHTMLString(String filePath, String messageType, String message) throws IOException{

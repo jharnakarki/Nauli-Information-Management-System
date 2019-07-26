@@ -50,7 +50,7 @@ public class AddTripServlet extends HttpServlet {
 		{
 			// write the message back to the page in client browser\
 			String errorMessage = e.getMessage();
-			String page = getHTMLString(request.getServletContext().getRealPath("NewTrip.html"), "alert-danger",
+			String page = getHTMLString(request.getServletContext().getRealPath("NewTrip.jsp"), "alert-danger",
 					errorMessage);
 			response.getWriter().write(page);
 			return;
@@ -62,13 +62,13 @@ public class AddTripServlet extends HttpServlet {
 		String successMessage = "Trip Info successfully added";
 
 		// write the message back to the page in client browser\
-		String page = getHTMLString(request.getServletContext().getRealPath("NewTrip.html"), "alert-success",
+		String page = getHTMLString(request.getServletContext().getRealPath("NewTrip.jsp"), "alert-success",
 				successMessage);response.getWriter().write(page);
 		}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String page = getHTMLString(req.getServletContext().getRealPath("NewTrip.html"), "", "");
+		String page = getHTMLString(req.getServletContext().getRealPath("NewTrip.jsp"), "", "");
 		resp.getWriter().write(page);
 	}
 	
