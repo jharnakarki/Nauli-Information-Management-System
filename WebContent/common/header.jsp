@@ -27,7 +27,7 @@
 					aria-haspopup="true" aria-expanded="false"> Vehicle </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<a class="dropdown-item" href="ShowTrucks">Show Vehicle</a> <a
-							class="dropdown-item" href="AddTruck">Add Vehicle</a>
+							class="dropdown-item" href="addVehicle">Add Vehicle</a>
 					</div></li>
 
 

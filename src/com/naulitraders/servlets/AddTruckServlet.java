@@ -1,25 +1,25 @@
 package com.naulitraders.servlets;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.text.MessageFormat;
 import java.time.LocalDate;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.naulitraders.dao.ApplicationDao;
 import com.naulitraders.model.TruckInfo;
-import com.naulitraders.utility.ValidationUtil;
 
+@WebServlet("/addVehicle")
 public class AddTruckServlet extends HttpServlet {
 	
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		response.setContentType("text/html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddVehicle.jsp");
 
 		String number = request.getParameter("num");
 		String brand = request.getParameter("brand");
@@ -37,45 +37,30 @@ public class AddTruckServlet extends HttpServlet {
 		} catch(IllegalArgumentException e) {
 			// write the message back to the page in client browser\
 			String errorMessage = e.getMessage();
-			String page = getHTMLString(request.getServletContext().getRealPath("AddVehicle.html"), "alert-danger", errorMessage);
-			response.getWriter().write(page);
+			
+			request.setAttribute("messageType", "alert-danger");
+			request.setAttribute("message", errorMessage);
+			dispatcher.forward(request, response);
 			return;
 		}
-		
 		
 		// call the DAO layer and save the truck info
 		ApplicationDao applicationDao = new ApplicationDao();
 		applicationDao.insertTruckInfo(truckInfo);
 		
+		// set the success message and send it through dispatcher
 		String successMessage = "Truck Info successfully added";
-		
-		// write the message back to the page in client browser\
-		String page = getHTMLString(request.getServletContext().getRealPath("AddVehicle.html"), "alert-success", successMessage);
-		response.getWriter().write(page);
+		request.setAttribute("messageType", "alert-danger");
+		request.setAttribute("message", successMessage);
+		dispatcher.forward(request, response);
 	}
 	
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String page = getHTMLString(req.getServletContext().getRealPath("AddVehicle.html"), "", "");
-		resp.getWriter().write(page);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddVehicle.jsp");
+		dispatcher.forward(request, response);
 	}
-	
-	
-	public String getHTMLString(String filePath, String messageType, String message) throws IOException{
-		BufferedReader reader = new BufferedReader(new FileReader(filePath));
-		String line="";
-		StringBuffer buffer = new StringBuffer();
-		while((line=reader.readLine())!=null){
-			buffer.append(line);
-		}
-		
-		reader.close();
-		String page = buffer.toString();
-		
-		page = MessageFormat.format(page, messageType, message);
-		
-		return page;		
-	}
+
 
 	private void validateTruckInfo(TruckInfo truckInfo) {
 
