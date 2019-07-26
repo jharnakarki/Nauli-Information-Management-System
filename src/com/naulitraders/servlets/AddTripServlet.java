@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.naulitraders.dao.TripDao;
 import com.naulitraders.model.TripInfo;
 import com.naulitraders.utility.ValidationUtil;
-
+@WebServlet("/addTrip")
 public class AddTripServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html");

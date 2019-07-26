@@ -9,7 +9,7 @@
 			</div>
 			<br />
 			<div class="row">
-				<form method="POST" action="TruckInfo">
+				<form method="POST" action="addVehicle">
 					<div class="form-group">
 						<label>Vehicle Number</label> <input class="form-control"
 							type="text" name="num" required />

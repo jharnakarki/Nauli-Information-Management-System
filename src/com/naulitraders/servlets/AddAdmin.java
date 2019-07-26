@@ -1,10 +1,12 @@
 package com.naulitraders.servlets;
-
 import java.io.*;
 import java.sql.*;
 import java.util.TimeZone;
+
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+@WebServlet("/addAdmin")
 public class AddAdmin extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html");
