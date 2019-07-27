@@ -1,15 +1,23 @@
 package com.naulitraders.servlets;
-import javax.servlet.RequestDispatcher;
+import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
+import java.io.InputStream;
 import java.text.MessageFormat;
 import java.time.LocalDate;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
+import javax.servlet.ServletException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.naulitraders.dao.ExpenseDao;
 import com.naulitraders.model.ExpenseInfo;
@@ -17,13 +25,13 @@ import com.naulitraders.utility.ValidationUtil;
 
 @WebServlet("/addExpenses")
 public class AddExpServlet extends HttpServlet {
-	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher Dispatcher=request.getRequestDispatcher("/AddExpenses.jsp");
 		response.setContentType("text/html");
 
 		//get the request
 		String number = request.getParameter("num");
-		LocalDate ExpenseDate = LocalDate.parse(request.getParameter("dat"));
+		LocalDate expenseDate = LocalDate.parse(request.getParameter("dat"));
 		Double amount = Double.parseDouble(request.getParameter("amt"));
 		String remark = request.getParameter("remarks");
 		InputStream inputStream = null; // input stream of the upload file
@@ -40,7 +48,7 @@ public class AddExpServlet extends HttpServlet {
 		}
 
 		// fill it up the model
-		ExpenseInfo expenseInfo = new ExpenseInfo(number, ExpenseDate, amount, inputStream, remark);
+		ExpenseInfo expenseInfo = new ExpenseInfo(number, amount,remark,expenseDate, inputStream);
 
 		// validate truck info
 		try {

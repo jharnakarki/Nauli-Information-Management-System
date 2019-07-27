@@ -6,7 +6,7 @@ public class ExpenseInfo {
 	private String truckNumber;
 	private Double amount;
 	private String remarks;
-	private Date expDate;
+	private LocalDate expDate;
 	private InputStream inputStream ;
 	
 	public ExpenseInfo(String truckNumber, Double amount, String remarks , LocalDate expDate, InputStream inputStream) {
@@ -43,11 +43,11 @@ public class ExpenseInfo {
 	        this.remarks = remarks;
 	    }
 
-	    public Date getExpDate() {
+	    public LocalDate getExpDate() {
 	        return expDate;
 	    }
 
-	    public void setExpdate(Date expDate) {
+	    public void setExpdate(LocalDate expDate) {
 	        this.expDate = expDate;
 	    }
 

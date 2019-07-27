@@ -16,7 +16,7 @@ public class ExpenseDao {
 
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, expenseInfo.getTruckNumber());
-			pst.setDate(2, expenseInfo.getExpDate());
+			pst.setDate(2, Date.valueOf(expenseInfo.getExpDate()));
 			pst.setDouble(3, expenseInfo.getAmount());
 			pst.setBlob(4, expenseInfo.getInputStream());
 			pst.setString(5,expenseInfo.getRemarks());
