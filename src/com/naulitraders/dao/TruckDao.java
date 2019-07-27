@@ -12,8 +12,9 @@ import com.naulitraders.model.TruckInfo;
 
 public class TruckDao {
 
-	public void insertTruckInfo(TruckInfo truckInfo) {
-
+	public boolean insertTruckInfo(TruckInfo truckInfo) {
+		
+		boolean isSuccess = false;
 		String sql = "insert into tckInfo(vehNumber,brand,model,capacity,tyres,year) values(?,?,?,?,?,?)";
 
 		try {
@@ -26,12 +27,12 @@ public class TruckDao {
 			pst.setInt(4, truckInfo.getCapacity());
 			pst.setInt(5, truckInfo.getTyres());
 			pst.setInt(6, truckInfo.getYear());
-			pst.execute();
-
+			isSuccess = pst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
+		return isSuccess;
 	}
 	
 	

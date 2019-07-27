@@ -1,13 +1,10 @@
 package com.naulitraders.servlets;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.text.MessageFormat;
 import java.time.LocalDate;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,15 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.naulitraders.dao.TripDao;
 import com.naulitraders.model.TripInfo;
-import com.naulitraders.utility.ValidationUtil;
 
 @WebServlet("/addTrip")
 public class AddTripServlet extends HttpServlet {
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/NewTrip.jsp");
+		
+		// get the request
 		String number = request.getParameter("vehNum");
-		// converting util data into sql date
 		LocalDate departureDate = LocalDate.parse(request.getParameter("dtStart"));
 		LocalDate arrivalDate = LocalDate.parse(request.getParameter("dtEnd"));
 		int sMil = Integer.parseInt(request.getParameter("maStart"));
@@ -38,55 +36,54 @@ public class AddTripServlet extends HttpServlet {
 		TripInfo tripInfo = new TripInfo(number, departureDate, arrivalDate, sMil, eMil, orig, mul, reve, nam, rem);
 
 		// validate truck info
-		/*try {
+		try {
 			validateTripInfo(tripInfo);
 		} catch (IllegalArgumentException e) {
 			// write the message back to the page in client browser\
 			String errorMessage = e.getMessage();
-			String page = getHTMLString(request.getServletContext().getRealPath("NewTrip.jsp"), "alert-danger",
-					errorMessage);
-			response.getWriter().write(page);
+
+			request.setAttribute("messageType", "alert-danger");
+			request.setAttribute("message", errorMessage);
+			dispatcher.forward(request, response);
 			return;
-		}*/
+		}
 
 		// call the DAO layer and save the truck info
 		TripDao tripDao = new TripDao();
-		tripDao.insertTripInfo(tripInfo);
-
-		String successMessage = "Trip Info successfully added";
-
-		// write the message back to the page in client browser\
-		String page = getHTMLString(request.getServletContext().getRealPath("NewTrip.jsp"), "alert-success",
-				successMessage);
-		response.getWriter().write(page);
+		boolean isSuccess = tripDao.insertTripInfo(tripInfo);
+		
+		if (!isSuccess) {
+			// some database error occured, notified user with generic message
+			String errorMessage = "Could not insert into our system. Please contact system administrator.";
+			request.setAttribute("messageType", "alert-danger");
+			request.setAttribute("message", errorMessage);
+			dispatcher.forward(request, response);
+		} else {
+			// set the success message and send it through dispatcher
+			String successMessage = "Trip Info successfully added";
+			request.setAttribute("messageType", "alert-success");
+			request.setAttribute("message", successMessage);
+			dispatcher.forward(request, response);
+		}
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String page = getHTMLString(req.getServletContext().getRealPath("NewTrip.jsp"), "", "");
-		resp.getWriter().write(page);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/NewTrip.jsp");
+		dispatcher.forward(request, response);
 	}
 
-	public String getHTMLString(String filePath, String messageType, String message) throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader(filePath));
-		String line = "";
-		StringBuffer buffer = new StringBuffer();
-		while ((line = reader.readLine()) != null) {
-			buffer.append(line);
+
+	private void validateTripInfo(TripInfo tripInfo) {
+
+		if (tripInfo.getStartDate().isAfter(LocalDate.now())) {
+			throw new IllegalArgumentException("Date of a start date cannot be future date");
 		}
-
-		reader.close();
-		String page = buffer.toString();
-
-		page = MessageFormat.format(page, messageType, message);
-
-		return page;
-	}
-
-	private void validateTripInfo(TripInfo truckInfo) {
-
-		if (tripInfo.getStartDate() > LocalDate.now().getDate()) {
-			throw new IllegalArgumentException("Date of a trip cannot be future year");
+		
+		if (tripInfo.getEndDate().isAfter(LocalDate.now())) {
+			throw new IllegalArgumentException("End date of a trip cannot be future date");
 		}
+		
+		// TODO - validate endMileage should be always greater than start mileage
 	}
 }

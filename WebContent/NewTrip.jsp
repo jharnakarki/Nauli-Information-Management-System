@@ -3,13 +3,21 @@
 <jsp:include page="common/header.jsp" />
 <div class="container">
 	<article>
+		<% 
+
+		Object messageType = (request.getAttribute("messageType") != null) ? request.getAttribute("messageType") : "";
+		Object message = (request.getAttribute("message") != null) ? request.getAttribute("message") : "";
+
+		%>
+
+		<div class="row alert <%= messageType %>"><%= message %></div>
 		<div class="row">
 			<h2>Add a new Trip</h2>
 		</div>
 		<br />
 		<div class="row">
 
-			<form method="post" action="TruckTrip" />
+			<form method="post" action="addTrip" />
 			<div class="form-group">
 				<label>Truck Number</label> <input class="form-control" type="Text"
 					name="vehNum" />

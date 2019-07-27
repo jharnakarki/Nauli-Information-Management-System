@@ -16,7 +16,7 @@ import com.naulitraders.model.TruckInfo;
 
 @WebServlet("/addVehicle")
 public class AddTruckServlet extends HttpServlet {
-	
+
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
@@ -28,46 +28,55 @@ public class AddTruckServlet extends HttpServlet {
 		int capacity = Integer.parseInt(request.getParameter("capacity"));
 		int tyres = Integer.parseInt(request.getParameter("tyres"));
 		int year = Integer.parseInt(request.getParameter("year"));
-		
+
 		// fill it up the model
 		TruckInfo truckInfo = new TruckInfo(number, brand, model, capacity, tyres, year);
-		
+
 		// validate truck info
 		try {
 			validateTruckInfo(truckInfo);
-		} catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			// write the message back to the page in client browser\
 			String errorMessage = e.getMessage();
-			
+
 			request.setAttribute("messageType", "alert-danger");
 			request.setAttribute("message", errorMessage);
 			dispatcher.forward(request, response);
 			return;
 		}
-		
+
 		// call the DAO layer and save the truck info
 		TruckDao applicationDao = new TruckDao();
-		applicationDao.insertTruckInfo(truckInfo);
-		
-		// set the success message and send it through dispatcher
-		String successMessage = "Truck Info successfully added";
-		request.setAttribute("messageType", "alert-success");
-		request.setAttribute("message", successMessage);
-		dispatcher.forward(request, response);
+		boolean isSuccess = applicationDao.insertTruckInfo(truckInfo);
+
+		if (!isSuccess) {
+			// some database error occured, notified user with generic message
+			String errorMessage = "Could not insert into our system. Please contact system administrator.";
+			request.setAttribute("messageType", "alert-danger");
+			request.setAttribute("message", errorMessage);
+			dispatcher.forward(request, response);
+		} else {
+			// set the success message and send it through dispatcher
+			String successMessage = "Truck Info successfully added";
+			request.setAttribute("messageType", "alert-success");
+			request.setAttribute("message", successMessage);
+			dispatcher.forward(request, response);
+		}
+
 	}
-	
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddVehicle.jsp");
 		dispatcher.forward(request, response);
 	}
-
 
 	private void validateTruckInfo(TruckInfo truckInfo) {
 
 		if (truckInfo.getYear() > LocalDate.now().getYear()) {
 			throw new IllegalArgumentException("Year of a truck cannot be future year");
 		}
-		
+
 	}
 }
