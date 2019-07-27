@@ -16,20 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.naulitraders.dao.TripDao;
 import com.naulitraders.model.TripInfo;
 import com.naulitraders.utility.ValidationUtil;
+
 @WebServlet("/addTrip")
 public class AddTripServlet extends HttpServlet {
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.setContentType("text/html");
-		String url = "jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
-		String uname = "root";
-		String pwd = "";
+
 		String number = request.getParameter("vehNum");
 		// converting util data into sql date
-		java.util.Date start = new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("dtStart"));
-		java.util.Date end = new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("dtEnd"));
-		java.sql.Date sqlDate = new java.sql.Date(start.getTime());
-		java.sql.Date sqlEndDate = new java.sql.Date(end.getTime());
-
+		LocalDate departureDate = LocalDate.parse(request.getParameter("dtStart"));
+		LocalDate arrivalDate = LocalDate.parse(request.getParameter("dtEnd"));
 		int sMil = Integer.parseInt(request.getParameter("maStart"));
 		int eMil = Integer.parseInt(request.getParameter("maEnd"));
 		String orig = request.getParameter("org");
@@ -39,39 +35,38 @@ public class AddTripServlet extends HttpServlet {
 		String rem = request.getParameter("remarks");
 
 		// fill it up the model
-		TripInfo tripInfo = new TripInfo(number, sqlDate, sqlEndDate, sMil, eMil, orig, mul, reve, nam, rem);
-		
+		TripInfo tripInfo = new TripInfo(number, departureDate, arrivalDate, sMil, eMil, orig, mul, reve, nam, rem);
+
 		// validate truck info
-		try
-		{
+		/*try {
 			validateTripInfo(tripInfo);
-		}
-		catch(IllegalArgumentException e)
-		{
+		} catch (IllegalArgumentException e) {
 			// write the message back to the page in client browser\
 			String errorMessage = e.getMessage();
 			String page = getHTMLString(request.getServletContext().getRealPath("NewTrip.jsp"), "alert-danger",
 					errorMessage);
 			response.getWriter().write(page);
 			return;
-		}
-		
+		}*/
+
 		// call the DAO layer and save the truck info
-		TripDao applicationDao = new TripDao();applicationDao.insertTripInfo(tripInfo);
+		TripDao tripDao = new TripDao();
+		tripDao.insertTripInfo(tripInfo);
 
 		String successMessage = "Trip Info successfully added";
 
 		// write the message back to the page in client browser\
 		String page = getHTMLString(request.getServletContext().getRealPath("NewTrip.jsp"), "alert-success",
-				successMessage);response.getWriter().write(page);
-		}
-	
+				successMessage);
+		response.getWriter().write(page);
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String page = getHTMLString(req.getServletContext().getRealPath("NewTrip.jsp"), "", "");
 		resp.getWriter().write(page);
 	}
-	
+
 	public String getHTMLString(String filePath, String messageType, String message) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(filePath));
 		String line = "";
@@ -87,6 +82,7 @@ public class AddTripServlet extends HttpServlet {
 
 		return page;
 	}
+
 	private void validateTripInfo(TripInfo truckInfo) {
 
 		if (tripInfo.getStartDate() > LocalDate.now().getDate()) {
@@ -94,18 +90,3 @@ public class AddTripServlet extends HttpServlet {
 		}
 	}
 }
-
-
-
-
-	
-
-	
-	
-
-	
-
-	
-
-	
-	

@@ -51,7 +51,7 @@ public class AddTruckServlet extends HttpServlet {
 		
 		// set the success message and send it through dispatcher
 		String successMessage = "Truck Info successfully added";
-		request.setAttribute("messageType", "alert-danger");
+		request.setAttribute("messageType", "alert-success");
 		request.setAttribute("message", successMessage);
 		dispatcher.forward(request, response);
 	}

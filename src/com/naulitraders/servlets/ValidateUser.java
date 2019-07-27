@@ -15,7 +15,7 @@ import com.mysql.cj.util.StringUtils;
 public class ValidateUser extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp");
 		dispatcher.forward(request, response);
 	}
 	
