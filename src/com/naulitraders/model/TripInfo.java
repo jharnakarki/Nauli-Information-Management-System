@@ -15,7 +15,7 @@ public class TripInfo {
 	private String remarks;
 
 	public TripInfo(String truckNumber, LocalDate startDate, LocalDate endDate, int startMileage, int endMileage,
-			String origin, String mulDestination, int revenue, String driverName, String remarks) {
+			String origin, String mulDestination, double revenue, String driverName, String remarks) {
 		super();
 		this.truckNumber = truckNumber;
 		this.startDate = startDate;

@@ -11,6 +11,7 @@ import java.util.List;
 import java.time.LocalDate;
 
 import com.naulitraders.model.TripInfo;
+import com.naulitraders.model.TruckInfo;
 
 public class TripDao {
 
@@ -40,6 +41,44 @@ public class TripDao {
 		}
 
 	}
+public List<TripInfo> getTripsList() {
+		
+		List<TripInfo> listOfTrips = new ArrayList<>();
+		
+		String sql = "SELECT vehNumber,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks";
+		
+		Statement statement;
+		
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+			
+			statement = conn.createStatement();
+			
+			ResultSet rs = statement.executeQuery(sql);
+			while(rs.next()) {
+				TripInfo tripInfo = new TripInfo();
+				
+				tripInfo.setTruckNumber(rs.getString("vehNumber"));
+				tripInfo.setStartDate(rs.getLocalDate("dtStart"));
+				tripInfo.setEndDate(rs.getLocalDate("dtend"));
+				tripInfo.setStartMileage(rs.getInt("maStart"));
+				tripInfo.setEndMileage(rs.getInt("maEnd"));
+				tripInfo.setOrigin(rs.getString("origin"));
+				tripInfo.setMulDestination(rs.getString("mulDes"));
+				tripInfo.setRevenue(rs.getDouble("rev"));
+				tripInfo.setDriverName(rs.getString("dName"));
+				tripInfo.setRemarks(rs.getString("remarks"));
+				
+				
+				listOfTrips.add(tripInfo);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return listOfTrips;
+	}
+
 }
+
 
 

@@ -37,7 +37,7 @@
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="addTrip">Add Trip</a> <a
-								class="dropdown-item" href="ShowTrips.jsp">Show Trip</a>
+								class="dropdown-item" href="ShowTrips">Show Trip</a>
 						</div></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="addEmployee">Add Employee</a></li>
