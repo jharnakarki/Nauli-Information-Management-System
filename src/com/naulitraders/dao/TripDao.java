@@ -10,7 +10,7 @@ public class TripDao {
 
 	public void insertTripInfo(TripInfo tripInfo) {
 
-		String sql = "insert into trip(vehNum,dtStart,dtEnd,maStart,maEng,origin,mulDes,rev,dName,remarks)"
+		String sql = "insert into trip(vehNum,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks)"
 				+ " values(?,?,?,?,?,?,?,?,?,?)";
 
 		try {

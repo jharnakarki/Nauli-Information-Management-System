@@ -1,5 +1,5 @@
 package com.naulitraders.servlets;
-
+import javax.servlet.RequestDispatcher;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,13 +18,12 @@ import com.naulitraders.utility.ValidationUtil;
 @WebServlet("/addExpenses")
 public class AddExpServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+		RequestDispatcher Dispatcher=request.getRequestDispatcher("/AddExpenses.jsp");
 		response.setContentType("text/html");
 
+		//get the request
 		String number = request.getParameter("num");
-		// converting utildate in sqldate format
-		java.util.Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dat"));
-		java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-		// obtains the upload file part in this multipart request
+		LocalDate ExpenseDate = LocalDate.parse(request.getParameter("dat"));
 		Double amount = Double.parseDouble(request.getParameter("amt"));
 		String remark = request.getParameter("remarks");
 		InputStream inputStream = null; // input stream of the upload file
@@ -41,7 +40,7 @@ public class AddExpServlet extends HttpServlet {
 		}
 
 		// fill it up the model
-		ExpenseInfo expenseInfo = new ExpenseInfo(number, sqlDate, amount, inputStream, remark);
+		ExpenseInfo expenseInfo = new ExpenseInfo(number, ExpenseDate, amount, inputStream, remark);
 
 		// validate truck info
 		try {
@@ -59,7 +58,7 @@ public class AddExpServlet extends HttpServlet {
 		ExpenseDao applicationDao = new ExpenseDao();
 		applicationDao.insertExpenseInfo(expenseInfo);
 
-		String successMessage = "Truck Info successfully added";
+		String successMessage = "Expense Info successfully added";
 
 		// write the message back to the page in client browser\
 		String page = getHTMLString(request.getServletContext().getRealPath("expense.jsp"), "alert-success",

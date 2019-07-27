@@ -1,5 +1,6 @@
 package com.naulitraders.model;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.Date;
 public class ExpenseInfo {
 	private String truckNumber;
@@ -8,7 +9,7 @@ public class ExpenseInfo {
 	private Date expDate;
 	private InputStream inputStream ;
 	
-	public ExpenseInfo(String truckNumber, Double amount, String remarks , Date expDate, InputStream inputStream) {
+	public ExpenseInfo(String truckNumber, Double amount, String remarks , LocalDate expDate, InputStream inputStream) {
 		super();
 		this.truckNumber = truckNumber;
 		this.amount = amount;

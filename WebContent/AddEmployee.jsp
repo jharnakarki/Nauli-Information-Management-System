@@ -26,11 +26,11 @@
 				</div>
 				<div class="form-group">
 					<label>Phone Number</label> <input class="form-control" type="text"
-						name="phoneNumber" />
+						name="phoneNumber" min="1" />
 				</div>
 				<div class="form-group">
 					<label>Salary</label> <input class="form-control" type="Number"
-						name="salary" />
+						name="salary"  min="1"/>
 				</div>
 
 				<button class="btn btn-primary" type="submit">Add Employee</button>

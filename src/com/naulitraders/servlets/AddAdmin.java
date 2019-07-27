@@ -3,6 +3,7 @@ import java.io.*;
 import java.sql.*;
 import java.util.TimeZone;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.*;
 public class AddAdmin extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddAdmin.jsp");
 		String url = "jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
 		String uname = "root";
 		String pwd = "";

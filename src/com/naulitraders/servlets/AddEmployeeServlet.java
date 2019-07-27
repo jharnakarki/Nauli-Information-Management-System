@@ -1,6 +1,7 @@
 package com.naulitraders.servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -61,6 +62,13 @@ public class AddEmployeeServlet extends HttpServlet {
 	}
 
 	private void validateEmployeeInfo(EmployeeInfo employeeInfo) {
+		if (employeeInfo.getPhoneNumber().length() > 10 ) {
+			throw new IllegalArgumentException("Phone number must be of 10 digit ");
+		}
+		else if (employeeInfo.getPhoneNumber().length() < 10 ) {
+			throw new IllegalArgumentException("Phone number must be of 10 digit ");
+		}
+		
 
 	}
 }
