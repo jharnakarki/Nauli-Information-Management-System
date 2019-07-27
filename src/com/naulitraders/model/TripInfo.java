@@ -10,7 +10,7 @@ public class TripInfo {
 	private int endMileage;
 	private String origin;
 	private String mulDestination;
-	private int revenue;
+	private double revenue;
 	private String driverName;
 	private String remarks;
 
@@ -85,11 +85,11 @@ public class TripInfo {
 		this.mulDestination = mulDestination;
 	}
 
-	public int getRevenue() {
+	public double getRevenue() {
 		return revenue;
 	}
 
-	public void setRevenue(int revenue) {
+	public void setRevenue(double revenue) {
 		this.revenue = revenue;
 	}
 

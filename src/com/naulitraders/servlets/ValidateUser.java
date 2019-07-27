@@ -1,6 +1,7 @@
 package com.naulitraders.servlets;
 
 import java.io.*;
+
 import java.sql.*;
 import java.util.TimeZone;
 
@@ -8,6 +9,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import com.naulitraders.dao.DBConnection;
 
 import com.mysql.cj.util.StringUtils;
 
@@ -18,24 +20,18 @@ public class ValidateUser extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html");
-
-		String url = "jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
-		String uname = "root";
-		String pwd = "";
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-	
+
 		PrintWriter pw = null;
-		
+
 		try {
 			pw = response.getWriter();
 			validateUser(username, password);
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			// create connection to database
-			Connection con = DriverManager.getConnection(url,uname, pwd);
+			Connection con = DBConnection.getConnectionToDatabase();
 			String sql = "select * from admins";
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -60,22 +56,22 @@ public class ValidateUser extends HttpServlet {
 			con.close();
 
 		} catch (IllegalArgumentException e) {
-			if(pw != null) {
+			if (pw != null) {
 				pw.println(e.getMessage());
 			}
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
 	}
-	
+
 	private void validateUser(String username, String password) {
-		if(username == null || username == "") {
+		if (username == null || username == "") {
 			throw new IllegalArgumentException("Username cannot be empty");
 		}
-		
-		if(password == null || password == "") {
+
+		if (password == null || password == "") {
 			throw new IllegalArgumentException("Password cannot be empty");
 		}
 	}
-			
+
 }

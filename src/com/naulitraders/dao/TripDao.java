@@ -3,7 +3,13 @@ package com.naulitraders.dao;
 import java.sql.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.time.LocalDate;
+
 import com.naulitraders.model.TripInfo;
 
 public class TripDao {
@@ -35,4 +41,42 @@ public class TripDao {
 
 	}
 
+	public List<TripInfo> getTripsList() {
+		
+		List<TripInfo> listOfTrips = new ArrayList<>();
+		
+		String sql = "SELECT vehNum,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks FROM trip";
+		
+		Statement statement;
+		
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+			
+			statement = conn.createStatement();
+			
+			ResultSet rs = statement.executeQuery(sql);
+			while(rs.next()) {
+				TripInfo tripInfo = new TripInfo();
+				
+				tripInfo.setTruckNumber(rs.getString("vehNum"));
+				tripInfo.setStartDate(rs.getDate("dtStart")));
+				tripInfo.setEndDate(rs.getDate("dtEnd"));
+				tripInfo.setStartMileage(rs.getInt("mastart"));
+				tripInfo.setEndMileage(rs.getInt("maEnd"));
+				tripInfo.setOrigin(rs.getString("origin"));
+				tripInfo.setMulDestination(rs.getString("mulDes"));
+				tripInfo.setRevenue(rs.getDouble("rev"));
+				tripInfo.setDriverName(rs.getString("dName"));
+				tripInfo.setRemarks(rs.getString("remarks"));
+				
+				listOfTrips.add(tripInfo);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return listOfTrips;
+	}
+
 }
+
+
