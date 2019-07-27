@@ -75,6 +75,10 @@ public class AddTripServlet extends HttpServlet {
 		if (tripInfo.getEndDate().isAfter(LocalDate.now())) {
 			throw new IllegalArgumentException("End date of a trip cannot be future date");
 		}
+		
+		if(tripInfo.getStartMileage()>tripInfo.getEndMileage()) {
+			throw new IllegalArgumentException("ending mileage should be more than start mileage");
+		}
 
 		// TODO - validate endMileage should be always greater than start mileage
 	}
