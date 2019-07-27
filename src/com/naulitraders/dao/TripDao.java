@@ -16,7 +16,7 @@ public class TripDao {
 
 	public void insertTripInfo(TripInfo tripInfo) {
 
-		String sql = "insert into trip(vehNum,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks)"
+		String sql = "insert into trip(vehNumber,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks)"
 				+ " values(?,?,?,?,?,?,?,?,?,?)";
 
 		try {
@@ -40,43 +40,6 @@ public class TripDao {
 		}
 
 	}
-
-	public List<TripInfo> getTripsList() {
-		
-		List<TripInfo> listOfTrips = new ArrayList<>();
-		
-		String sql = "SELECT vehNum,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks FROM trip";
-		
-		Statement statement;
-		
-		try {
-			Connection conn = DBConnection.getConnectionToDatabase();
-			
-			statement = conn.createStatement();
-			
-			ResultSet rs = statement.executeQuery(sql);
-			while(rs.next()) {
-				TripInfo tripInfo = new TripInfo();
-				
-				tripInfo.setTruckNumber(rs.getString("vehNum"));
-				tripInfo.setStartDate(rs.getDate("dtStart")));
-				tripInfo.setEndDate(rs.getDate("dtEnd"));
-				tripInfo.setStartMileage(rs.getInt("mastart"));
-				tripInfo.setEndMileage(rs.getInt("maEnd"));
-				tripInfo.setOrigin(rs.getString("origin"));
-				tripInfo.setMulDestination(rs.getString("mulDes"));
-				tripInfo.setRevenue(rs.getDouble("rev"));
-				tripInfo.setDriverName(rs.getString("dName"));
-				tripInfo.setRemarks(rs.getString("remarks"));
-				
-				listOfTrips.add(tripInfo);
-			}
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return listOfTrips;
-	}
-
 }
 
 

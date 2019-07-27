@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 27, 2019 at 08:23 PM
+-- Generation Time: Jul 27, 2019 at 09:30 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -141,7 +141,6 @@ CREATE TABLE `profit/loss` (
 --
 
 CREATE TABLE `tckInfo` (
-  `InfoId` int(11) NOT NULL,
   `vehNumber` varchar(15) NOT NULL,
   `brand` varchar(15) NOT NULL,
   `model` int(7) NOT NULL,
@@ -154,15 +153,15 @@ CREATE TABLE `tckInfo` (
 -- Dumping data for table `tckInfo`
 --
 
-INSERT INTO `tckInfo` (`InfoId`, `vehNumber`, `brand`, `model`, `capacity`, `tyres`, `year`) VALUES
-(1, 'Na.1.kha.4268', 'tata', 1613, 1198, 16, 2071),
-(2, 'Na.1.kha.2345', 'TATA', 2515, 1234, 14, 2071),
-(3, 'Na.1.kha.3676', 'TATA', 3245, 1000, 14, 2070),
-(4, 'Na.1.kha.3678', 'TATA', 3245, 1000, 14, 2071),
-(5, 'Na.1.kha.1234', 'Tata', 3440, 123667, 18, 2019),
-(6, 'na.1.kha4268', 'Tata', 3256, 10000, 12, 2018),
-(8, 'na.1.kha2345', 'tata', 1234, 100000, 14, 2010),
-(10, 'Dhh134', 'Tata ', 134, 1000, 22, 2017);
+INSERT INTO `tckInfo` (`vehNumber`, `brand`, `model`, `capacity`, `tyres`, `year`) VALUES
+('Dhh134', 'Tata ', 134, 1000, 22, 2017),
+('Na.1.kha.1234', 'Tata', 3440, 123667, 18, 2019),
+('Na.1.kha.2345', 'TATA', 2515, 1234, 14, 2071),
+('Na.1.kha.3676', 'TATA', 3245, 1000, 14, 2070),
+('Na.1.kha.3678', 'TATA', 3245, 1000, 14, 2071),
+('Na.1.kha.4268', 'tata', 1613, 1198, 16, 2071),
+('na.1.kha2345', 'tata', 1234, 100000, 14, 2010),
+('na.1.kha4268', 'Tata', 3256, 10000, 12, 2018);
 
 -- --------------------------------------------------------
 
@@ -171,8 +170,8 @@ INSERT INTO `tckInfo` (`InfoId`, `vehNumber`, `brand`, `model`, `capacity`, `tyr
 --
 
 CREATE TABLE `trip` (
-  `tripId` int(11) NOT NULL,
-  `vehNum` varchar(20) NOT NULL,
+  `tripID` int(11) NOT NULL,
+  `vehNumber` varchar(15) NOT NULL,
   `dtStart` date NOT NULL,
   `dtEnd` date NOT NULL,
   `maStart` double NOT NULL,
@@ -183,19 +182,6 @@ CREATE TABLE `trip` (
   `dName` varchar(20) NOT NULL,
   `remarks` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `trip`
---
-
-INSERT INTO `trip` (`tripId`, `vehNum`, `dtStart`, `dtEnd`, `maStart`, `maEnd`, `origin`, `mulDes`, `rev`, `dName`, `remarks`) VALUES
-(4, '1234', '2019-12-07', '2019-10-05', 464747, 767, 'ktm', 'brt,ktm', 78688, 'fhgjf', 'fjjgjf'),
-(5, '2456', '2019-06-10', '2019-06-12', 5788, 6879, 'gkgk', 'fjmgb', 68798090, 'fghfghj', 'vhjgk'),
-(6, '1232', '2019-07-10', '2019-07-18', 123, 23, 'ktm', 'dhn,gsk', 12334, 'ram', 'gsa'),
-(7, 'na.1.kha4268', '2019-07-10', '2019-07-18', 12345, 2345, 'ktm', 'dhn,gandaki', 12334, 'ram', 'sugar'),
-(8, 'Na.1.kha.4268', '0014-05-08', '0014-12-06', 12345, 1234, 'dhangadhi', 'dan.ktm,nepalgunj', 12330, 'Ram', 'sugar'),
-(9, 'Na.1.kha.4268', '0015-01-05', '0015-04-07', 12345, 1234, 'dhangadhi', 'dan.ktm,nepalgunj', 12330, 'Ram', 'sugar'),
-(10, 'na.1.kha.2345', '2019-07-01', '2019-07-05', 12345, 123, 'ktm', 'dhn,gandaki', 1234568, 'ramesh', 'sugar');
 
 --
 -- Indexes for dumped tables
@@ -235,13 +221,14 @@ ALTER TABLE `profit/loss`
 -- Indexes for table `tckInfo`
 --
 ALTER TABLE `tckInfo`
-  ADD PRIMARY KEY (`InfoId`);
+  ADD UNIQUE KEY `vehNumber` (`vehNumber`);
 
 --
 -- Indexes for table `trip`
 --
 ALTER TABLE `trip`
-  ADD PRIMARY KEY (`tripId`);
+  ADD PRIMARY KEY (`tripID`),
+  ADD KEY `FK_vehNumber` (`vehNumber`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -278,16 +265,20 @@ ALTER TABLE `profit/loss`
   MODIFY `PLId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tckInfo`
---
-ALTER TABLE `tckInfo`
-  MODIFY `InfoId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `tripId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `tripID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `trip`
+--
+ALTER TABLE `trip`
+  ADD CONSTRAINT `FK_vehNumber` FOREIGN KEY (`vehNumber`) REFERENCES `tckInfo` (`vehNumber`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
