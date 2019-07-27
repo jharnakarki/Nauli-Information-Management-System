@@ -1,22 +1,21 @@
 package com.naulitraders.model;
 
 public class EmployeeInfo {
-	String name;
-	int age;
-	String address;
-	int contact;
-	String position;
-	double salary;
+	private String name;
+	private String position;
+	private String phoneNumber;
+	private double salary;
+	
+	
 
-	public EmployeeInfo(String name, int age, String address, int contact, String position, double salary) {
+	public EmployeeInfo(String name, String position, String phoneNumber, double salary) {
 		super();
 		this.name = name;
-		this.age = age;
-		this.address = address;
-		this.contact = contact;
 		this.position = position;
+		this.phoneNumber = phoneNumber;
 		this.salary = salary;
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -25,36 +24,20 @@ public class EmployeeInfo {
 		this.name = name;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public int getContact() {
-		return contact;
-	}
-
-	public void setContact(int contact) {
-		this.contact = contact;
-	}
-
 	public String getPosition() {
 		return position;
 	}
 
 	public void setPosition(String position) {
 		this.position = position;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public double getSalary() {

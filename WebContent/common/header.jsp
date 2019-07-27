@@ -40,7 +40,7 @@
 								class="dropdown-item" href="EditTrips.jsp">Edit Trip</a>
 						</div></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="Employee.jsp">Add Employee</a></li>
+						href="addEmployee">Add Employee</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="Expense.jsp">Add Expense</a></li>
 				</ul>

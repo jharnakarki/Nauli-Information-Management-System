@@ -1,8 +1,6 @@
 package com.naulitraders.servlets;
 
 import java.io.IOException;
-import java.util.*;
-import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,30 +9,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.naulitraders.dao.TruckDao;
-import com.naulitraders.model.TruckInfo;
+import com.naulitraders.dao.EmployeeDao;
+import com.naulitraders.model.EmployeeInfo;
 
-@WebServlet("/addVehicle")
-public class AddTruckServlet extends HttpServlet {
+@WebServlet("/addEmployee")
+public class AddEmployeeServlet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddVehicle.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddEmployee.jsp");
 
-		String number = request.getParameter("num");
-		String brand = request.getParameter("brand");
-		int model = Integer.parseInt(request.getParameter("model"));
-		int capacity = Integer.parseInt(request.getParameter("capacity"));
-		int tyres = Integer.parseInt(request.getParameter("tyres"));
-		int year = Integer.parseInt(request.getParameter("year"));
+		String name = request.getParameter("name");
+		String position = request.getParameter("position");
+		String phoneNumber = request.getParameter("phoneNumber");
+		double salary = Double.parseDouble(request.getParameter("salary"));
 
 		// fill it up the model
-		TruckInfo truckInfo = new TruckInfo(number, brand, model, capacity, tyres, year);
+		EmployeeInfo employeeInfo = new EmployeeInfo(name, position, phoneNumber, salary);
 
 		// validate truck info
 		try {
-			validateTruckInfo(truckInfo);
+			validateEmployeeInfo(employeeInfo);
 		} catch (IllegalArgumentException e) {
 			// write the message back to the page in client browser\
 			String errorMessage = e.getMessage();
@@ -46,11 +42,11 @@ public class AddTruckServlet extends HttpServlet {
 		}
 
 		// call the DAO layer and save the truck info
-		TruckDao applicationDao = new TruckDao();
-		applicationDao.insertTruckInfo(truckInfo);
+		EmployeeDao employeeDao = new EmployeeDao();
+		employeeDao.insertEmployeeInfo(employeeInfo);
 
 		// set the success message and send it through dispatcher
-		String successMessage = "Truck Info successfully added";
+		String successMessage = "Employee Info successfully added";
 		request.setAttribute("messageType", "alert-success");
 		request.setAttribute("message", successMessage);
 		dispatcher.forward(request, response);
@@ -60,15 +56,11 @@ public class AddTruckServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddVehicle.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddEmployee.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void validateTruckInfo(TruckInfo truckInfo) {
-
-		if (truckInfo.getYear() > LocalDate.now().getYear()) {
-			throw new IllegalArgumentException("Year of a truck cannot be future year");
-		}
+	private void validateEmployeeInfo(EmployeeInfo employeeInfo) {
 
 	}
 }

@@ -8,9 +8,7 @@ import com.naulitraders.model.TripInfo;
 
 public class TripDao {
 
-	public boolean insertTripInfo(TripInfo tripInfo) {
-
-		boolean isSuccess = false;
+	public void insertTripInfo(TripInfo tripInfo) {
 
 		String sql = "insert into trip(vehNum,dtStart,dtEnd,maStart,maEng,origin,mulDes,rev,dName,remarks)"
 				+ " values(?,?,?,?,?,?,?,?,?,?)";
@@ -30,11 +28,10 @@ public class TripDao {
 			pst.setString(9, tripInfo.getDriverName());
 			pst.setString(10, tripInfo.getRemarks());
 
-			isSuccess = pst.execute();
+			pst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return isSuccess;
 
 	}
 

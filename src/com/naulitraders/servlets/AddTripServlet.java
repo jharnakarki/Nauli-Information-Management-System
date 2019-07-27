@@ -18,8 +18,8 @@ public class AddTripServlet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/NewTrip.jsp");
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddTrip.jsp");
+
 		// get the request
 		String number = request.getParameter("vehNum");
 		LocalDate departureDate = LocalDate.parse(request.getParameter("dtStart"));
@@ -50,40 +50,32 @@ public class AddTripServlet extends HttpServlet {
 
 		// call the DAO layer and save the truck info
 		TripDao tripDao = new TripDao();
-		boolean isSuccess = tripDao.insertTripInfo(tripInfo);
-		
-		if (!isSuccess) {
-			// some database error occured, notified user with generic message
-			String errorMessage = "Could not insert into our system. Please contact system administrator.";
-			request.setAttribute("messageType", "alert-danger");
-			request.setAttribute("message", errorMessage);
-			dispatcher.forward(request, response);
-		} else {
-			// set the success message and send it through dispatcher
-			String successMessage = "Trip Info successfully added";
-			request.setAttribute("messageType", "alert-success");
-			request.setAttribute("message", successMessage);
-			dispatcher.forward(request, response);
-		}
-	}
+		tripDao.insertTripInfo(tripInfo);
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/NewTrip.jsp");
+		// set the success message and send it through dispatcher
+		String successMessage = "Trip Info successfully added";
+		request.setAttribute("messageType", "alert-success");
+		request.setAttribute("message", successMessage);
 		dispatcher.forward(request, response);
 	}
 
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddTrip.jsp");
+		dispatcher.forward(request, response);
+	}
 
 	private void validateTripInfo(TripInfo tripInfo) {
 
 		if (tripInfo.getStartDate().isAfter(LocalDate.now())) {
 			throw new IllegalArgumentException("Date of a start date cannot be future date");
 		}
-		
+
 		if (tripInfo.getEndDate().isAfter(LocalDate.now())) {
 			throw new IllegalArgumentException("End date of a trip cannot be future date");
 		}
-		
+
 		// TODO - validate endMileage should be always greater than start mileage
 	}
 }

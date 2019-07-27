@@ -94,6 +94,5 @@ public class AddExpServlet extends HttpServlet {
 		if (expenseInfo.getAmount() > 0) {
 			throw new IllegalArgumentException("Amount should be positive");
 		}
-	}}
-
-	
+	}
+}
