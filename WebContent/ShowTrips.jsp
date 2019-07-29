@@ -18,7 +18,7 @@
 					<tr>
 						<th>Truck Number</th>
 						<th>Departure Date</th>
-						<th>Arrived date</th>
+						<th>Arrived Date</th>
 						<th>Start Mileage</th>
 						<th>End Mileage</th>
 						<th>Origin</th>

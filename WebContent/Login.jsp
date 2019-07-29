@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +17,18 @@
 	</nav>
 	<div class="container">
 		<article>
+
 			<div class="row">
 				<h2>Login to Admin Panel</h2>
 			</div>
 			<br />
+			<%
+				Object messageType = (request.getAttribute("messageType") != null) ? request.getAttribute("messageType")
+						: "";
+				Object message = (request.getAttribute("message") != null) ? request.getAttribute("message") : "";
+			%>
+
+			<div class="row alert <%=messageType%>"><%=message%></div>
 			<div class="row">
 				<form method="POST" action="login">
 
@@ -44,4 +52,3 @@
 </body>
 </html>
 
-    
