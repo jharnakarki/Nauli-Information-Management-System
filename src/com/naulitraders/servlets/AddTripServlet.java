@@ -39,7 +39,7 @@ public class AddTripServlet extends HttpServlet {
 		try {
 			validateTripInfo(tripInfo);
 		} catch (IllegalArgumentException e) {
-			// write the message back to the page in client browser\
+			// write the message back to the page in client browser
 			String errorMessage = e.getMessage();
 
 			request.setAttribute("messageType", "alert-danger");
@@ -67,7 +67,7 @@ public class AddTripServlet extends HttpServlet {
 	}
 
 	private void validateTripInfo(TripInfo tripInfo) {
-
+		// validate start and end date of a trip are not of  future date
 		if (tripInfo.getStartDate().isAfter(LocalDate.now())) {
 			throw new IllegalArgumentException("Date of a start date cannot be future date");
 		}
@@ -76,10 +76,11 @@ public class AddTripServlet extends HttpServlet {
 			throw new IllegalArgumentException("End date of a trip cannot be future date");
 		}
 		
+		// validate endMileage should be always greater than start mileage
 		if(tripInfo.getStartMileage()>tripInfo.getEndMileage()) {
 			throw new IllegalArgumentException("ending mileage should be more than start mileage");
 		}
 
-		// TODO - validate endMileage should be always greater than start mileage
+		
 	}
 }

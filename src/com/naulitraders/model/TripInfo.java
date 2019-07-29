@@ -14,6 +14,10 @@ public class TripInfo {
 	private String driverName;
 	private String remarks;
 
+	public TripInfo() {
+		
+	}
+
 	public TripInfo(String truckNumber, LocalDate startDate, LocalDate endDate, int startMileage, int endMileage,
 			String origin, String mulDestination, double revenue, String driverName, String remarks) {
 		super();

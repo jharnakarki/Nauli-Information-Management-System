@@ -59,8 +59,8 @@ public class TripDao {
 				TripInfo tripInfo = new TripInfo();
 
 				tripInfo.setTruckNumber(rs.getString("vehNumber"));
-				tripInfo.setStartDate(rs.getLocalDate("dtStart"));
-				tripInfo.setEndDate(rs.getLocalDate("dtend"));
+				tripInfo.setStartDate(rs.getDate("dtStart").toLocalDate());
+				tripInfo.setEndDate(rs.getDate("dtEnd").toLocalDate());
 				tripInfo.setStartMileage(rs.getInt("maStart"));
 				tripInfo.setEndMileage(rs.getInt("maEnd"));
 				tripInfo.setOrigin(rs.getString("origin"));

@@ -1,6 +1,8 @@
 package com.naulitraders.servlets;
 import java.io.IOException;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.text.MessageFormat;
@@ -35,20 +37,22 @@ public class AddExpServlet extends HttpServlet {
 		Double amount = Double.parseDouble(request.getParameter("amt"));
 		String remark = request.getParameter("remarks");
 		InputStream inputStream = null; // input stream of the upload file
+		 File imgfile = new File("bill");
+//		Part filePart = request.getPart("bill");
+//		if (filePart != null) {
+//			// prints out some information for debugging
+//			System.out.println(filePart.getName());
+//			System.out.println(filePart.getSize());
+//			System.out.println(filePart.getContentType());
+//
+//			// obtains input stream of the upload file
+//			inputStream = filePart.getInputStream();
+//		}
+	      FileInputStream fin = new FileInputStream(imgfile);
 
-		Part filePart = request.getPart("bill");
-		if (filePart != null) {
-			// prints out some information for debugging
-			System.out.println(filePart.getName());
-			System.out.println(filePart.getSize());
-			System.out.println(filePart.getContentType());
-
-			// obtains input stream of the upload file
-			inputStream = filePart.getInputStream();
-		}
 
 		// fill it up the model
-		ExpenseInfo expenseInfo = new ExpenseInfo(number, amount,remark,expenseDate, inputStream);
+		ExpenseInfo expenseInfo = new ExpenseInfo(number, amount,remark,expenseDate, fin);
 
 		// validate truck info
 		try {
