@@ -2,6 +2,7 @@ package com.naulitraders.servlets;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,14 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.naulitraders.dao.TripDao;
+import com.naulitraders.dao.TruckDao;
 import com.naulitraders.model.TripInfo;
+import com.naulitraders.model.TruckInfo;
 
 @WebServlet("/addTrip")
 public class AddTripServlet extends HttpServlet {
 
+	private TruckDao truckDao = new TruckDao();
+
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddTrip.jsp");
+		// get the list of trucks so you can add it to the drop down
+		// it is needed here too because after POST, when the page reload, we require truck list again
+		List<TruckInfo> listOfTrucks = truckDao.getTrucksList();
+		request.setAttribute("listOfTrucks", listOfTrucks);
 
 		// get the request
 		String number = request.getParameter("vehNum");
@@ -62,12 +71,22 @@ public class AddTripServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+
+		// get the list of trucks so you can add it to the drop down
+		List<TruckInfo> listOfTrucks = truckDao.getTrucksList();
+		request.setAttribute("listOfTrucks", listOfTrucks);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddTrip.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	private void validateTripInfo(TripInfo tripInfo) {
-		// validate start and end date of a trip are not of  future date
+		// truck number cannot be not available
+		if (tripInfo.getTruckNumber().equals("NA")) {
+			throw new IllegalArgumentException("Truck Number cannot be not available");
+		}
+
+		// validate start and end date of a trip are not of future date
 		if (tripInfo.getStartDate().isAfter(LocalDate.now())) {
 			throw new IllegalArgumentException("Date of a start date cannot be future date");
 		}
@@ -75,12 +94,11 @@ public class AddTripServlet extends HttpServlet {
 		if (tripInfo.getEndDate().isAfter(LocalDate.now())) {
 			throw new IllegalArgumentException("End date of a trip cannot be future date");
 		}
-		
+
 		// validate endMileage should be always greater than start mileage
-		if(tripInfo.getStartMileage()>tripInfo.getEndMileage()) {
+		if (tripInfo.getStartMileage() > tripInfo.getEndMileage()) {
 			throw new IllegalArgumentException("ending mileage should be more than start mileage");
 		}
 
-		
 	}
 }

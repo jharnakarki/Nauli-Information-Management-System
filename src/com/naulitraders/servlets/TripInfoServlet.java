@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 
 import com.naulitraders.dao.TripDao;
+import com.naulitraders.dao.TruckDao;
 import com.naulitraders.model.TripInfo;
+import com.naulitraders.model.TruckInfo;
 
 /*
  * This class will display the list of all the trucks in the system
@@ -28,7 +30,6 @@ public class TripInfoServlet extends HttpServlet {
 		
 		// get the saved trucks from the database
 		List<TripInfo> listOfTrips = tripDao.getTripsList();
-		
 		
 		// add the trip info for jsp
 		request.setAttribute("listOfTrips", listOfTrips);

@@ -26,26 +26,27 @@
 						<th>Revenue</th>
 						<th>Driver Name</th>
 						<th>Remarks</th>
-						</tr>
-						
+					</tr>
+
 				</thead>
 
 				<tbody>
-					<% 
+					<%
 						List<TripInfo> listOfTrips = (ArrayList) request.getAttribute("listOfTrips");
 
-						for(TripInfo tripInfo : listOfTrips) { %>
+						for (TripInfo tripInfo : listOfTrips) {
+					%>
 					<tr>
-					<td><%= tripInfo.getTruckNumber() %></td>
-						<td><%= tripInfo.getStartDate() %></td>
-						<td><%= tripInfo.getEndDate() %></td>
-						<td><%= tripInfo.getStartMileage() %></td>
-						<td><%= tripInfo.getEndMileage() %></td>
-						<td><%= tripInfo.getOrigin() %></td>
-						<td><%= tripInfo.getMulDestination() %></td>
-						<td><%= tripInfo.getRevenue() %></td>
-						<td><%= tripInfo.getDriverName() %></td>
-						<td><%= tripInfo.getRemarks() %></td>
+						<td><%=tripInfo.getTruckNumber()%></td>
+						<td><%=tripInfo.getStartDate()%></td>
+						<td><%=tripInfo.getEndDate()%></td>
+						<td><%=tripInfo.getStartMileage()%></td>
+						<td><%=tripInfo.getEndMileage()%></td>
+						<td><%=tripInfo.getOrigin()%></td>
+						<td><%=tripInfo.getMulDestination()%></td>
+						<td><%=tripInfo.getRevenue()%></td>
+						<td><%=tripInfo.getDriverName()%></td>
+						<td><%=tripInfo.getRemarks()%></td>
 					</tr>
 
 					<%

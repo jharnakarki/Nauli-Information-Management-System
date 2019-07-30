@@ -112,4 +112,13 @@ public class TripInfo {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+
+	@Override
+	public String toString() {
+		return "TripInfo [truckNumber=" + truckNumber + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", startMileage=" + startMileage + ", endMileage=" + endMileage + ", origin=" + origin
+				+ ", mulDestination=" + mulDestination + ", revenue=" + revenue + ", driverName=" + driverName
+				+ ", remarks=" + remarks + "]";
+	}
+
 }
