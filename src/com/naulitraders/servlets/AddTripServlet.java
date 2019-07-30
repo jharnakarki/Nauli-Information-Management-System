@@ -26,8 +26,8 @@ public class AddTripServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddTrip.jsp");
 		// get the list of trucks so you can add it to the drop down
 		// it is needed here too because after POST, when the page reload, we require truck list again
-		List<TruckInfo> listOfTrucks = truckDao.getTrucksList();
-		request.setAttribute("listOfTrucks", listOfTrucks);
+		List<TruckInfo> listOfActiveTrucks = truckDao.getActiveTrucksList();
+		request.setAttribute("listOfActiveTrucks", listOfActiveTrucks);
 
 		// get the request
 		String number = request.getParameter("vehNum");
@@ -73,8 +73,8 @@ public class AddTripServlet extends HttpServlet {
 			throws IOException, ServletException {
 
 		// get the list of trucks so you can add it to the drop down
-		List<TruckInfo> listOfTrucks = truckDao.getTrucksList();
-		request.setAttribute("listOfTrucks", listOfTrucks);
+		List<TruckInfo> listActiveOfTrucks = truckDao.getActiveTrucksList();
+		request.setAttribute("listOfActiveTrucks", listActiveOfTrucks);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddTrip.jsp");
 		dispatcher.forward(request, response);

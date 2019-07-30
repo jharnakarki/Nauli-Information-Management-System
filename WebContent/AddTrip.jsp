@@ -28,7 +28,7 @@
 					<select class="form-control" name="vehNum" id="vehNum">
 						<option value="NA">--Select Truck--</option> <!-- Not Available -->
 						<%
-							List<TruckInfo> truckInfos = (ArrayList) request.getAttribute("listOfTrucks");
+							List<TruckInfo> truckInfos = (ArrayList) request.getAttribute("listOfActiveTrucks");
 							
 							for(TruckInfo truckInfo : truckInfos) {
 								out.println("<option value='"+truckInfo.getTruckNumber()+"'>" + truckInfo.getTruckNumber() + "</option>");
@@ -78,8 +78,7 @@
 				</div>
 
 				<div class="form-group">
-					<label>Remarks</label> <input class="form-control" type="Text"
-						name="remarks" />
+					<label>Remarks</label> <textarea class="form-control" name="remarks" rows="10" cols="20"></textarea>
 				</div>
 
 				<button class="btn btn-primary" type="submit">Add</button>

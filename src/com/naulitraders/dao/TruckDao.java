@@ -14,7 +14,7 @@ public class TruckDao {
 
 	public void insertTruckInfo(TruckInfo truckInfo) {
 		
-		String sql = "insert into tckInfo(vehNumber,brand,model,capacity,tyres,year) values(?,?,?,?,?,?)";
+		String sql = "insert into tckInfo(vehNumber,brand,model,capacity,tyres,year,status) values(?,?,?,?,?,?,?)";
 
 		try {
 			Connection con = DBConnection.getConnectionToDatabase();
@@ -26,6 +26,7 @@ public class TruckDao {
 			pst.setInt(4, truckInfo.getCapacity());
 			pst.setInt(5, truckInfo.getTyres());
 			pst.setInt(6, truckInfo.getYear());
+			pst.setString(7, truckInfo.getStatus());
 			pst.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -37,7 +38,7 @@ public class TruckDao {
 		
 		List<TruckInfo> listOfTrucks = new ArrayList<>();
 		
-		String sql = "SELECT vehNumber, brand, model, capacity, tyres, year FROM tckInfo";
+		String sql = "SELECT vehNumber, brand, model, capacity, tyres, year, status FROM tckInfo ";
 		
 		Statement statement;
 		
@@ -56,7 +57,7 @@ public class TruckDao {
 				truckInfo.setCapacity(rs.getInt("capacity"));
 				truckInfo.setTyres(rs.getInt("tyres"));
 				truckInfo.setYear(rs.getInt("year"));
-				
+				truckInfo.setStatus(rs.getString("status"));
 				listOfTrucks.add(truckInfo);
 			}
 		} catch(SQLException e) {
@@ -64,5 +65,44 @@ public class TruckDao {
 		}
 		return listOfTrucks;
 	}
+	
+	
+	//for displaying only active truck list
+		public List<TruckInfo> getActiveTrucksList() {
+		
+		List<TruckInfo> listOfActiveTrucks = new ArrayList<>();
+		
+		String sql = "SELECT vehNumber, brand, model, capacity, tyres, year, status FROM tckInfo where status='Active' ";
+		
+		Statement statement;
+		
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+			
+			statement = conn.createStatement();
+			
+			ResultSet rs = statement.executeQuery(sql);
+			while(rs.next()) {
+				TruckInfo truckInfo = new TruckInfo();
+				
+				truckInfo.setTruckNumber(rs.getString("vehNumber"));
+				truckInfo.setBrand(rs.getString("brand"));
+				truckInfo.setModel(rs.getInt("model"));
+				truckInfo.setCapacity(rs.getInt("capacity"));
+				truckInfo.setTyres(rs.getInt("tyres"));
+				truckInfo.setYear(rs.getInt("year"));
+				truckInfo.setStatus(rs.getString("status"));
+				listOfActiveTrucks.add(truckInfo);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return listOfActiveTrucks;
+	}
+	
+	
+
+	
+
 
 }

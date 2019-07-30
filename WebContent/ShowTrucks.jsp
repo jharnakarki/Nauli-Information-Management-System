@@ -22,6 +22,7 @@
 						<th>Capacity</th>
 						<th>Tyres</th>
 						<th>Year</th>
+						<th>Status</th>
 					</tr>
 				</thead>
 
@@ -37,6 +38,8 @@
 						<td><%= truckInfo.getCapacity() %></td>
 						<td><%= truckInfo.getTyres() %></td>
 						<td><%= truckInfo.getYear() %></td>
+						<td><%= truckInfo.getStatus() %></td>
+						
 					</tr>
 
 					<%

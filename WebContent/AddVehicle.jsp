@@ -46,6 +46,12 @@
 					<label>Year</label> <input class="form-control" type="number"
 						min="1990" name="year" required />
 				</div>
+				<div class="form-group">
+					<label>Status</label><select id="isStatus" name="isStatus">
+					<option id="active"> Active</option>
+					 <option id="inactive">InActive</option>
+					 <option id="sold"> Sold</option></select>
+				</div>
 
 				<button class="btn btn-primary" type="submit">Add</button>
 			</form>

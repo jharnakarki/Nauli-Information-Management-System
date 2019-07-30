@@ -28,9 +28,10 @@ public class AddTruckServlet extends HttpServlet {
 		int capacity = Integer.parseInt(request.getParameter("capacity"));
 		int tyres = Integer.parseInt(request.getParameter("tyres"));
 		int year = Integer.parseInt(request.getParameter("year"));
+		String status = request.getParameter("isStatus");
 
 		// fill it up the model
-		TruckInfo truckInfo = new TruckInfo(number, brand, model, capacity, tyres, year);
+		TruckInfo truckInfo = new TruckInfo(number, brand, model, capacity, tyres, year,status);
 
 		// validate truck info
 		try {

@@ -8,12 +8,13 @@ public class TruckInfo {
 	private int capacity;
 	private int tyres;
 	private int year;
+	private String status;
 	
 	public TruckInfo() {
 		
 	}
 	
-	public TruckInfo(String truckNumber, String brand, int model, int capacity, int tyres, int year) {
+	public TruckInfo(String truckNumber, String brand, int model, int capacity, int tyres, int year ,String status) {
 		super();
 		this.truckNumber = truckNumber;
 		this.brand = brand;
@@ -21,6 +22,7 @@ public class TruckInfo {
 		this.capacity = capacity;
 		this.tyres = tyres;
 		this.year = year;
+		this.status=status;
 	}
 	
 	public String getTruckNumber() {
@@ -60,7 +62,12 @@ public class TruckInfo {
 		this.year = year;
 	}
 	
-	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 	
 
