@@ -39,8 +39,15 @@
 							<a class="dropdown-item" href="addTrip">Add Trip</a> <a
 								class="dropdown-item" href="ShowTrips">Show Trip</a>
 						</div></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="addEmployee">Add Employee</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> Employee</a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="addEmployee">Add Employee</a> <a
+								class="dropdown-item" href="ShowEmployees">Show Employee</a>
+						</div></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="Expense.jsp">Add Expense</a></li>
 				</ul>

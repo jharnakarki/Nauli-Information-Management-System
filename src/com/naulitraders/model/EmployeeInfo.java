@@ -3,12 +3,15 @@ package com.naulitraders.model;
 public class EmployeeInfo {
 	private String name;
 	private String position;
-	private String phoneNumber;
+	private Long phoneNumber;
 	private double salary;
 	
+	public EmployeeInfo() {
+		
+	}
 	
 
-	public EmployeeInfo(String name, String position, String phoneNumber, double salary) {
+	public EmployeeInfo(String name, String position, Long phoneNumber, double salary) {
 		super();
 		this.name = name;
 		this.position = position;
@@ -32,11 +35,11 @@ public class EmployeeInfo {
 		this.position = position;
 	}
 
-	public String getPhoneNumber() {
+	public Long getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(Long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

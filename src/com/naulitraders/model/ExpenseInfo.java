@@ -9,6 +9,10 @@ public class ExpenseInfo {
 	private LocalDate expDate;
 	private InputStream inputStream ;
 	
+	public ExpenseInfo() {
+		
+	}
+	
 	public ExpenseInfo(String truckNumber, Double amount, String remarks , LocalDate expDate, InputStream inputStream) {
 		super();
 		this.truckNumber = truckNumber;

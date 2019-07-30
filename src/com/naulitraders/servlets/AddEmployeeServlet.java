@@ -23,7 +23,7 @@ public class AddEmployeeServlet extends HttpServlet {
 
 		String name = request.getParameter("name");
 		String position = request.getParameter("position");
-		String phoneNumber = request.getParameter("phoneNumber");
+		Long phoneNumber = Long.parseLong(request.getParameter("phoneNumber"));
 		double salary = Double.parseDouble(request.getParameter("salary"));
 
 		// fill it up the model
@@ -62,12 +62,12 @@ public class AddEmployeeServlet extends HttpServlet {
 	}
 
 	private void validateEmployeeInfo(EmployeeInfo employeeInfo) {
-		if (employeeInfo.getPhoneNumber().length() > 10 ) {
-			throw new IllegalArgumentException("Phone number must be of 10 digit ");
-		}
-		else if (employeeInfo.getPhoneNumber().length() < 10 ) {
-			throw new IllegalArgumentException("Phone number must be of 10 digit ");
-		}
+//		//if (employeeInfo.getPhoneNumber().length() > 10 ) {
+//			throw new IllegalArgumentException("Phone number must be of 10 digit ");
+//		}
+//		else if (employeeInfo.getPhoneNumber().length() < 10 ) {
+//			throw new IllegalArgumentException("Phone number must be of 10 digit ");
+//		}
 		
 
 	}

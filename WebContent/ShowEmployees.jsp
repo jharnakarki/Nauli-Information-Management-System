@@ -26,7 +26,7 @@
 
 				<tbody>
 					<% 
-						List<EmployeeInfo> listOfEmployees = (ArrayList) request.getAttribute("ListOfEmployees");
+						List<EmployeeInfo> listOfEmployees = (ArrayList) request.getAttribute("listOfEmployees");
 
 						for(EmployeeInfo employeeInfo : listOfEmployees) { %>
 					<tr>
