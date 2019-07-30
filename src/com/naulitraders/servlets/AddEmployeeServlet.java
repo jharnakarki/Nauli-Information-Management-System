@@ -62,10 +62,10 @@ public class AddEmployeeServlet extends HttpServlet {
 	}
 
 	private void validateEmployeeInfo(EmployeeInfo employeeInfo) {
-//		//if (employeeInfo.getPhoneNumber().length() > 10 ) {
+//if (employeeInfo.getPhoneNumber()+"".length() > 10 ) {
 //			throw new IllegalArgumentException("Phone number must be of 10 digit ");
 //		}
-//		else if (employeeInfo.getPhoneNumber().length() < 10 ) {
+//		else if (employeeInfo.getPhoneNumber()+"".length() < 10 ) {
 //			throw new IllegalArgumentException("Phone number must be of 10 digit ");
 //		}
 		
