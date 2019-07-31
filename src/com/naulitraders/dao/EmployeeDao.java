@@ -32,7 +32,7 @@ public class EmployeeDao {
 	}
 
 	public void updateEmployee(EmployeeInfo employeeInfo) {
-		String sql = "UPDATE  Employee SET name = ?,position = ?,phoneNumber = ?,salary = ? FROM Employee WHERE empId = ?";
+		String sql = "UPDATE  Employee SET name = ?,position = ?,phoneNumber = ?,salary = ?  WHERE empId = ?";
 
 		try {
 			Connection conn = DBConnection.getConnectionToDatabase();
@@ -84,7 +84,7 @@ public class EmployeeDao {
 
 	public List<EmployeeInfo> getEmployeesList() {
 		List<EmployeeInfo> listOfEmployees = new ArrayList<>();
-		String sql = "SELECT name, position, phoneNumber, salary FROM Employee";
+		String sql = "SELECT empId,name, position, phoneNumber, salary FROM Employee";
 		Statement statement;
 
 		try {
@@ -96,7 +96,7 @@ public class EmployeeDao {
 			while (rs.next()) {
 
 				EmployeeInfo employeeInfo = new EmployeeInfo();
-
+				employeeInfo.setEmpId(rs.getInt("empID"));
 				employeeInfo.setName(rs.getString("name"));
 				employeeInfo.setPosition(rs.getString("position"));
 				employeeInfo.setPhoneNumber(rs.getLong("phoneNumber"));

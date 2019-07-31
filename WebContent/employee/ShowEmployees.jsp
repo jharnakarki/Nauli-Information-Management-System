@@ -35,7 +35,7 @@
 						<td><%= employeeInfo.getPosition() %></td>
 						<td><%= employeeInfo.getPhoneNumber() %></td>
 						<td><%= employeeInfo.getSalary() %></td>
-						<td><a class="btn btn-sm btn-secondary" href="editEmployee?empId=<%=employeeInfo.getEmpId()%>"><i class="fas fa-pencil-alt">edit</i></a>
+						<td><a class="btn btn-sm btn-secondary" href="editEmployee?empId=<%= employeeInfo.getEmpId()%>"><i class="fas fa-pencil-alt">edit</i></a>
 						</tr>
 
 					<%

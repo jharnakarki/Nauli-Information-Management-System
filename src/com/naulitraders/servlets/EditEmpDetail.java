@@ -88,7 +88,7 @@ public class EditEmpDetail extends HttpServlet {
 		request.setAttribute("messageType", "alert-success");
 		request.setAttribute("message", "Employee has been updated successfully !");
 		request.setAttribute("employeeInfo", updatedEmployeeInfo);
-		showPage("/Employee/EditEmployee.jsp", request, response);
+		showPage("/employee/EditEmployee.jsp", request, response);
 
 	}
 
