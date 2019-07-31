@@ -60,12 +60,26 @@ public class EditTrip extends HttpServlet {
 		TripInfo tripInfo = new TripInfo(number, departureDate, arrivalDate, sMil, eMil, orig, mul, reve, nam, rem);
 		tripInfo.setTripId(tripId);
 
+		// validate truck info
+		try {
+			validateTripInfo(tripInfo);
+		} catch (IllegalArgumentException e) {
+			// write the message back to the page in client browser
+			String errorMessage = e.getMessage();
+
+			request.setAttribute("messageType", "alert-danger");
+			request.setAttribute("message", errorMessage);
+			request.setAttribute("tripInfo", tripInfo);
+			showPage("/trips/EditTrip.jsp", request, response);
+			return;
+		}
+
 		// update the trip
 		tripDao.updateTrip(tripInfo);
-		
+
 		// get the trip after update
 		TripInfo updatedTripInfo = tripDao.getTrip(tripId);
-		
+
 		request.setAttribute("messageType", "alert-success");
 		request.setAttribute("message", "Trip has been updated successfully !");
 		request.setAttribute("tripInfo", updatedTripInfo);
@@ -77,5 +91,23 @@ public class EditTrip extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher(pageName);
 		dispatcher.forward(request, response);
+	}
+
+	private void validateTripInfo(TripInfo tripInfo) {
+
+		// validate start and end date of a trip are not of future date
+		if (tripInfo.getStartDate().isAfter(LocalDate.now())) {
+			throw new IllegalArgumentException("Date of a start date cannot be future date");
+		}
+
+		if (tripInfo.getEndDate().isAfter(LocalDate.now())) {
+			throw new IllegalArgumentException("End date of a trip cannot be future date");
+		}
+
+		// validate endMileage should be always greater than start mileage
+		if (tripInfo.getStartMileage() > tripInfo.getEndMileage()) {
+			throw new IllegalArgumentException("ending mileage should be more than start mileage");
+		}
+
 	}
 }
