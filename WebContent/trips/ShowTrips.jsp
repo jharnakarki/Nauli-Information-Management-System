@@ -2,7 +2,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.naulitraders.model.TripInfo"%>
 
-<jsp:include page="common/header.jsp" />
+<jsp:include page="../common/header.jsp" />
 <html>
 <head>
 	<meta charset="ISO-8859-1">
@@ -34,7 +34,8 @@
 							<th>Multiple Destination</th>
 							<th>Revenue</th>
 							<th>Driver Name</th>
-							<th >Remarks</th>
+							<th>Remarks</th>
+							<th>Action</th>
 						</tr>
 
 					</thead>
@@ -55,7 +56,8 @@
 							<td><%=tripInfo.getMulDestination()%></td>
 							<td><%=tripInfo.getRevenue()%></td>
 							<td><%=tripInfo.getDriverName()%></td>
-							<td class="largeBox"><%=tripInfo.getRemarks()%></td>
+							<td><%=tripInfo.getRemarks()%></td>
+							<td><a class="btn btn-sm btn-secondary" href="editTrip?tripId=<%=tripInfo.getTripId()%>"><i class="fas fa-pencil-alt"></i></a>
 						</tr>
 
 						<%
@@ -70,6 +72,6 @@
 		</article>
 	</div>
 
-	<jsp:include page="common/footer.jsp" />
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

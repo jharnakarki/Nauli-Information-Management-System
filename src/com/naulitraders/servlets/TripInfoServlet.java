@@ -26,7 +26,7 @@ public class TripInfoServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/ShowTrips.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/trips/ShowTrips.jsp");
 		
 		// get the saved trucks from the database
 		List<TripInfo> listOfTrips = tripDao.getTripsList();

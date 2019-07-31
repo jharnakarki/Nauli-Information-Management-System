@@ -24,7 +24,7 @@ public class TruckInfoServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/ShowTrucks.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/trucks/ShowTrucks.jsp");
 		
 		// get the saved trucks from the database
 		List<TruckInfo> listOfTrucks = truckDao.getTrucksList();

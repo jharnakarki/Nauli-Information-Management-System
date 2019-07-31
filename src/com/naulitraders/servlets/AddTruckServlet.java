@@ -20,7 +20,7 @@ public class AddTruckServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddVehicle.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/trucks/AddVehicle.jsp");
 
 		String number = request.getParameter("num");
 		String brand = request.getParameter("brand");
@@ -61,7 +61,7 @@ public class AddTruckServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddVehicle.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/trucks/AddVehicle.jsp");
 		dispatcher.forward(request, response);
 	}
 

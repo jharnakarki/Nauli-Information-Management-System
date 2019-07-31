@@ -4,6 +4,8 @@ package com.naulitraders.model;
 import java.time.LocalDate;
 
 public class TripInfo {
+	
+	private int tripId;
 	private String truckNumber;
 	private LocalDate startDate;
 	private LocalDate endDate;
@@ -32,6 +34,14 @@ public class TripInfo {
 		this.revenue = revenue;
 		this.driverName = driverName;
 		this.remarks = remarks;
+	}
+	
+	public int getTripId() {
+		return tripId;
+	}
+	
+	public void setTripId(int tripId) {
+		this.tripId = tripId;
 	}
 
 	public String getTruckNumber() {

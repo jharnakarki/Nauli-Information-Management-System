@@ -41,11 +41,74 @@ public class TripDao {
 
 	}
 
+	public void updateTrip(TripInfo tripInfo) {
+		String sql = "UPDATE trip SET dtStart = ?,  dtEnd = ?, maStart = ?, maEnd = ?, origin = ?, mulDes = ?, rev = ?, dName = ?, remarks = ? WHERE tripId = ?";
+		
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+			
+			PreparedStatement  pst = conn.prepareStatement(sql);
+			pst.setDate(1, Date.valueOf(tripInfo.getStartDate()));
+			pst.setDate(2, Date.valueOf(tripInfo.getEndDate()));
+			pst.setInt(3, tripInfo.getStartMileage());
+			pst.setInt(4, tripInfo.getEndMileage());
+			pst.setString(5, tripInfo.getOrigin());
+			pst.setString(6, tripInfo.getMulDestination());
+			pst.setDouble(7, tripInfo.getRevenue());
+			pst.setString(8, tripInfo.getDriverName());
+			pst.setString(9, tripInfo.getRemarks());
+			pst.setInt(10, tripInfo.getTripId());
+			
+			pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public TripInfo getTrip(int tripId) {
+		TripInfo tripInfo = null;
+		
+		String sql = "SELECT tripID, vehNumber,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks FROM trip WHERE tripID = ?";
+		
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+			
+			PreparedStatement  pst = conn.prepareStatement(sql);
+			pst.setInt(1, tripId);
+			
+			ResultSet rs = pst.executeQuery();
+			
+			
+			while(rs.next()) {
+				tripInfo = new TripInfo();
+				
+				tripInfo.setTripId(rs.getInt("tripID"));
+				tripInfo.setTruckNumber(rs.getString("vehNumber"));
+				tripInfo.setStartDate(rs.getDate("dtStart").toLocalDate());
+				tripInfo.setEndDate(rs.getDate("dtEnd").toLocalDate());
+				tripInfo.setStartMileage(rs.getInt("maStart"));
+				tripInfo.setEndMileage(rs.getInt("maEnd"));
+				tripInfo.setOrigin(rs.getString("origin"));
+				tripInfo.setMulDestination(rs.getString("mulDes"));
+				tripInfo.setRevenue(rs.getDouble("rev"));
+				tripInfo.setDriverName(rs.getString("dName"));
+				tripInfo.setRemarks(rs.getString("remarks"));
+				// it should be only one result, so break out of loop
+				break;
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return tripInfo;
+	}
+	
 	public List<TripInfo> getTripsList() {
 
 		List<TripInfo> listOfTrips = new ArrayList<>();
 
-		String sql = "SELECT vehNumber,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks FROM trip";
+		String sql = "SELECT tripID, vehNumber,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks FROM trip";
 
 		Statement statement;
 
@@ -58,6 +121,7 @@ public class TripDao {
 			while (rs.next()) {
 				TripInfo tripInfo = new TripInfo();
 
+				tripInfo.setTripId(rs.getInt("tripID"));
 				tripInfo.setTruckNumber(rs.getString("vehNumber"));
 				tripInfo.setStartDate(rs.getDate("dtStart").toLocalDate());
 				tripInfo.setEndDate(rs.getDate("dtEnd").toLocalDate());

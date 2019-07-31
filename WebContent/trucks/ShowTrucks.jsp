@@ -2,7 +2,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.naulitraders.model.TruckInfo"%>
 
-<jsp:include page="common/header.jsp" />
+<jsp:include page="../common/header.jsp" />
 
 <div class="container">
 	<article>
@@ -54,4 +54,4 @@
 	</article>
 </div>
 
-<jsp:include page="common/footer.jsp" />
+<jsp:include page="../common/footer.jsp" />

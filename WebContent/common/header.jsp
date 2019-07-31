@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 
+<!-- bring up fontawesome icons -->
+<script src="https://kit.fontawesome.com/b36472b4d3.js"></script>
+
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
