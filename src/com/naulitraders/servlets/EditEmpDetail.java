@@ -1,45 +1,129 @@
 package com.naulitraders.servlets;
-import java.io.PrintWriter;
-import java.sql.*;
-import java.util.TimeZone;
 
-import javax.servlet.http.*;
-public class EditEmpDetail extends HttpServlet{
-	public void doGet(HttpServletRequest request,HttpServletResponse response) {
-		response.setContentType("text/html");
-		// TODO Auto-generated method stub
-		String url="jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
-		String uname="root";
-		String pwd="";
-		try{
-			// load the database driver
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection(url,uname,pwd);
-			String sql="select * from Employee";
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(sql);
-			PrintWriter pw=response.getWriter();
-			pw.println("<html><body>");
-			pw.println("<table border=1 width='1000'>");
-			pw.println("<tr><th>ID</th><th>Emp ID</th><th>Name</th><th>Age</th><th>address</th><th>Phone</th><th>Position</th><th>Salary</th><th>Id Prove</th></tr>");
+import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-			while(rs.next()) {
-				pw.println("<tr>");
-				for(int i=1;i<=9;i++) {
-					pw.println("<td>"+rs.getString(i)+"</td>");
-				}
-				pw.println("</tr>");
-			}
-			pw.println("</table></body></html>");
-			
-			pw.close();
-			con.close();
+import com.naulitraders.dao.EmployeeDao;
+import com.naulitraders.model.EmployeeInfo;
+
+@WebServlet("/editEmployee")
+
+public class EditEmpDetail extends HttpServlet {
+
+	private EmployeeDao employeeDao = new EmployeeDao();
+
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		if (request.getParameter("empId") == null) {
+
+			// show 404.jsp, edit trip cannot work without empId
+
+			showPage("/404.jsp", request, response);
+
+			return;
+
 		}
-		catch(Exception ex) {
-			System.out.println(ex);
+
+		int empId = Integer.parseInt(request.getParameter("empId"));
+
+		EmployeeInfo employeeInfo = employeeDao.getEmployee(empId);
+
+		if (employeeInfo == null) {
+
+			// when emp cannot be found
+
+			showPage("/404.jsp", request, response);
+
+			return;
+
 		}
+
+		request.setAttribute("employeeInfo",employeeInfo);
+
+		showPage("/employee/EditEmployee.jsp", request, response);
+
 	}
-}
+
+	@Override
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+		String name = request.getParameter("name");
+		String position = request.getParameter("position");
+		Long phoneNumber = Long.parseLong(request.getParameter("phoneNumber"));
+		double salary = Double.parseDouble(request.getParameter("salary"));
+		
+		int empId = Integer.parseInt(request.getParameter("empId"));
+
+// fill it up the model, with setEmpId for update
+
+		EmployeeInfo employeeInfo = new EmployeeInfo(name, position, phoneNumber, salary);
+		employeeInfo.setEmpId(empId);
+
+// validate Employee info
+
+		try {
+
+			validateEmployeeInfo(employeeInfo);
+
+		} catch (IllegalArgumentException e) {
+
+// write the message back to the page in client browser
+
+			String errorMessage = e.getMessage();
+
+			request.setAttribute("messageType", "alert-danger");
+
+			request.setAttribute("message", errorMessage);
+
+			request.setAttribute("employeeInfo",  employeeInfo);
+
+			showPage("/employee/EditEmployee.jsp", request, response);
+
+			return;
+
+		}
+
+// update the Employee
+
+		 employeeDao.updateEmployee(employeeInfo);
+
+// get the trip after update
+
+		 EmployeeInfo updatedEmployeeInfo =  employeeDao.getEmployee(empId);
+
+		request.setAttribute("messageType", "alert-success");
+
+		request.setAttribute("message", "Employee has been updated successfully !");
+
+		request.setAttribute("employeeInfo", updatedEmployeeInfo);
+
+		showPage("/Employee/EditEmployee.jsp", request, response);
+
+	}
+
+	private void showPage(String pageName, HttpServletRequest request, HttpServletResponse response)
+
+			throws ServletException, IOException {
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher(pageName);
+
+		dispatcher.forward(request, response);
+
+	}
+
+	private void validateEmployeeInfo( EmployeeInfo  employeeInfo) {
+
+
+		}
+
+	}
 
 

@@ -1,6 +1,7 @@
 package com.naulitraders.model;
 
 public class EmployeeInfo {
+	private int empId;
 	private String name;
 	private String position;
 	private Long phoneNumber;
@@ -18,7 +19,14 @@ public class EmployeeInfo {
 		this.phoneNumber = phoneNumber;
 		this.salary = salary;
 	}
-
+	
+	public int getEmpId() {
+		return empId;
+	}
+	
+	public void setEmpId(int empId) {
+		this.empId = empId;
+	}
 	public String getName() {
 		return name;
 	}
@@ -50,5 +58,11 @@ public class EmployeeInfo {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
+	
+	@Override
+	public String toString() {
+		return "TripInfo [name=" + name + ", position=" +  position + ", phoneNumber=" + phoneNumber
+				+ ", salary=" + salary + "]";
 
+}
 }
