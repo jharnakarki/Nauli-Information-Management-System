@@ -57,7 +57,7 @@
 							<td><%=tripInfo.getRevenue()%></td>
 							<td><%=tripInfo.getDriverName()%></td>
 							<td><%=tripInfo.getRemarks()%></td>
-							<td><a class="btn btn-sm btn-secondary" href="editTrip?tripId=<%=tripInfo.getTripId()%>"><i class="fas fa-pencil-alt"></i></a>
+							<td><a class="btn btn-sm btn-secondary" href="editTrip?tripId=<%=tripInfo.getTripId()%>"><i class="fas fa-pencil-alt">edit</i></a>
 						</tr>
 
 						<%

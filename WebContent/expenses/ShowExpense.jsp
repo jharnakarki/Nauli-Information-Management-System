@@ -2,15 +2,8 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.naulitraders.model.ExpenseInfo"%>
 
-<jsp:include page="common/header.jsp" />
-<html>
-<head>
-	<meta charset="ISO-8859-1">
-	<title>Login Page</title>
+<jsp:include page="../common/header.jsp" />
 
-	<link rel="stylesheet" href="css/style.css">
-	</head>
-	<body>
 	
 	<div class="container">
 		<article>
@@ -58,6 +51,6 @@
 		</article>
 	</div>
 
-	<jsp:include page="common/footer.jsp" />
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

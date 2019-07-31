@@ -24,7 +24,7 @@ public class AddExpenseServlet extends HttpServlet {
 	private TruckDao truckDao = new TruckDao();
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddExpense.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/expenses/AddExpense.jsp");
 		// get the list of trucks so you can add it to the drop down
 				// it is needed here too because after POST, when the page reload, we require truck list again
 				List<TruckInfo> listOfActiveTrucks = truckDao.getActiveTrucksList();
@@ -71,7 +71,7 @@ public class AddExpenseServlet extends HttpServlet {
 				List<TruckInfo> listActiveOfTrucks = truckDao.getActiveTrucksList();
 				request.setAttribute("listOfActiveTrucks", listActiveOfTrucks);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddExpense.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/expenses/AddExpense.jsp");
 		dispatcher.forward(request, response);
 	}
 

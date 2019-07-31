@@ -24,7 +24,7 @@ public class EmployeeInfoServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/ShowEmployees.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/ShowEmployees.jsp");
 		
 		// get the saved Employees from the database
 		List<EmployeeInfo> listOfEmployees = employeeDao.getEmployeesList();

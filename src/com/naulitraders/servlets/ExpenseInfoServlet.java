@@ -24,7 +24,7 @@ public class ExpenseInfoServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/ShowExpense.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/expenses/ShowExpense.jsp");
 		
 		// get the saved Expenses from the database
 		List<ExpenseInfo> listOfExpenses = expenseDao.getExpenseList();

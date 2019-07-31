@@ -19,7 +19,7 @@ public class AddEmployeeServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddEmployee.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/AddEmployee.jsp");
 
 		String name = request.getParameter("name");
 		String position = request.getParameter("position");
@@ -57,7 +57,7 @@ public class AddEmployeeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddEmployee.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/employee/AddEmployee.jsp");
 		dispatcher.forward(request, response);
 	}
 
