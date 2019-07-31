@@ -32,21 +32,16 @@ public class EditEmpDetail extends HttpServlet {
 		}
 
 		int empId = Integer.parseInt(request.getParameter("empId"));
-
 		EmployeeInfo employeeInfo = employeeDao.getEmployee(empId);
 
 		if (employeeInfo == null) {
-
 			// when emp cannot be found
-
 			showPage("/404.jsp", request, response);
-
 			return;
 
 		}
 
-		request.setAttribute("employeeInfo",employeeInfo);
-
+		request.setAttribute("employeeInfo", employeeInfo);
 		showPage("/employee/EditEmployee.jsp", request, response);
 
 	}
@@ -59,7 +54,6 @@ public class EditEmpDetail extends HttpServlet {
 		String position = request.getParameter("position");
 		Long phoneNumber = Long.parseLong(request.getParameter("phoneNumber"));
 		double salary = Double.parseDouble(request.getParameter("salary"));
-		
 		int empId = Integer.parseInt(request.getParameter("empId"));
 
 // fill it up the model, with setEmpId for update
@@ -78,33 +72,22 @@ public class EditEmpDetail extends HttpServlet {
 // write the message back to the page in client browser
 
 			String errorMessage = e.getMessage();
-
 			request.setAttribute("messageType", "alert-danger");
-
 			request.setAttribute("message", errorMessage);
-
-			request.setAttribute("employeeInfo",  employeeInfo);
-
+			request.setAttribute("employeeInfo", employeeInfo);
 			showPage("/employee/EditEmployee.jsp", request, response);
-
 			return;
 
 		}
 
-// update the Employee
+		// update the Employee
+		employeeDao.updateEmployee(employeeInfo);
 
-		 employeeDao.updateEmployee(employeeInfo);
-
-// get the trip after update
-
-		 EmployeeInfo updatedEmployeeInfo =  employeeDao.getEmployee(empId);
-
+		// get the trip after update
+		EmployeeInfo updatedEmployeeInfo = employeeDao.getEmployee(empId);
 		request.setAttribute("messageType", "alert-success");
-
 		request.setAttribute("message", "Employee has been updated successfully !");
-
 		request.setAttribute("employeeInfo", updatedEmployeeInfo);
-
 		showPage("/Employee/EditEmployee.jsp", request, response);
 
 	}
@@ -112,18 +95,13 @@ public class EditEmpDetail extends HttpServlet {
 	private void showPage(String pageName, HttpServletRequest request, HttpServletResponse response)
 
 			throws ServletException, IOException {
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher(pageName);
-
 		dispatcher.forward(request, response);
 
 	}
 
-	private void validateEmployeeInfo( EmployeeInfo  employeeInfo) {
-
-
-		}
+	private void validateEmployeeInfo(EmployeeInfo employeeInfo) {
 
 	}
 
-
+}
