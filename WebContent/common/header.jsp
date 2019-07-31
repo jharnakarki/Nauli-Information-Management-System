@@ -48,8 +48,16 @@
 							<a class="dropdown-item" href="addEmployee">Add Employee</a> <a
 								class="dropdown-item" href="ShowEmployees">Show Employee</a>
 						</div></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="Expense.jsp">Add Expense</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> Expense</a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="addExpense">Add Expense</a> <a
+								class="dropdown-item" href="ShowExpenses">Show Expenses</a>
+						</div></li>
+
 				</ul>
 			</div>
 		</div>

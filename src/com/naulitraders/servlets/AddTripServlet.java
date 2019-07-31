@@ -12,22 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.naulitraders.dao.TripDao;
-import com.naulitraders.dao.TruckDao;
 import com.naulitraders.model.TripInfo;
-import com.naulitraders.model.TruckInfo;
+
 
 @WebServlet("/addTrip")
 public class AddTripServlet extends HttpServlet {
 
-	private TruckDao truckDao = new TruckDao();
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddTrip.jsp");
-		// get the list of trucks so you can add it to the drop down
-		// it is needed here too because after POST, when the page reload, we require truck list again
-		List<TruckInfo> listOfActiveTrucks = truckDao.getActiveTrucksList();
-		request.setAttribute("listOfActiveTrucks", listOfActiveTrucks);
+		
 
 		// get the request
 		String number = request.getParameter("vehNum");
@@ -72,10 +67,7 @@ public class AddTripServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		// get the list of trucks so you can add it to the drop down
-		List<TruckInfo> listActiveOfTrucks = truckDao.getActiveTrucksList();
-		request.setAttribute("listOfActiveTrucks", listActiveOfTrucks);
-
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddTrip.jsp");
 		dispatcher.forward(request, response);
 	}

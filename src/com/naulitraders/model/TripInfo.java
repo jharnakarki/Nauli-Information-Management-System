@@ -1,3 +1,4 @@
+
 package com.naulitraders.model;
 
 import java.time.LocalDate;
