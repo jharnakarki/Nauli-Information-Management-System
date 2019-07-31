@@ -47,7 +47,7 @@
 						min="1990" name="year" required />
 				</div>
 				<div class="form-group">
-					<label>Status</label><select id="isStatus" name="isStatus">
+					<label>Status</label><select class="form-control" id="isStatus" name="isStatus">
 					<option id="active"> Active</option>
 					 <option id="inactive">InActive</option>
 					 <option id="sold"> Sold</option></select>
