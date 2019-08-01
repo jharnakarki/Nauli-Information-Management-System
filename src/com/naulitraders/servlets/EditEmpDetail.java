@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.naulitraders.dao.EmployeeDao;
 import com.naulitraders.model.EmployeeInfo;
+import com.naulitraders.utility.ValidationUtil;
 
 @WebServlet("/editEmployee")
 
@@ -56,12 +57,12 @@ public class EditEmpDetail extends HttpServlet {
 		double salary = Double.parseDouble(request.getParameter("salary"));
 		int empId = Integer.parseInt(request.getParameter("empId"));
 
-// fill it up the model, with setEmpId for update
+		// fill it up the model, with setEmpId for update
 
 		EmployeeInfo employeeInfo = new EmployeeInfo(name, position, phoneNumber, salary);
 		employeeInfo.setEmpId(empId);
 
-// validate Employee info
+		// validate Employee info
 
 		try {
 
@@ -69,7 +70,7 @@ public class EditEmpDetail extends HttpServlet {
 
 		} catch (IllegalArgumentException e) {
 
-// write the message back to the page in client browser
+			// write the message back to the page in client browser
 
 			String errorMessage = e.getMessage();
 			request.setAttribute("messageType", "alert-danger");
@@ -101,7 +102,7 @@ public class EditEmpDetail extends HttpServlet {
 	}
 
 	private void validateEmployeeInfo(EmployeeInfo employeeInfo) {
-
+		ValidationUtil.validatePhoneNumber(employeeInfo.getPhoneNumber());
 	}
 
 }

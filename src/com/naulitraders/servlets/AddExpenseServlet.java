@@ -76,8 +76,6 @@ public class AddExpenseServlet extends HttpServlet {
 	}
 
 	private void validateExpenseInfo(ExpenseInfo expenseInfo) {
-		
-
 		// validate start and end date of a trip are not of future date
 		if (expenseInfo.getExpenseDate().isAfter(LocalDate.now())) {
 			throw new IllegalArgumentException("Date of a expense date cannot be future date");

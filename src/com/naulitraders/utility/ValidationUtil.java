@@ -7,5 +7,16 @@ public final class ValidationUtil {
 			throw new IllegalArgumentException(name + " cannot be empty");
 		}
 	}
+		public static void validatePhoneNumber(long number) {
+			int count =0;
+			while(number !=0) {
+				number=number/10;
+				++count;
+			}
+			if(count != 10) {
+				throw new IllegalArgumentException("The phone number should be of 10 digits");
+			}
+		}
+	
 
 }

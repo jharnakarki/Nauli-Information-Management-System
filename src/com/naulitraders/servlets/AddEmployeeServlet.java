@@ -1,7 +1,6 @@
 package com.naulitraders.servlets;
 
 import java.io.IOException;
-import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.naulitraders.dao.EmployeeDao;
 import com.naulitraders.model.EmployeeInfo;
+import com.naulitraders.utility.ValidationUtil;
 
 @WebServlet("/addEmployee")
 public class AddEmployeeServlet extends HttpServlet {
@@ -62,13 +62,7 @@ public class AddEmployeeServlet extends HttpServlet {
 	}
 
 	private void validateEmployeeInfo(EmployeeInfo employeeInfo) {
-//if (employeeInfo.getPhoneNumber()+"".length() > 10 ) {
-//			throw new IllegalArgumentException("Phone number must be of 10 digit ");
-//		}
-//		else if (employeeInfo.getPhoneNumber()+"".length() < 10 ) {
-//			throw new IllegalArgumentException("Phone number must be of 10 digit ");
-//		}
+		 ValidationUtil.validatePhoneNumber(employeeInfo.getPhoneNumber());
 		
-
 	}
 }
