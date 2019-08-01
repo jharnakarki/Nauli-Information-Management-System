@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 31, 2019 at 06:36 PM
+-- Generation Time: Aug 01, 2019 at 05:30 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -64,7 +64,7 @@ CREATE TABLE `Employee` (
   `empId` int(11) NOT NULL,
   `name` varchar(15) NOT NULL,
   `position` varchar(15) NOT NULL,
-  `phoneNumber` bigint(15) NOT NULL,
+  `phoneNumber` bigint(10) NOT NULL,
   `salary` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -73,22 +73,18 @@ CREATE TABLE `Employee` (
 --
 
 INSERT INTO `Employee` (`empId`, `name`, `position`, `phoneNumber`, `salary`) VALUES
-(11, 'jharna karki', 'sdsad', 9848487, 123),
-(12, 'jharna karki', '', 9848487, 105),
-(13, 'jharna ', 'asdf', 9848487442, 123),
-(14, 'jharna ', 'asdf', 9848487442, 127),
-(15, 'jharna', 'asdf', 9876, 145),
-(16, 'jh', 'ugh', 123456789012, 34),
+(11, 'jharna karki', 'sales', 9848487442, 123),
+(12, 'jharna karki', 'asdfghj', 9848487, 1050000),
 (17, 'jkahs', 'ask', 6984, 32),
 (18, 'frank', 'shah', 1234567890678, 123),
-(19, 'hj', 'hj', 1234567890, 6778),
-(20, 'asdf', 'asdf', -234567890, 98),
-(21, 'jharna', 'asd', 9848487442, 1234),
-(22, 'jharna', 'sales', 9848487442, 123),
-(23, 'jharna', 'sales', 9848487442, 1213),
-(24, 'jharna', 'sales', 9848487442, 12134),
-(25, 'jharna karki', 'accountant', 9848487442, 123),
-(26, 'Ram', 'Driver', 9848487442, 12345);
+(28, 'asdfghj', 'Driver Helper', 1234567890, 12),
+(29, 'add', 'Accountant', -976, 988),
+(30, 'asdfgh', 'Accountant', -9887, 12345),
+(32, 'dosa', 'proprietor', 12345678909876543, 567),
+(33, 'jharna karki', 'proprietor', 9814610942, 12345),
+(34, 'jharna', 'proprietor', 9811223344, 123467),
+(35, 'jharna karki', 'proprietor', 9814610941, 1223),
+(37, 'jharna', 'Accountant', 9848487441, 123);
 
 -- --------------------------------------------------------
 
@@ -115,7 +111,10 @@ INSERT INTO `expenses` (`exId`, `vehNum`, `dates`, `amount`, `remarks`) VALUES
 (4, 'na.1.kha1234', '2019-07-02', 123344, 'maintenance'),
 (5, 'na1.kha.6789', '2018-02-12', 2345, 'tyre'),
 (6, 'na.1.kha134', '2014-09-09', 1234, 'asdf'),
-(7, 'nklsad', '2012-09-08', 233, 'skas');
+(7, 'nklsad', '2012-09-08', 233, 'skas'),
+(8, 'xxcv', '2012-09-09', 12345, 'sdfg'),
+(9, 'Na.1.kha.1235', '2018-09-09', -1213, 'sdfcd'),
+(10, 'Dhh134', '2019-08-01', 21, '21');
 
 -- --------------------------------------------------------
 
@@ -156,6 +155,7 @@ INSERT INTO `tckInfo` (`vehNumber`, `brand`, `model`, `capacity`, `tyres`, `year
 ('Na.1.kha.1234', 'Tata', 3440, 123667, 18, 2019, ''),
 ('Na.1.kha.1235', 'Tata', 1234, 100000, 20, 2010, 'Active'),
 ('Na.1.kha.2345', 'TATA', 2515, 1234, 14, 2071, 'Active'),
+('na.1.kha.2907', 'Tata', 123, 34325, 12, 2011, 'Active'),
 ('Na.1.kha.3456', 'Tata', 2309, 100000, 14, 2016, 'InActive'),
 ('Na.1.kha.3676', 'TATA', 3245, 1000, 14, 2070, 'Active'),
 ('Na.1.kha.3678', 'TATA', 3245, 1000, 14, 2071, 'Sold'),
@@ -189,11 +189,16 @@ CREATE TABLE `trip` (
 
 INSERT INTO `trip` (`tripID`, `vehNumber`, `dtStart`, `dtEnd`, `maStart`, `maEnd`, `origin`, `mulDes`, `rev`, `dName`, `remarks`) VALUES
 (5, 'na.1.kha.2345', '2019-07-03', '2019-07-07', 1234, 1241, 'ktm', 'dhn,gandaki', 1234, 'ram', '																								sdf\r\n	jhgkhj				\r\n					\r\n	'),
-(6, 'na.1.kha.2345', '2019-07-02', '2019-07-03', 1234, 12345, 'ktm', 'dhn,gandaki', 134, 'ram', 'sugar'),
+(6, 'na.1.kha.2345', '2019-07-02', '2019-07-03', 1234, 12345, 'ktm', 'dhn,gandaki', 134, 'ram', '						sugar\r\n					xdfgh'),
 (7, 'na.1.kha.2345', '2019-07-02', '2019-07-03', 123, 1234, 'ktm', 'dhn,gandaki', 134, 'ram', '						wheat\r\n					'),
 (8, 'Na.1.kha.1234', '2019-07-04', '2019-07-09', 1234, 12345, 'ktm', 'dhn,gandaki', 12, 'vgh', 'vggj'),
 (9, 'Na.1.kha.2345', '2016-02-09', '2016-02-12', 1234, 12309, 'ugh', 'fight', 2300, 'ram', 'sdfg'),
-(10, 'Na.1.kha.1235', '2018-09-12', '2018-09-14', 12320, 123456, 'ktm', 'ktm', 1234, 'ram', 'gaskdhks');
+(10, 'Na.1.kha.1235', '2018-09-12', '2018-09-14', 12320, 123456, 'ktm', 'ktm', 1234, 'ram', 'gaskdhks'),
+(11, 'Na.1.kha.1235', '2018-01-01', '2018-01-02', 12123, 21324, 'hxjkasd', 'ashok', 27391, 'kasjhd', 'ashkd'),
+(12, 'Na.1.kha.1235', '2018-01-01', '2018-01-02', 12123, 21324, 'hxjkasd', 'ashok', 27391, 'kasjhd', 'ashkd'),
+(13, 'Na.1.kha.1235', '2018-01-01', '2018-01-02', 12123, 21324, 'hxjkasd', 'ashok', 27391, 'kasjhd', 'ashkd'),
+(14, 'Na.1.kha.1235', '2018-01-01', '2018-01-02', 12123, 21324, 'hxjkasd', 'ashok', 27391, 'kasjhd', 'ashkd'),
+(15, 'na.1.kha4268', '2019-07-03', '2019-07-16', 123, 12432, 'ktm', 'dhn,gandaki', 22, 'ram', 'sdxs');
 
 --
 -- Indexes for dumped tables
@@ -215,7 +220,8 @@ ALTER TABLE `brand`
 -- Indexes for table `Employee`
 --
 ALTER TABLE `Employee`
-  ADD PRIMARY KEY (`empId`);
+  ADD PRIMARY KEY (`empId`),
+  ADD UNIQUE KEY `phoneNumber` (`phoneNumber`);
 
 --
 -- Indexes for table `expenses`
@@ -262,13 +268,13 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `Employee`
 --
 ALTER TABLE `Employee`
-  MODIFY `empId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `empId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `exId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `exId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `profit/loss`
@@ -280,7 +286,7 @@ ALTER TABLE `profit/loss`
 -- AUTO_INCREMENT for table `trip`
 --
 ALTER TABLE `trip`
-  MODIFY `tripID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `tripID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
