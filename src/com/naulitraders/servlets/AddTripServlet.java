@@ -46,7 +46,7 @@ public class AddTripServlet extends HttpServlet {
 		// fill it up the model
 		TripInfo tripInfo = new TripInfo(number, departureDate, arrivalDate, sMil, eMil, orig, mul, reve, nam, rem);
 
-		// validate truck info
+		// validate trip info
 		try {
 			validateTripInfo(tripInfo);
 		} catch (IllegalArgumentException e) {
@@ -59,7 +59,7 @@ public class AddTripServlet extends HttpServlet {
 			return;
 		}
 
-		// call the DAO layer and save the truck info
+		// call the DAO layer and save the trip info
 		TripDao tripDao = new TripDao();
 		tripDao.insertTripInfo(tripInfo);
 

@@ -29,7 +29,7 @@ public class AddEmployeeServlet extends HttpServlet {
 		// fill it up the model
 		EmployeeInfo employeeInfo = new EmployeeInfo(name, position, phoneNumber, salary);
 
-		// validate truck info
+		// validate employee info
 		try {
 			validateEmployeeInfo(employeeInfo);
 		} catch (IllegalArgumentException e) {
@@ -42,7 +42,7 @@ public class AddEmployeeServlet extends HttpServlet {
 			return;
 		}
 
-		// call the DAO layer and save the truck info
+		// call the DAO layer and save the employee info
 		EmployeeDao employeeDao = new EmployeeDao();
 		employeeDao.insertEmployeeInfo(employeeInfo);
 
