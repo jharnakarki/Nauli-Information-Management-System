@@ -22,6 +22,7 @@
 							<th>Expense Date</th>
 							<th>Amount</th>
 							<th >Remarks</th>
+							<th>Action</th>
 						</tr>
 
 					</thead>
@@ -37,6 +38,8 @@
 							<td><%=expenseInfo.getExpenseDate()%></td>
 							<td><%=expenseInfo.getAmount()%></td>
 							<td><%=expenseInfo.getRemarks()%></td>
+							<td><a class="btn btn-sm btn-secondary" href="editExpense?expenseId=<%= expenseInfo.getExpenseId()%>"><i class="fas fa-pencil-alt">edit</i></a>
+						
 						</tr>
 
 						<%

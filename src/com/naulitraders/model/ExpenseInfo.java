@@ -3,6 +3,7 @@ package com.naulitraders.model;
 import java.time.LocalDate;
 
 public class ExpenseInfo {
+	private int expenseId;
 	private String truckNumber;
 	private LocalDate expenseDate;
 	private double amount;
@@ -19,7 +20,14 @@ public class ExpenseInfo {
 		this.amount = amount;
 		this.remarks = remarks;
 	}
-
+	public int getExpenseId() {
+		return expenseId;
+	}
+	
+	public void setExpenseId(int expenseId) {
+		this.expenseId= expenseId;
+	}
+	
 	public String getTruckNumber() {
 		return truckNumber;
 	}

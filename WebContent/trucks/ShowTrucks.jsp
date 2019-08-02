@@ -23,6 +23,7 @@
 						<th>Tyres</th>
 						<th>Year</th>
 						<th>Status</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 
@@ -39,6 +40,7 @@
 						<td><%= truckInfo.getTyres() %></td>
 						<td><%= truckInfo.getYear() %></td>
 						<td><%= truckInfo.getStatus() %></td>
+						<td><a class="btn btn-sm btn-secondary" href="editTruckDetail?truckNumber=<%= truckInfo.getTruckNumber()%>"><i class="fas fa-pencil-alt">edit</i></a>
 						
 					</tr>
 

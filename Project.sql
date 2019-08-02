@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 01, 2019 at 05:30 PM
+-- Generation Time: Aug 02, 2019 at 08:39 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -84,7 +84,10 @@ INSERT INTO `Employee` (`empId`, `name`, `position`, `phoneNumber`, `salary`) VA
 (33, 'jharna karki', 'proprietor', 9814610942, 12345),
 (34, 'jharna', 'proprietor', 9811223344, 123467),
 (35, 'jharna karki', 'proprietor', 9814610941, 1223),
-(37, 'jharna', 'Accountant', 9848487441, 123);
+(37, 'jharna', 'Accountant', 9848487441, 123),
+(38, 'jharna', 'Accounta', 9804600039, 12345),
+(39, 'jharna karki', 'proprietor', 1234567899, 123),
+(40, 'jharna karki', 'proprietor', 1234567898, 123);
 
 -- --------------------------------------------------------
 
@@ -93,7 +96,7 @@ INSERT INTO `Employee` (`empId`, `name`, `position`, `phoneNumber`, `salary`) VA
 --
 
 CREATE TABLE `expenses` (
-  `exId` int(11) NOT NULL,
+  `expenseId` int(11) NOT NULL,
   `vehNum` varchar(15) NOT NULL,
   `dates` date NOT NULL,
   `amount` double NOT NULL,
@@ -104,9 +107,9 @@ CREATE TABLE `expenses` (
 -- Dumping data for table `expenses`
 --
 
-INSERT INTO `expenses` (`exId`, `vehNum`, `dates`, `amount`, `remarks`) VALUES
+INSERT INTO `expenses` (`expenseId`, `vehNum`, `dates`, `amount`, `remarks`) VALUES
 (1, 'na.1.kha.1234', '2019-09-08', 267863, 'gskd'),
-(2, 'Na.1.kha.2908', '2019-07-09', 13456, 'maintanance'),
+(2, 'Na.1.kha.2908', '2019-07-08', 13456, 'maintanance'),
 (3, 'na.1.kha1234', '2019-07-02', 123, 'maintenance'),
 (4, 'na.1.kha1234', '2019-07-02', 123344, 'maintenance'),
 (5, 'na1.kha.6789', '2018-02-12', 2345, 'tyre'),
@@ -114,7 +117,8 @@ INSERT INTO `expenses` (`exId`, `vehNum`, `dates`, `amount`, `remarks`) VALUES
 (7, 'nklsad', '2012-09-08', 233, 'skas'),
 (8, 'xxcv', '2012-09-09', 12345, 'sdfg'),
 (9, 'Na.1.kha.1235', '2018-09-09', -1213, 'sdfcd'),
-(10, 'Dhh134', '2019-08-01', 21, '21');
+(10, 'Dhh134', '2019-08-01', 21, '21'),
+(11, 'Na.1.kha.1235', '2019-08-01', 1234567, 'maintanance');
 
 -- --------------------------------------------------------
 
@@ -188,7 +192,7 @@ CREATE TABLE `trip` (
 --
 
 INSERT INTO `trip` (`tripID`, `vehNumber`, `dtStart`, `dtEnd`, `maStart`, `maEnd`, `origin`, `mulDes`, `rev`, `dName`, `remarks`) VALUES
-(5, 'na.1.kha.2345', '2019-07-03', '2019-07-07', 1234, 1241, 'ktm', 'dhn,gandaki', 1234, 'ram', '																								sdf\r\n	jhgkhj				\r\n					\r\n	'),
+(5, 'na.1.kha.2345', '2019-07-04', '2019-07-07', 1234, 1241, 'ktm', 'dhn,gandaki', 1234, 'ram', '																														sdf\r\n	jhgkhj				\r\n		'),
 (6, 'na.1.kha.2345', '2019-07-02', '2019-07-03', 1234, 12345, 'ktm', 'dhn,gandaki', 134, 'ram', '						sugar\r\n					xdfgh'),
 (7, 'na.1.kha.2345', '2019-07-02', '2019-07-03', 123, 1234, 'ktm', 'dhn,gandaki', 134, 'ram', '						wheat\r\n					'),
 (8, 'Na.1.kha.1234', '2019-07-04', '2019-07-09', 1234, 12345, 'ktm', 'dhn,gandaki', 12, 'vgh', 'vggj'),
@@ -227,7 +231,7 @@ ALTER TABLE `Employee`
 -- Indexes for table `expenses`
 --
 ALTER TABLE `expenses`
-  ADD PRIMARY KEY (`exId`);
+  ADD PRIMARY KEY (`expenseId`);
 
 --
 -- Indexes for table `profit/loss`
@@ -268,13 +272,13 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `Employee`
 --
 ALTER TABLE `Employee`
-  MODIFY `empId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `empId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `exId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `expenseId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `profit/loss`
