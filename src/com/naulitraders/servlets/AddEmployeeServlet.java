@@ -16,6 +16,8 @@ import com.naulitraders.utility.ValidationUtil;
 @WebServlet("/addEmployee")
 public class AddEmployeeServlet extends HttpServlet {
 
+	private EmployeeDao employeeDao = new EmployeeDao();
+
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
@@ -43,7 +45,6 @@ public class AddEmployeeServlet extends HttpServlet {
 		}
 
 		// call the DAO layer and save the employee info
-		EmployeeDao employeeDao = new EmployeeDao();
 		employeeDao.insertEmployeeInfo(employeeInfo);
 
 		// set the success message and send it through dispatcher
@@ -62,7 +63,11 @@ public class AddEmployeeServlet extends HttpServlet {
 	}
 
 	private void validateEmployeeInfo(EmployeeInfo employeeInfo) {
-		 ValidationUtil.validatePhoneNumber(employeeInfo.getPhoneNumber());
-		
+		ValidationUtil.validatePhoneNumber(employeeInfo.getPhoneNumber());
+
+		// two employee cannot have same phone number
+		if (employeeDao.isEmployeeAlreadyExist(employeeInfo.getPhoneNumber())) {
+			throw new IllegalArgumentException("Employee with that phone number already exist in our system");
+		}
 	}
 }

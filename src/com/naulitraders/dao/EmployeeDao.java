@@ -1,16 +1,14 @@
 package com.naulitraders.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.naulitraders.model.EmployeeInfo;
-import com.naulitraders.model.TripInfo;
 
 public class EmployeeDao {
 
@@ -48,6 +46,27 @@ public class EmployeeDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public boolean isEmployeeAlreadyExist(long phoneNumber) {
+
+		String sql = "SELECT empId FROM Employee WHERE phoneNumber = ?";
+
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setLong(1, phoneNumber);
+
+			ResultSet rs = pst.executeQuery();
+
+			while(rs.next()) {
+				// employee with that phone number already exist
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public EmployeeInfo getEmployee(int empId) {
