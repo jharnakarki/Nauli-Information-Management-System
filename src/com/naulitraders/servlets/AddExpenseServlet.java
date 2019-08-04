@@ -12,10 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.naulitraders.dao.ExpenseDao;
-
+import com.naulitraders.dao.TruckDao;
 import com.naulitraders.model.ExpenseInfo;
 import com.naulitraders.model.TruckInfo;
-import com.naulitraders.dao.TruckDao;
 
 @WebServlet("/addExpense")
 public class AddExpenseServlet extends HttpServlet {

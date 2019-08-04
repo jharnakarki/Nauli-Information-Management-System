@@ -1,11 +1,15 @@
 package com.naulitraders.servlets;
-import java.io.*;
-import java.sql.*;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.TimeZone;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/addAdmin")
 public class AddAdmin extends HttpServlet {

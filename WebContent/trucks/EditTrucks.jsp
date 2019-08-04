@@ -36,7 +36,7 @@
 						name="brand" value="<%=truckInfo.getBrand()%>" disabled />
 				</div>
 				<div class="form-group">
-					<label>Model</label> <input class="form-control" type="Number"
+					<label>Model</label> <input class="form-control" type="text"
 						name="model" value="<%=truckInfo.getModel()%>" disabled />
 				</div>
 				<div class="form-group">
@@ -55,10 +55,10 @@
 				</div>
 				<div class="form-group">
 					<label>Status</label><select class="form-control" id="isStatus"
-						name="isStatus" value="<%=truckInfo.getStatus()%>">
-						<option value="active">Active</option>
-						<option value="inactive">InActive</option>
-						<option value="sold">Sold</option>
+						name="isStatus">
+						<option <%=truckInfo.getStatus().equals("Active") ? "selected" : "" %> value="Active">Active</option>
+						<option <%=truckInfo.getStatus().equals("InActive") ? "selected" : "" %> value="InActive">InActive</option>
+						<option <%=truckInfo.getStatus().equals("Sold") ? "selected" : "" %> value="Sold">Sold</option>
 					</select>
 				</div>
 

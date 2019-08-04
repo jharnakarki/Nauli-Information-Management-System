@@ -21,10 +21,11 @@
 
 			<form method="POST" action="addExpense">
 				<div class="form-group">
-					<label>Truck Number</label> <!--<input class="form-control" type="text"
-						name="truckNumber" />   --> 
-						<select class="form-control" name="truckNumber">
-						
+					<label>Truck Number</label>
+					<!--<input class="form-control" type="text"
+						name="truckNumber" />   -->
+					<select class="form-control" name="truckNumber">
+
 						<option value="NA">--Select Truck--</option>
 						<%
 							List<TruckInfo> truckInfos = (ArrayList) request.getAttribute("listOfActiveTrucks");
@@ -45,8 +46,12 @@
 						name="amount" min="1" />
 				</div>
 				<div class="form-group">
-					<label>remark</label> <input class="form-control" type="text"
-						name="remarks" />
+					<label for="receipt">Receipt</label>
+					<input type="file" name="receipt" />
+				</div>
+				<div class="form-group">
+					<label>Remark</label>
+					<textarea class="form-control" name="remarks"></textarea>
 				</div>
 
 

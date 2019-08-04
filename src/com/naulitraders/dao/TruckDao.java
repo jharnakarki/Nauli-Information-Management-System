@@ -101,19 +101,14 @@ public class TruckDao {
 
 	// for updating the truck detail
 	public void updateTruck(TruckInfo truckInfo) {
-		String sql = "UPDATE  tckInfo SET  brand= ?, model= ?, capacity= ?, tyres= ?, year= ?, status= ?   WHERE vehNumber = ?";
+		String sql = "UPDATE  tckInfo SET status= ? WHERE vehNumber = ?";
 
 		try {
 			Connection conn = DBConnection.getConnectionToDatabase();
 
 			PreparedStatement pst = conn.prepareStatement(sql);
-			pst.setString(1, truckInfo.getBrand());
-			pst.setInt(2, truckInfo.getModel());
-			pst.setInt(3, truckInfo.getCapacity());
-			pst.setInt(4, truckInfo.getTyres());
-			pst.setInt(5, truckInfo.getYear());
-			pst.setString(6, truckInfo.getStatus());
-			pst.setString(7, truckInfo.getTruckNumber());
+			pst.setString(1, truckInfo.getStatus());
+			pst.setString(2, truckInfo.getTruckNumber());
 			pst.executeUpdate();
 
 		} catch (SQLException e) {

@@ -13,7 +13,6 @@ import com.naulitraders.dao.TruckDao;
 import com.naulitraders.model.TruckInfo;
 
 @WebServlet("/editTruckDetail")
-
 public class EditTruckDetail extends HttpServlet {
 
 	private TruckDao truckDao = new TruckDao();
@@ -47,21 +46,19 @@ public class EditTruckDetail extends HttpServlet {
 	}
 
 	@Override
-
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String vehNumber = request.getParameter("truckNumber");
-		String brand = request.getParameter("brand");
-		int model = Integer.parseInt(request.getParameter("model"));
-		int capacity = Integer.parseInt(request.getParameter("capacity"));
-		int tyres = Integer.parseInt(request.getParameter("tyres"));
-		int year = Integer.parseInt(request.getParameter("year"));
+		// get the truckNumber from the URL query parameter
+		String queryString = request.getQueryString(); // return something like : truckNumber=Dhh134
+		String queryStringArray[] = queryString.split("="); // split with = and add it to array, [0] = truckNumber and [1] = Dhh134
+		
+		
+		String truckNumber = queryStringArray[1];
 		String status = request.getParameter("isStatus");
 		
-
 		// fill it up the model, with setTruckNumber for update
-
-		TruckInfo truckInfo = new TruckInfo(vehNumber, brand, model, capacity, tyres, year, status);
-		truckInfo.setTruckNumber(vehNumber);
+		TruckInfo truckInfo = new TruckInfo();
+		truckInfo.setTruckNumber(truckNumber);
+		truckInfo.setStatus(status);
 
 		// validate Truck info
 
@@ -86,7 +83,7 @@ public class EditTruckDetail extends HttpServlet {
 		truckDao.updateTruck(truckInfo);
 
 		// get the truckInformation after update
-		TruckInfo updatedTruckInfo = truckDao.getTruckDetail(vehNumber);
+		TruckInfo updatedTruckInfo = truckDao.getTruckDetail(truckNumber);
 		request.setAttribute("messageType", "alert-success");
 		request.setAttribute("message", "Truck Details has been updated successfully !");
 		request.setAttribute("truckInfo", updatedTruckInfo);

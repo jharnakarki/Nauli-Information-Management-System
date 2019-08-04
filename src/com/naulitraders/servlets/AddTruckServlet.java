@@ -1,7 +1,6 @@
 package com.naulitraders.servlets;
 
 import java.io.IOException;
-import java.util.*;
 import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;

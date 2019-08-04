@@ -48,9 +48,9 @@
 				</div>
 				<div class="form-group">
 					<label>Status</label><select class="form-control" id="isStatus" name="isStatus">
-					<option id="active"> Active</option>
-					 <option id="inactive">InActive</option>
-					 <option id="sold"> Sold</option></select>
+					<option id="Active"> Active</option>
+					 <option id="InActive">InActive</option>
+					 <option id="Sold"> Sold</option></select>
 				</div>
 
 				<button class="btn btn-primary" type="submit">Add</button>
