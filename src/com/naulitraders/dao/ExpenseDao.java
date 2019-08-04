@@ -3,14 +3,14 @@ package com.naulitraders.dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.naulitraders.model.ExpenseInfo;
-import com.naulitraders.model.TripInfo;
 
 public class ExpenseDao {
 
@@ -27,10 +27,10 @@ public class ExpenseDao {
 			pst.setString(4, expenseInfo.getRemarks());
 
 			pst.executeUpdate();
-			
+
 			ResultSet rs = pst.getGeneratedKeys();
-			if (rs.next()){
-			    return rs.getInt(1); // return auto generated key after insert, i.e. expenseId
+			if (rs.next()) {
+				return rs.getInt(1); // return auto generated key after insert, i.e. expenseId
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -88,34 +88,60 @@ public class ExpenseDao {
 
 		return expenseInfo;
 	}
+
 	// to get list of trip
-		public List<ExpenseInfo> getExpenseList() {
+	public List<ExpenseInfo> getExpenseList() {
 
-			List<ExpenseInfo> listOfExpenses = new ArrayList<>();
+		List<ExpenseInfo> listOfExpenses = new ArrayList<>();
 
-			String sql = "SELECT expenseId,vehNum,dates,amount,remarks FROM expenses";
+		String sql = "SELECT expenseId,vehNum,dates,amount,remarks FROM expenses";
 
-			Statement statement;
+		Statement statement;
 
-			try {
-				Connection conn = DBConnection.getConnectionToDatabase();
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
 
-				statement = conn.createStatement();
+			statement = conn.createStatement();
 
-				ResultSet rs = statement.executeQuery(sql);
-				while (rs.next()) {
-					ExpenseInfo expenseInfo = new ExpenseInfo();
-					expenseInfo.setExpenseId(rs.getInt("expenseId"));
-					expenseInfo.setTruckNumber(rs.getString("vehNum"));
-					expenseInfo.setExpenseDate(rs.getDate("dates").toLocalDate());
-					expenseInfo.setAmount(rs.getDouble("amount"));
-					expenseInfo.setRemarks(rs.getString("remarks"));
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				ExpenseInfo expenseInfo = new ExpenseInfo();
+				expenseInfo.setExpenseId(rs.getInt("expenseId"));
+				expenseInfo.setTruckNumber(rs.getString("vehNum"));
+				expenseInfo.setExpenseDate(rs.getDate("dates").toLocalDate());
+				expenseInfo.setAmount(rs.getDouble("amount"));
+				expenseInfo.setRemarks(rs.getString("remarks"));
 
-					listOfExpenses.add(expenseInfo);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+				listOfExpenses.add(expenseInfo);
 			}
-			return listOfExpenses;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		return listOfExpenses;
+	}
+	
+	public double getTotalExpenses(String vehNumber, LocalDate expenseStartDate, LocalDate expenseEndDate) {
+		
+		String sql = "SELECT SUM(amount) as totalExpenses FROM expenses WHERE vehNum = ? AND dates >= ? AND dates <= ?";
+		
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, vehNumber);
+			pst.setDate(2, Date.valueOf(expenseStartDate));
+			pst.setDate(3, Date.valueOf(expenseEndDate));
+
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				return rs.getDouble("totalExpenses");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0d;
+		
+	}
 }

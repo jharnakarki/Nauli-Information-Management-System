@@ -5,13 +5,13 @@
 <jsp:include page="../common/header.jsp" />
 <html>
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Login Page</title>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
 
-	<link rel="stylesheet" href="css/style.css">
-	</head>
-	<body>
-	
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
 	<div class="container">
 		<article>
 			<div class="row">
@@ -57,7 +57,9 @@
 							<td><%=tripInfo.getRevenue()%></td>
 							<td><%=tripInfo.getDriverName()%></td>
 							<td><%=tripInfo.getRemarks()%></td>
-							<td><a class="btn btn-sm btn-secondary" href="editTrip?tripId=<%=tripInfo.getTripId()%>"><i class="fas fa-pencil-alt">edit</i></a>
+							<td><a class="btn btn-sm btn-secondary"
+								href="editTrip?tripId=<%=tripInfo.getTripId()%>"><i
+									class="fas fa-pencil-alt">edit</i></a>
 						</tr>
 
 						<%

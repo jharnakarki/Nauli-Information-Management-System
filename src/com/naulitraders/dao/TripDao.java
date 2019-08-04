@@ -38,7 +38,6 @@ public class TripDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void updateTrip(TripInfo tripInfo) {
@@ -102,6 +101,67 @@ public class TripDao {
 		}
 		
 		return tripInfo;
+	}
+	
+	public List<TripInfo> getTrips(int size) {
+		List<TripInfo> listOfTrips = new ArrayList<>();
+
+		String sql = "SELECT tripID, vehNumber,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks FROM trip LIMIT " + size;
+
+		Statement statement;
+
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+
+			statement = conn.createStatement();
+
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				TripInfo tripInfo = new TripInfo();
+
+				tripInfo.setTripId(rs.getInt("tripID"));
+				tripInfo.setTruckNumber(rs.getString("vehNumber"));
+				tripInfo.setStartDate(rs.getDate("dtStart").toLocalDate());
+				tripInfo.setEndDate(rs.getDate("dtEnd").toLocalDate());
+				tripInfo.setStartMileage(rs.getInt("maStart"));
+				tripInfo.setEndMileage(rs.getInt("maEnd"));
+				tripInfo.setOrigin(rs.getString("origin"));
+				tripInfo.setMulDestination(rs.getString("mulDes"));
+				tripInfo.setRevenue(rs.getDouble("rev"));
+				tripInfo.setDriverName(rs.getString("dName"));
+				tripInfo.setRemarks(rs.getString("remarks"));
+
+				listOfTrips.add(tripInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listOfTrips;
+	}
+	
+	public double getTotalRevenue(String vehNumber, LocalDate tripStartDate, LocalDate tripEndDate) {
+		
+		String sql = "SELECT sum(rev) as totalRevenue FROM trip WHERE vehNumber = ? AND dtStart >= ? AND dtEnd <= ?";
+		
+		PreparedStatement pst;
+		
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+			
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, vehNumber);
+			pst.setDate(2, Date.valueOf(tripStartDate));
+			pst.setDate(3, Date.valueOf(tripEndDate));
+			
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				return rs.getDouble("totalRevenue");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return 0d;
 	}
 	
 	public List<TripInfo> getTripsList() {
