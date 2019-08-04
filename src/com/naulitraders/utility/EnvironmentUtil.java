@@ -8,7 +8,7 @@ public final class EnvironmentUtil {
 	
 	public static String getWorkDirectoryPath() {
 		// System.getEnv returns environment variables like PATH
-		return System.getenv("workDir");
+		return System.getProperty("workDir");
 	}
 
 }
