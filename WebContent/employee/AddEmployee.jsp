@@ -10,15 +10,15 @@
 
 <div class="container">
 	<article>
-		<%
+		 <%
 			Object messageType = (request.getAttribute("messageType") != null) ? request.getAttribute("messageType")
 					: "";
 			Object message = (request.getAttribute("message") != null) ? request.getAttribute("message") : "";
 
-			EmployeeInfo employeeInfo = (EmployeeInfo) request.getAttribute("employeeInfo");
+			
 		%>
 
-		<div class="row alert <%=messageType%>"><%=message%></div>
+		<div class="row alert <%=messageType%>"><%=message%></div> 
 		<div class="row">
 			<h2>Add a new Employee</h2>
 		</div>
@@ -28,25 +28,24 @@
 			<form method="POST" action="addEmployee">
 				<div class="form-group">
 					<label>Name</label> <input class="form-control" type="text"
-						name="name" />
+						name="name" required />
 				</div>
 				<div class="form-group">
-					<label>Position</label><select class="form-control" name="position">
+					<label>Position</label><select class="form-control" name="position"  required>
 						<option value="proprietor">Proprietor</option>
 						<option value="Accountant">accountant</option>
 						<option value="Driver">Driver</option>
 						<option value="Driver Helper">Driver Helper</option>
 					</select>
-					<!-- <input class="form-control" type="text"
-						name="position" /> -->
+				
 				</div>
 				<div class="form-group">
-					<label>Phone Number</label> <input class="form-control" type="text"
-						name="phoneNumber" min="1" />
+					<label>Phone Number</label> <input class="form-control" type="Number"
+						name="phoneNumber" min="1"  required />
 				</div>
 				<div class="form-group">
 					<label>Salary</label> <input class="form-control" type="Number"
-						name="salary" min="1" />
+						name="salary" min="1"  required/>
 				</div>
 
 				<button class="btn btn-primary" type="submit">Add Employee</button>

@@ -39,19 +39,19 @@
 				</div>
 				<div class="form-group">
 					<label>Date</label> <input class="form-control" type="date"
-						name="expenseDate" />
+						name="expenseDate"  required/>
 				</div>
 				<div class="form-group">
 					<label>Amount</label> <input class="form-control" type="Number"
-						name="amount" min="1" />
+						name="amount" min="1"  required/>
 				</div>
 				<div class="form-group">
 					<label for="receipt">Receipt</label>
-					<input type="file" name="receipt" />
+					<input type="file" name="receipt" required />
 				</div>
 				<div class="form-group">
 					<label>Remark</label>
-					<textarea class="form-control" name="remarks"></textarea>
+					<textarea class="form-control" name="remarks" required></textarea>
 				</div>
 
 

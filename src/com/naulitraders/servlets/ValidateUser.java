@@ -51,7 +51,7 @@ public class ValidateUser extends HttpServlet {
 
 				else {
 					pw.println("<html><body>");
-					pw.println("<h2>Your record is successfully uploaded</h2>");
+					pw.println("<h2>login fail!!</h2>");
 					pw.println("</body></html>");
 				}
 

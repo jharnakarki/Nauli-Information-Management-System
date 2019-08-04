@@ -78,13 +78,13 @@ public class EditTrips extends HttpServlet {
 
 		int tripId = Integer.parseInt(request.getParameter("tripId"));
 
-// fill it up the model, with setTripId for update
+		// fill it up the model, with setTripId for update
 
 		TripInfo tripInfo = new TripInfo(number, departureDate, arrivalDate, sMil, eMil, orig, mul, reve, nam, rem);
 
 		tripInfo.setTripId(tripId);
 
-// validate truck info
+		// validate truck info
 
 		try {
 
@@ -92,7 +92,7 @@ public class EditTrips extends HttpServlet {
 
 		} catch (IllegalArgumentException e) {
 
-// write the message back to the page in client browser
+			// write the message back to the page in client browser
 
 			String errorMessage = e.getMessage();
 
@@ -108,11 +108,11 @@ public class EditTrips extends HttpServlet {
 
 		}
 
-// update the trip
+		// update the trip
 
 		tripDao.updateTrip(tripInfo);
 
-// get the trip after update
+		// get the trip after update
 
 		TripInfo updatedTripInfo = tripDao.getTrip(tripId);
 
@@ -138,7 +138,7 @@ public class EditTrips extends HttpServlet {
 
 	private void validateTripInfo(TripInfo tripInfo) {
 
-// validate start and end date of a trip are not of future date
+		// validate start and end date of a trip are not of future date
 
 		if (tripInfo.getStartDate().isAfter(LocalDate.now())) {
 

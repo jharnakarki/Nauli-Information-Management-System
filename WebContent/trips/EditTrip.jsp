@@ -36,46 +36,46 @@
 
 				<div class="form-group">
 					<label>Start Date</label> 
-					<input class="form-control" type="Date" value="<%= tripInfo.getStartDate() %>" name="dtStart" />
+					<input class="form-control" type="Date" value="<%= tripInfo.getStartDate() %>" name="dtStart"  required/>
 				</div>
 
 				<div class="form-group">
 					<label>Ending Date</label> 
-					<input class="form-control" type="Date" value="<%= tripInfo.getEndDate() %>" name="dtEnd" />
+					<input class="form-control" type="Date" value="<%= tripInfo.getEndDate() %>" name="dtEnd"  required/>
 				</div>
 
 				<div class="form-group">
 					<label>Start Mileage</label> 
-					<input class="form-control" value="<%= tripInfo.getStartMileage() %>" type="Number" name="maStart" />
+					<input class="form-control" value="<%= tripInfo.getStartMileage() %>" type="Number" name="maStart" required />
 				</div>
 
 				<div class="form-group">
 					<label>End Mileage</label> 
-					<input class="form-control" value="<%= tripInfo.getEndMileage() %>" type="Number" name="maEnd" />
+					<input class="form-control" value="<%= tripInfo.getEndMileage() %>" type="Number" name="maEnd" required />
 				</div>
 
 				<div class="form-group">
-					<label>Origin</label> <input class="form-control" type="text" value="<%= tripInfo.getOrigin() %>" name="org" />
+					<label>Origin</label> <input class="form-control" type="text" value="<%= tripInfo.getOrigin() %>" name="org" required />
 				</div>
 
 				<div class="form-group">
 					<label>Multiple Destination</label> 
-					<input class="form-control" value="<%= tripInfo.getMulDestination() %>" type="text" name="mulDes" />
+					<input class="form-control" value="<%= tripInfo.getMulDestination() %>" type="text" name="mulDes"  required />
 				</div>
 
 				<div class="form-group">
 					<label>Revenue</label> 
-					<input class="form-control" type="Number" value="<%= tripInfo.getRevenue() %>" min="1" name="rev" />
+					<input class="form-control" type="Number" value="<%= tripInfo.getRevenue() %>" min="1" name="rev"  required/>
 				</div>
 
 				<div class="form-group">
 					<label>Driver</label> 
-					<input class="form-control" type="text" value="<%= tripInfo.getDriverName() %>" name="dName" />
+					<input class="form-control" type="text" value="<%= tripInfo.getDriverName() %>" name="dName"  required />
 				</div>
 
 				<div class="form-group">
 					<label>Remarks</label> 
-					<textarea class="form-control" name="remarks" rows="10" cols="20">
+					<textarea class="form-control" name="remarks" rows="10" cols="20"  required>
 						<%= tripInfo.getRemarks() %>
 					</textarea>
 				</div>
