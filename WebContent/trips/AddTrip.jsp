@@ -39,46 +39,46 @@
 
 				<div class="form-group">
 					<label>Start Date</label> <input class="form-control" type="Date"
-						name="dtStart" />
+						name="dtStart"  required />
 				</div>
 
 				<div class="form-group">
 					<label>Ending Date</label> <input class="form-control" type="Date"
-						name="dtEnd" />
+						name="dtEnd"  required/>
 				</div>
 
 				<div class="form-group">
 					<label>Start Mileage</label> <input class="form-control"
-						type="Number" name="maStart" />
+						type="Number" name="maStart"  required />
 				</div>
 
 				<div class="form-group">
 					<label>End Mileage</label> <input class="form-control"
-						type="Number" name="maEnd" />
+						type="Number" name="maEnd"  required/>
 				</div>
 
 				<div class="form-group">
 					<label>Origin</label> <input class="form-control" type="text"
-						name="org" />
+						name="org" required />
 				</div>
 
 				<div class="form-group">
 					<label>Multiple Destination</label> <input class="form-control"
-						type="text" name="mulDes" />
+						type="text" name="mulDes" required />
 				</div>
 
 				<div class="form-group">
 					<label>Revenue</label> <input class="form-control" type="Number"
-						min="1" name="rev" />
+						min="1" name="rev"  required/>
 				</div>
 
 				<div class="form-group">
 					<label>Driver</label> <input class="form-control" type="text"
-						name="dName" />
+						name="dName"  required />
 				</div>
 
 				<div class="form-group">
-					<label>Remarks</label> <textarea class="form-control" name="remarks" rows="10" cols="20"></textarea>
+					<label>Remarks</label> <textarea class="form-control" name="remarks" rows="10" cols="20"  required></textarea>
 				</div>
 
 				<button class="btn btn-primary" type="submit">Add</button>

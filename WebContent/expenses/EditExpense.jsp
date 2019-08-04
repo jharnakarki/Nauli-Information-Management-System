@@ -37,15 +37,15 @@
 				</div>
 				<div class="form-group">
 					<label>Date</label> <input class="form-control" type="date"
-						value="<%=expenseInfo.getExpenseDate()%>" name="expenseDate" />
+						value="<%=expenseInfo.getExpenseDate()%>" name="expenseDate"  required />
 				</div>
 				<div class="form-group">
 					<label>Amount</label> <input class="form-control" type="Number"
-						name="amount" value="<%=expenseInfo.getAmount()%>" min="1" />
+						name="amount" value="<%=expenseInfo.getAmount()%>" min="1" required />
 				</div>
 				<div class="form-group">
 					<label>Remark</label> <input class="form-control" type="text"
-						name="remarks" value="<%=expenseInfo.getRemarks()%>" />
+						name="remarks" value="<%=expenseInfo.getRemarks()%>"  required/>
 				</div>
 
 

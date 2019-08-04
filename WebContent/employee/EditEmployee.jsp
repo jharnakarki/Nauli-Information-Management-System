@@ -36,7 +36,7 @@
 
 				<div class="form-group">
 					<label>Name</label> <input class="form-control" type="text"
-						name="name" value="<%=employeeInfo.getName()%>" />
+						name="name" value="<%=employeeInfo.getName()%>"  required/>
 				</div>
 				<div class="form-group">
 					<label>Position</label> 
@@ -48,12 +48,12 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label>Phone Number</label> <input class="form-control" type="text"
-						name="phoneNumber" min="1" value="<%=employeeInfo.getPhoneNumber()%>" />
+					<label>Phone Number</label> <input class="form-control" type="number"
+						name="phoneNumber" min="1" value="<%=employeeInfo.getPhoneNumber()%>"  required/>
 				</div>
 				<div class="form-group">
 					<label>Salary</label> <input class="form-control" type="Number"
-						name="salary" min="1" value="<%=employeeInfo.getSalary()%>"/>
+						name="salary" min="1" value="<%=employeeInfo.getSalary()%>" required/>
 				</div>
 
 				<button class="btn btn-primary" type="submit">Update Employee</button>

@@ -1,6 +1,7 @@
 package com.naulitraders.servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -49,12 +50,12 @@ public class EditTruckDetail extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		// get the truckNumber from the URL query parameter
 		String queryString = request.getQueryString(); // return something like : truckNumber=Dhh134
-		String queryStringArray[] = queryString.split("="); // split with = and add it to array, [0] = truckNumber and [1] = Dhh134
-		
-		
+		String queryStringArray[] = queryString.split("="); // split with = and add it to array, [0] = truckNumber and
+															// [1] = Dhh134
+
 		String truckNumber = queryStringArray[1];
 		String status = request.getParameter("isStatus");
-		
+
 		// fill it up the model, with setTruckNumber for update
 		TruckInfo truckInfo = new TruckInfo();
 		truckInfo.setTruckNumber(truckNumber);
