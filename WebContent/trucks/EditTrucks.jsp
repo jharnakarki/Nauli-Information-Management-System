@@ -56,9 +56,9 @@
 				<div class="form-group">
 					<label>Status</label><select class="form-control" id="isStatus"
 						name="isStatus" value="<%=truckInfo.getStatus()%>">
-						<option id="active">Active</option>
-						<option id="inactive">InActive</option>
-						<option id="sold">Sold</option>
+						<option value="active">Active</option>
+						<option value="inactive">InActive</option>
+						<option value="sold">Sold</option>
 					</select>
 				</div>
 

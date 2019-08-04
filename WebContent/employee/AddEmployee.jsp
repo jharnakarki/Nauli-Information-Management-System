@@ -35,7 +35,7 @@
 						<option value="proprietor">Proprietor</option>
 						<option value="Accountant">accountant</option>
 						<option value="Driver">Driver</option>
-						<option value="Driver Helper">Driver Helper
+						<option value="Driver Helper">Driver Helper</option>
 					</select>
 					<!-- <input class="form-control" type="text"
 						name="position" /> -->

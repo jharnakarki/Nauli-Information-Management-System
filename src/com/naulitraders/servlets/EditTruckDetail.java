@@ -56,12 +56,12 @@ public class EditTruckDetail extends HttpServlet {
 		int tyres = Integer.parseInt(request.getParameter("tyres"));
 		int year = Integer.parseInt(request.getParameter("year"));
 		String status = request.getParameter("isStatus");
-		;
+		
 
 		// fill it up the model, with setTruckNumber for update
 
 		TruckInfo truckInfo = new TruckInfo(vehNumber, brand, model, capacity, tyres, year, status);
-		//truckInfo.setTruckNumber(vehNumber);
+		truckInfo.setTruckNumber(vehNumber);
 
 		// validate Truck info
 

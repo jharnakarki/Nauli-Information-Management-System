@@ -39,8 +39,13 @@
 						name="name" value="<%=employeeInfo.getName()%>" />
 				</div>
 				<div class="form-group">
-					<label>Position</label> <input class="form-control" type="text"
-						name="position" value="<%=employeeInfo.getPosition()%>" />
+					<label>Position</label> 
+					<select class="form-control" name="position">
+						<option value="proprietor">Proprietor</option>
+						<option value="Accountant">accountant</option>
+						<option value="Driver">Driver</option>
+						<option value="Driver Helper">Driver Helper</option>
+					</select>
 				</div>
 				<div class="form-group">
 					<label>Phone Number</label> <input class="form-control" type="text"
