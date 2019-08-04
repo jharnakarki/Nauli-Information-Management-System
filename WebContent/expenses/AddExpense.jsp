@@ -19,7 +19,7 @@
 		<br />
 		<div class="row">
 
-			<form method="POST" action="addExpense">
+			<form method="POST" action="addExpense" enctype="multipart/form-data">
 				<div class="form-group">
 					<label>Truck Number</label>
 					<!--<input class="form-control" type="text"

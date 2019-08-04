@@ -14,22 +14,28 @@ import com.naulitraders.model.TripInfo;
 
 public class ExpenseDao {
 
-	public void insertExpenseInfo(ExpenseInfo expenseInfo) {
+	public int insertExpenseInfo(ExpenseInfo expenseInfo) {
 		String sql = "insert into expenses(vehNum,dates,amount,remarks) values(?,?,?,?)";
 
 		try {
 			Connection con = DBConnection.getConnectionToDatabase();
 
-			PreparedStatement pst = con.prepareStatement(sql);
+			PreparedStatement pst = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1, expenseInfo.getTruckNumber());
 			pst.setDate(2, Date.valueOf(expenseInfo.getExpenseDate()));
 			pst.setDouble(3, expenseInfo.getAmount());
 			pst.setString(4, expenseInfo.getRemarks());
 
-			pst.execute();
+			pst.executeUpdate();
+			
+			ResultSet rs = pst.getGeneratedKeys();
+			if (rs.next()){
+			    return rs.getInt(1); // return auto generated key after insert, i.e. expenseId
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return 0;
 
 	}
 
