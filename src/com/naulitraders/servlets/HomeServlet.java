@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.naulitraders.dao.ExpenseDao;
 import com.naulitraders.dao.TripDao;
+import com.naulitraders.model.ExpenseInfo;
+import com.naulitraders.model.ProfitLossAccount;
 import com.naulitraders.model.TripInfo;
 
 @WebServlet("/home")
@@ -31,33 +33,32 @@ public class HomeServlet extends HttpServlet {
 			LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
 
 			LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
-			getProfitAndLoss(vehicleNumber, startDate, endDate);
+			ProfitLossAccount pl = getProfitAndLoss(vehicleNumber, startDate, endDate);
+			
+			request.setAttribute("profitLoss", pl);
 		}
 
-		List<TripInfo> listOfTrips = getRecentTrips();
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
-
-		request.setAttribute("listOfTrips", listOfTrips);
 		dispatcher.forward(request, response);
 
 	}
 
-	public List<TripInfo> getRecentTrips() {
+	public ProfitLossAccount getProfitAndLoss(String vehicleNumber, LocalDate startDate, LocalDate endDate) {
 
-		return tripDao.getTrips(10);
-
-	}
-
-	public void getProfitAndLoss(String vehicleNumber, LocalDate startDate, LocalDate endDate) {
-
-		double totalRevenue = tripDao.getTotalRevenue(vehicleNumber, startDate, endDate);
-
-		double totalExpenses = expensesDao.getTotalExpenses(vehicleNumber, startDate, endDate);
-
-		System.out.println(totalRevenue);
-
-		System.out.println(totalExpenses);
+		List<TripInfo> trips = tripDao.getTrips(vehicleNumber, startDate, endDate);
+		double totalRevenue = trips.stream().map(trip -> trip.getRevenue()).reduce(0d, Double::sum);
+		
+		List<ExpenseInfo> expenses = expensesDao.getExpenses(vehicleNumber, startDate, endDate);
+		double totalExpenses = expenses.stream().map(expense -> expense.getAmount()).reduce(0d, Double::sum);
+		
+		ProfitLossAccount pl = new ProfitLossAccount();
+		pl.setTrips(trips);
+		pl.setExpenses(expenses);
+		pl.setTotalRevenue(totalRevenue);
+		pl.setTotalExpenses(totalExpenses);
+		pl.setProfitLoss((totalRevenue - totalExpenses));
+		
+		return pl;
 
 	}
 

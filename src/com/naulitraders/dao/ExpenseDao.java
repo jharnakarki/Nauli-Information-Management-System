@@ -120,9 +120,11 @@ public class ExpenseDao {
 		return listOfExpenses;
 	}
 	
-	public double getTotalExpenses(String vehNumber, LocalDate expenseStartDate, LocalDate expenseEndDate) {
+	public List<ExpenseInfo> getExpenses(String vehNumber, LocalDate expenseStartDate, LocalDate expenseEndDate) {
 		
-		String sql = "SELECT SUM(amount) as totalExpenses FROM expenses WHERE vehNum = ? AND dates >= ? AND dates <= ?";
+		List<ExpenseInfo> listOfExpenses = new ArrayList<>();
+		
+		String sql = "SELECT dates, remarks, amount FROM expenses WHERE vehNum = ? AND dates >= ? AND dates <= ?";
 		
 		try {
 			Connection conn = DBConnection.getConnectionToDatabase();
@@ -135,13 +137,18 @@ public class ExpenseDao {
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
-				return rs.getDouble("totalExpenses");
+				ExpenseInfo expenseInfo = new ExpenseInfo();
+				expenseInfo.setExpenseDate(rs.getDate("dates").toLocalDate());
+				expenseInfo.setAmount(rs.getDouble("amount"));
+				expenseInfo.setRemarks(rs.getString("remarks"));
+
+				listOfExpenses.add(expenseInfo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return 0d;
+		return listOfExpenses;
 		
 	}
 }

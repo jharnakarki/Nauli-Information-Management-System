@@ -1,11 +1,14 @@
 <jsp:include page="common/header.jsp" />
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.util.Iterator"%>
+<%@ page import="com.naulitraders.model.ProfitLossAccount"%>
 <%@ page import="com.naulitraders.model.TripInfo"%>
+<%@ page import="com.naulitraders.model.ExpenseInfo"%>
 
 <div class="container">
 	<article>
-		<h2>Welcome to Naulis trader</h2>
+		<h2>Welcome to Nauli trader</h2>
 
 		<div class="card">
 			<div class="card-header">
@@ -32,51 +35,100 @@
 					</form>
 
 				</div>
+
+				<%
+					ProfitLossAccount pl = (ProfitLossAccount) request.getAttribute("profitLoss");
+
+					if (pl != null) {
+				%>
+				<div class="row">
+					<table class="table">
+						<thead class="thead-light">
+							<tr>
+								<th>Date</th>
+								<th>Particular</th>
+								<th>Amount (DR)</th>
+								<th>Date</th>
+								<th>Particular</th>
+								<th>Amount (CR)</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<%
+								List<TripInfo> trips = pl.getTrips();
+									List<ExpenseInfo> expenses = pl.getExpenses();
+
+									Iterator<TripInfo> tripsIt = trips.iterator();
+									Iterator<ExpenseInfo> expensesIt = expenses.iterator();
+
+									while (tripsIt.hasNext() || expensesIt.hasNext()) {
+							%>
+							<tr>
+								<%
+									if (tripsIt.hasNext()) {
+												TripInfo tripInfo = tripsIt.next();
+								%>
+								<td><%=tripInfo.getEndDate()%></td>
+								<td>Trip Revenue</td>
+								<td><%=tripInfo.getRevenue()%></td>
+								<%
+									} else {
+								%>
+								<td></td>
+								<td></td>
+								<td></td>
+								<%
+									}
+								%>
+
+								<%
+									if (expensesIt.hasNext()) {
+												ExpenseInfo expenseInfo = expensesIt.next();
+								%>
+								<td><%=expenseInfo.getExpenseDate()%></td>
+								<td><%=expenseInfo.getRemarks()%></td>
+								<td><%=expenseInfo.getAmount()%></td>
+								<%
+									} else {
+								%>
+								<td></td>
+								<td></td>
+								<td></td>
+								<%
+									}
+								%>
+							
+							<tr>
+								<%
+									}
+								%>
+
+								<!--  show total -->
+							<tr class="table-secondary">
+								<td></td>
+								<td></td>
+								<td><%=pl.getTotalRevenue()%></td>
+								<td></td>
+								<td></td>
+								<td><%=pl.getTotalExpenses()%></td>
+							</tr>
+
+							<!--  show profit loss -->
+							<tr class="<%= pl.getProfitLoss() > 0 ? "table-success" : "table-danger" %>">
+								<td colspan="5" class="text-right">Profit / Loss</td>
+								<td><%=pl.getProfitLoss()%></td>
+							</tr>
+
+
+						</tbody>
+					</table>
+				</div>
+				<%
+					}
+				%>
 			</div>
 		</div>
-		
-		<br />
-
-
-		<div class="card">
-			<div class="card-header">
-				<h5 class="modal-title">Recent Trips</h5>
-			</div>
-			<div class="card-body">
-				<table class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<th>Truck Number</th>
-							<th>Departure Date</th>
-							<th>Revenue</th>
-							<th>Driver Name</th>
-						</tr>
-
-					</thead>
-
-					<tbody>
-						<%
-							List<TripInfo> listOfTrips = (ArrayList) request.getAttribute("listOfTrips");
-
-							for (TripInfo tripInfo : listOfTrips) {
-						%>
-						<tr>
-							<td><%=tripInfo.getTruckNumber()%></td>
-							<td><%=tripInfo.getStartDate()%></td>
-							<td><%=tripInfo.getRevenue()%></td>
-							<td><%=tripInfo.getDriverName()%></td>
-						</tr>
-
-						<%
-							}
-						%>
-						<tr>
-						<tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-
 
 	</article>
 </div>

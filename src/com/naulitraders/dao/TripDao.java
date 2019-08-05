@@ -103,45 +103,11 @@ public class TripDao {
 		return tripInfo;
 	}
 	
-	public List<TripInfo> getTrips(int size) {
-		List<TripInfo> listOfTrips = new ArrayList<>();
-
-		String sql = "SELECT tripID, vehNumber,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks FROM trip LIMIT " + size;
-
-		Statement statement;
-
-		try {
-			Connection conn = DBConnection.getConnectionToDatabase();
-
-			statement = conn.createStatement();
-
-			ResultSet rs = statement.executeQuery(sql);
-			while (rs.next()) {
-				TripInfo tripInfo = new TripInfo();
-
-				tripInfo.setTripId(rs.getInt("tripID"));
-				tripInfo.setTruckNumber(rs.getString("vehNumber"));
-				tripInfo.setStartDate(rs.getDate("dtStart").toLocalDate());
-				tripInfo.setEndDate(rs.getDate("dtEnd").toLocalDate());
-				tripInfo.setStartMileage(rs.getInt("maStart"));
-				tripInfo.setEndMileage(rs.getInt("maEnd"));
-				tripInfo.setOrigin(rs.getString("origin"));
-				tripInfo.setMulDestination(rs.getString("mulDes"));
-				tripInfo.setRevenue(rs.getDouble("rev"));
-				tripInfo.setDriverName(rs.getString("dName"));
-				tripInfo.setRemarks(rs.getString("remarks"));
-
-				listOfTrips.add(tripInfo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return listOfTrips;
-	}
-	
-	public double getTotalRevenue(String vehNumber, LocalDate tripStartDate, LocalDate tripEndDate) {
+	public List<TripInfo> getTrips(String vehNumber, LocalDate tripStartDate, LocalDate tripEndDate) {
 		
-		String sql = "SELECT sum(rev) as totalRevenue FROM trip WHERE vehNumber = ? AND dtStart >= ? AND dtEnd <= ?";
+		List<TripInfo> listOfTrips = new ArrayList<>();
+		
+		String sql = "SELECT dtEnd, rev FROM trip WHERE vehNumber = ? AND dtStart >= ? AND dtEnd <= ?";
 		
 		PreparedStatement pst;
 		
@@ -156,12 +122,17 @@ public class TripDao {
 			ResultSet rs = pst.executeQuery();
 			
 			while(rs.next()) {
-				return rs.getDouble("totalRevenue");
+				
+				TripInfo tripInfo = new TripInfo();
+				tripInfo.setEndDate(rs.getDate("dtEnd").toLocalDate());
+				tripInfo.setRevenue(rs.getDouble("rev"));
+
+				listOfTrips.add(tripInfo);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return 0d;
+		return listOfTrips;
 	}
 	
 	public List<TripInfo> getTripsList() {
