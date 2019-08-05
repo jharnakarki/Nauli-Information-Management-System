@@ -1,6 +1,7 @@
 package com.naulitraders.servlets;
 
 import java.io.IOException;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,19 +14,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.naulitraders.dao.ExpenseDao;
 import com.naulitraders.dao.TripDao;
+import com.naulitraders.dao.TruckDao;
 import com.naulitraders.model.ExpenseInfo;
 import com.naulitraders.model.ProfitLossAccount;
 import com.naulitraders.model.TripInfo;
+import com.naulitraders.model.TruckInfo;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 
 	private TripDao tripDao = new TripDao();
-
+	private TruckDao truckDao = new TruckDao();
 	private ExpenseDao expensesDao = new ExpenseDao();
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// get the list of trucks so you can add it to the drop down
+		// it is needed here too because after POST, when the page reload, we require
+		// truck list again
+		List<TruckInfo> listOfTrucks = truckDao.getTrucksList();
+		request.setAttribute("listOfTrucks", listOfTrucks);
 
 		if (request.getParameter("vehicleNumber") != null) {
 			String vehicleNumber = request.getParameter("vehicleNumber");
@@ -34,7 +42,7 @@ public class HomeServlet extends HttpServlet {
 
 			LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
 			ProfitLossAccount pl = getProfitAndLoss(vehicleNumber, startDate, endDate);
-			
+
 			request.setAttribute("profitLoss", pl);
 		}
 
@@ -47,17 +55,17 @@ public class HomeServlet extends HttpServlet {
 
 		List<TripInfo> trips = tripDao.getTrips(vehicleNumber, startDate, endDate);
 		double totalRevenue = trips.stream().map(trip -> trip.getRevenue()).reduce(0d, Double::sum);
-		
+
 		List<ExpenseInfo> expenses = expensesDao.getExpenses(vehicleNumber, startDate, endDate);
 		double totalExpenses = expenses.stream().map(expense -> expense.getAmount()).reduce(0d, Double::sum);
-		
+
 		ProfitLossAccount pl = new ProfitLossAccount();
 		pl.setTrips(trips);
 		pl.setExpenses(expenses);
 		pl.setTotalRevenue(totalRevenue);
 		pl.setTotalExpenses(totalExpenses);
 		pl.setProfitLoss((totalRevenue - totalExpenses));
-		
+
 		return pl;
 
 	}

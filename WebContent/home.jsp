@@ -4,6 +4,7 @@
 <%@ page import="java.util.Iterator"%>
 <%@ page import="com.naulitraders.model.ProfitLossAccount"%>
 <%@ page import="com.naulitraders.model.TripInfo"%>
+<%@ page import="com.naulitraders.model.TruckInfo"%>
 <%@ page import="com.naulitraders.model.ExpenseInfo"%>
 
 <div class="container">
@@ -19,8 +20,20 @@
 				<div class="jumbotron row">
 					<form method="GET" action="home" class="form-inline">
 						<div class="form-group mb-1">
-							<label for="vehicleNumber">Vehicle Number &nbsp; </label> <input
-								type="text" class="form-control" name="vehicleNumber" required />
+							<label for="vehicleNumber">Vehicle Number &nbsp; </label>
+							
+							<select class="form-control" name="vehicleNumber" required >
+								<option value="NA">--Select Truck--</option>
+								<!-- Not Available -->
+								<%
+									List<TruckInfo> truckInfos = (ArrayList) request.getAttribute("listOfTrucks");
+
+									for (TruckInfo truckInfo : truckInfos) {
+										out.println("<option value='" + truckInfo.getTruckNumber() + "'>" + truckInfo.getTruckNumber()
+												+ "</option>");
+									}
+								%>
+							</select>
 						</div>
 						<div class="form-group mb-2 mx-sm-3">
 							<label for="startDate">Start Date &nbsp; </label> <input
@@ -115,7 +128,8 @@
 							</tr>
 
 							<!--  show profit loss -->
-							<tr class="<%= pl.getProfitLoss() > 0 ? "table-success" : "table-danger" %>">
+							<tr
+								class="<%=pl.getProfitLoss() > 0 ? "table-success" : "table-danger"%>">
 								<td colspan="5" class="text-right">Profit / Loss</td>
 								<td><%=pl.getProfitLoss()%></td>
 							</tr>

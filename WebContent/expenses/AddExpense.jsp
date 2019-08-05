@@ -47,7 +47,7 @@
 				</div>
 				<div class="form-group">
 					<label for="receipt">Receipt</label>
-					<input type="file" name="receipt" required />
+					<input  class="form-control" type="file" name="receipt" required />
 				</div>
 				<div class="form-group">
 					<label>Remark</label>
