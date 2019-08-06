@@ -48,6 +48,7 @@
 				</div>
 				<div class="form-group">
 					<label>Status</label><select class="form-control" id="isStatus" name="isStatus">
+					<option value="NA"> Choose Status</option>
 					<option id="Active"> Active</option>
 					 <option id="InActive">InActive</option>
 					 <option id="Sold"> Sold</option></select>

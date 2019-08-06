@@ -23,8 +23,8 @@
 		</div>
 		<br />
 		<div class="row">
-		
-		
+
+
 
 			<form method="post"
 				action="editEmployee?empId=<%=employeeInfo.getEmpId()%>">
@@ -36,11 +36,12 @@
 
 				<div class="form-group">
 					<label>Name</label> <input class="form-control" type="text"
-						name="name" value="<%=employeeInfo.getName()%>"  required/>
+						name="name" value="<%=employeeInfo.getName()%>" required />
 				</div>
 				<div class="form-group">
-					<label>Position</label> 
-					<select class="form-control" name="position">
+					<label>Position</label> <select class="form-control"
+						name="position">
+						<option value="<%=employeeInfo.getPosition()%>"><%=employeeInfo.getPosition()%></option>
 						<option value="proprietor">Proprietor</option>
 						<option value="Accountant">accountant</option>
 						<option value="Driver">Driver</option>
@@ -48,15 +49,18 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label>Phone Number</label> <input class="form-control" type="number"
-						name="phoneNumber" min="1" value="<%=employeeInfo.getPhoneNumber()%>"  required/>
+					<label>Phone Number</label> <input class="form-control"
+						type="number" name="phoneNumber" min="1"
+						value="<%=employeeInfo.getPhoneNumber()%>" required />
 				</div>
 				<div class="form-group">
 					<label>Salary</label> <input class="form-control" type="Number"
-						name="salary" min="1" value="<%=employeeInfo.getSalary()%>" required/>
+						name="salary" min="1" value="<%=employeeInfo.getSalary()%>"
+						required />
 				</div>
 
-				<button class="btn btn-primary" type="submit">Update Employee</button>
+				<button class="btn btn-primary" type="submit">Update
+					Employee</button>
 
 			</form>
 		</div>

@@ -30,7 +30,7 @@ public class AddTruckServlet extends HttpServlet {
 		String status = request.getParameter("isStatus");
 
 		// fill it up the model
-		TruckInfo truckInfo = new TruckInfo(number, brand, model, capacity, tyres, year,status);
+		TruckInfo truckInfo = new TruckInfo(number, brand, model, capacity, tyres, year, status);
 
 		// validate truck info
 		try {
@@ -65,10 +65,20 @@ public class AddTruckServlet extends HttpServlet {
 	}
 
 	private void validateTruckInfo(TruckInfo truckInfo) {
-
+		// Date shouldnot be of future
 		if (truckInfo.getYear() > LocalDate.now().getYear()) {
 			throw new IllegalArgumentException("Year of a truck cannot be future year");
 		}
+		// validation for even truck tyres
+		int tyres = truckInfo.getTyres();
+		if (tyres % 2 != 0) {
 
+			throw new IllegalArgumentException("Number of tyres should be even");
+		}
+		//select option is empty
+	
+				if (truckInfo.getStatus().equals("NA")) {
+					throw new IllegalArgumentException("select the status for truck");
+				}
 	}
 }

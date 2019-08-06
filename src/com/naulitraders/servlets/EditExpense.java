@@ -108,10 +108,7 @@ public class EditExpense extends HttpServlet {
 	}
 
 	private void validateExpenseInfo(ExpenseInfo expenseInfo) {
-		// truck number cannot be not available
-				if (expenseInfo.getTruckNumber().equals("NA")) {
-					throw new IllegalArgumentException("Truck Number cannot be not available");
-				}
+		
 				// validate start and end date of a trip are not of future date
 				if (expenseInfo.getExpenseDate().isAfter(LocalDate.now())) {
 					throw new IllegalArgumentException("Date of a expense date cannot be future date");

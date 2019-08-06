@@ -69,5 +69,10 @@ public class AddEmployeeServlet extends HttpServlet {
 		if (employeeDao.isEmployeeAlreadyExist(employeeInfo.getPhoneNumber())) {
 			throw new IllegalArgumentException("Employee with that phone number already exist in our system");
 		}
+		
+		// position cannot be not available
+				if (employeeInfo.getPosition().equals("NA")) {
+					throw new IllegalArgumentException("Select the position");
+				}
 	}
 }

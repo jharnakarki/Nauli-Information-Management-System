@@ -32,6 +32,7 @@
 				</div>
 				<div class="form-group">
 					<label>Position</label><select class="form-control" name="position"  required>
+						<option value="NA">Select Position</option>
 						<option value="proprietor">Proprietor</option>
 						<option value="Accountant">accountant</option>
 						<option value="Driver">Driver</option>
