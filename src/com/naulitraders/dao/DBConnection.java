@@ -5,12 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.TimeZone;
 
+import com.naulitraders.utility.EnvironmentUtil;
+
 public class DBConnection {
 	
 	public static Connection getConnectionToDatabase() {
-		String url = "jdbc:mysql://localhost:3306/Project?serverTimezone=" + TimeZone.getDefault().getID();
-		String uname = "root";
-		String pwd = "";
+		String url = EnvironmentUtil.getPropertyValue("dbConnection.url") + "?serverTimezone=" + TimeZone.getDefault().getID();
+		String uname = EnvironmentUtil.getPropertyValue("dbConnection.username");
+		String pwd = EnvironmentUtil.getPropertyValue("dbConnection.password");
 		
 		Connection connection = null;
 
