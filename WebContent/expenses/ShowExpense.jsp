@@ -38,7 +38,11 @@
 							<td><%=expenseInfo.getExpenseDate()%></td>
 							<td><%=expenseInfo.getAmount()%></td>
 							<td><%=expenseInfo.getRemarks()%></td>
-							<td><a class="btn btn-sm btn-secondary" href="editExpense?expenseId=<%= expenseInfo.getExpenseId()%>"><i class="fas fa-pencil-alt">edit</i></a>
+							<td>
+							<a class="btn btn-sm btn-secondary" href="editExpense?expenseId=<%= expenseInfo.getExpenseId()%>" title="Edit Expenses"><i class="fas fa-pencil-alt"></i></a>
+							<a class="btn btn-sm btn-secondary" href="ShowReceipt?receiptId=<%= expenseInfo.getExpenseId()%>" title="Show Receipt" target="_blank"><i class="fas fa-eye"></i></a>
+							
+							</td>
 						
 						</tr>
 

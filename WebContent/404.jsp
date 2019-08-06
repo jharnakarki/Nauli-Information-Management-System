@@ -8,6 +8,15 @@
 </head>
 <body>
 
+<% String message = request.getAttribute("404Message") !=  null ? (String) request.getAttribute("404Message") : ""; %>
+
+<% if(message == "") { %>
 <p>Oops, could not found the required object</p>
+
+<% } else {
+		out.println("<p>" + message + "</p>");
+	
+   }
+%>
 </body>
 </html>
