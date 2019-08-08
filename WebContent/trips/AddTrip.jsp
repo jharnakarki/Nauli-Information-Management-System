@@ -49,12 +49,12 @@
 
 				<div class="form-group">
 					<label>Start Mileage</label> <input class="form-control"
-						type="Number" name="maStart"  required />
+						type="Number" name="maStart" min="1" required />
 				</div>
 
 				<div class="form-group">
 					<label>End Mileage</label> <input class="form-control"
-						type="Number" name="maEnd"  required/>
+						type="Number" name="maEnd"  min="1" required/>
 				</div>
 
 				<div class="form-group">

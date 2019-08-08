@@ -15,6 +15,7 @@ import com.naulitraders.model.TruckInfo;
 
 @WebServlet("/addVehicle")
 public class AddTruckServlet extends HttpServlet {
+	private TruckDao applicationDao = new TruckDao();
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -75,10 +76,13 @@ public class AddTruckServlet extends HttpServlet {
 
 			throw new IllegalArgumentException("Number of tyres should be even");
 		}
-		//select option is empty
-	
-				if (truckInfo.getStatus().equals("NA")) {
-					throw new IllegalArgumentException("select the status for truck");
-				}
+		// select option is empty
+
+		if (truckInfo.getStatus().equals("NA")) {
+			throw new IllegalArgumentException("select the status for truck");
+		}
+		if (applicationDao.isNumberAlreadyExist(truckInfo.getTruckNumber())) {
+			throw new IllegalArgumentException("Truck number already exists");
+		}
 	}
 }

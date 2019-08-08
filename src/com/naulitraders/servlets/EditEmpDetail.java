@@ -103,6 +103,16 @@ public class EditEmpDetail extends HttpServlet {
 
 	private void validateEmployeeInfo(EmployeeInfo employeeInfo) {
 		ValidationUtil.validatePhoneNumber(employeeInfo.getPhoneNumber());
+
+		// two employee cannot have same phone number
+		if (employeeDao.isEmployeeAlreadyExist(employeeInfo.getPhoneNumber())) {
+			throw new IllegalArgumentException("Employee with that phone number already exist in our system");
+		}
+		
+		// position cannot be not available
+				if (employeeInfo.getPosition().equals("NA")) {
+					throw new IllegalArgumentException("Select the position");
+				}
 	}
 
 }

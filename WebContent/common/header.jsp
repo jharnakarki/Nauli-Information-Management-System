@@ -60,6 +60,15 @@
 							<a class="dropdown-item" href="addExpense">Add Expense</a> <a
 								class="dropdown-item" href="ShowExpenses">Show Expenses</a>
 						</div></li>
+						<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">admin</a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="addAdmins">Create admin</a> <a
+								class="dropdown-item" href="login">logout</a>
+						</div></li>
 
 				</ul>
 			</div>

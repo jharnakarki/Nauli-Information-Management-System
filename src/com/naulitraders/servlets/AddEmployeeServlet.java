@@ -30,7 +30,7 @@ public class AddEmployeeServlet extends HttpServlet {
 
 		// fill it up the model
 		EmployeeInfo employeeInfo = new EmployeeInfo(name, position, phoneNumber, salary);
-
+		System.out.println(employeeInfo);
 		// validate employee info
 		try {
 			validateEmployeeInfo(employeeInfo);

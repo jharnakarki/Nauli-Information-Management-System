@@ -58,11 +58,15 @@ public class EmployeeInfo {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
-	
+
+
 	@Override
 	public String toString() {
-		return "TripInfo [name=" + name + ", position=" +  position + ", phoneNumber=" + phoneNumber
-				+ ", salary=" + salary + "]";
+		return "EmployeeInfo [empId=" + empId + ", name=" + name + ", position=" + position + ", phoneNumber="
+				+ phoneNumber + ", salary=" + salary + "]";
+	}
+	
+	
 
 }
-}
+

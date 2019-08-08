@@ -46,12 +46,12 @@
 
 				<div class="form-group">
 					<label>Start Mileage</label> 
-					<input class="form-control" value="<%= tripInfo.getStartMileage() %>" type="Number" name="maStart" required />
+					<input class="form-control" value="<%= tripInfo.getStartMileage() %>" type="Number" min="1" name="maStart" required />
 				</div>
 
 				<div class="form-group">
 					<label>End Mileage</label> 
-					<input class="form-control" value="<%= tripInfo.getEndMileage() %>" type="Number" name="maEnd" required />
+					<input class="form-control" value="<%= tripInfo.getEndMileage() %>" type="Number" min="1" name="maEnd" required />
 				</div>
 
 				<div class="form-group">

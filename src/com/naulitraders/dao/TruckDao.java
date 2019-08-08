@@ -152,5 +152,27 @@ public class TruckDao {
 
 		return truckInfo;
 	}
+	
+	//validation for unique truck number
+		public boolean isNumberAlreadyExist(String number) {
+
+			String sql = "SELECT vehNumber FROM tckInfo WHERE vehNumber = ?";
+
+			try {
+				Connection conn = DBConnection.getConnectionToDatabase();
+				PreparedStatement pst = conn.prepareStatement(sql);
+				pst.setString(1, number);
+
+				ResultSet rs = pst.executeQuery();
+
+				while(rs.next()) {
+					// truck number already exist
+					return true;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
 
 }
