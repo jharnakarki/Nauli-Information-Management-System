@@ -44,7 +44,8 @@ public class ValidateUser extends HttpServlet {
 				String pass = rs.getString("password");
 				if (username.equals(name) && password.equals(pass)) {
 					HttpSession session = request.getSession();
-					session.setMaxInactiveInterval(60);
+					session.setAttribute("userName", username);
+					
 
 					response.sendRedirect("home");
 				}

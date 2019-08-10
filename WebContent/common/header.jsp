@@ -67,7 +67,7 @@
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
 							<a class="dropdown-item" href="addAdmins">Create admin</a> <a
-								class="dropdown-item" href="login">logout</a>
+								class="dropdown-item" href="LogoutServlet">logout</a>
 						</div></li>
 
 				</ul>
