@@ -105,7 +105,7 @@ public class EditEmpDetail extends HttpServlet {
 		ValidationUtil.validatePhoneNumber(employeeInfo.getPhoneNumber());
 
 		// two employee cannot have same phone number
-		if (employeeDao.isEmployeeAlreadyExist(employeeInfo.getPhoneNumber())) {
+		if (employeeDao.isEmployeeAlreadyExist(employeeInfo.getPhoneNumber(),employeeInfo.getEmpId())) {
 			throw new IllegalArgumentException("Employee with that phone number already exist in our system");
 		}
 		

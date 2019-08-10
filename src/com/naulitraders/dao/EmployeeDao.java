@@ -48,18 +48,25 @@ public class EmployeeDao {
 		}
 	}
 
-	public boolean isEmployeeAlreadyExist(long phoneNumber) {
-
-		String sql = "SELECT empId FROM Employee WHERE phoneNumber = ?";
-
+	public boolean isEmployeeAlreadyExist(long phoneNumber, int empId) {
+		String sql;
+		if (empId == 0) {
+			sql = "SELECT empId FROM Employee WHERE phoneNumber = ?";
+		} else {
+			sql = "SELECT empId FROM Employee WHERE phoneNumber = ? and empId !=?";
+		}
 		try {
 			Connection conn = DBConnection.getConnectionToDatabase();
 			PreparedStatement pst = conn.prepareStatement(sql);
 			pst.setLong(1, phoneNumber);
+			
+			if(empId !=0) {
+				pst.setInt(2, empId);
+			}
 
 			ResultSet rs = pst.executeQuery();
 
-			while(rs.next()) {
+			while (rs.next()) {
 				// employee with that phone number already exist
 				return true;
 			}

@@ -30,7 +30,7 @@ public class AddEmployeeServlet extends HttpServlet {
 
 		// fill it up the model
 		EmployeeInfo employeeInfo = new EmployeeInfo(name, position, phoneNumber, salary);
-		System.out.println(employeeInfo);
+		
 		// validate employee info
 		try {
 			validateEmployeeInfo(employeeInfo);
@@ -66,7 +66,7 @@ public class AddEmployeeServlet extends HttpServlet {
 		ValidationUtil.validatePhoneNumber(employeeInfo.getPhoneNumber());
 
 		// two employee cannot have same phone number
-		if (employeeDao.isEmployeeAlreadyExist(employeeInfo.getPhoneNumber())) {
+		if (employeeDao.isEmployeeAlreadyExist(employeeInfo.getPhoneNumber(),employeeInfo.getEmpId())) {
 			throw new IllegalArgumentException("Employee with that phone number already exist in our system");
 		}
 		
