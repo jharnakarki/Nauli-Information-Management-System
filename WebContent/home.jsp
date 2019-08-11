@@ -9,7 +9,7 @@
 
 <div class="container">
 	<article>
-		<h2>Welcome to Nauli trader <% out.println(session.getAttribute("userName")); %> </h2>
+		<h2>Welcome to Nauli trader <% out.println(session.getAttribute("username")); %> </h2>
 				
 
 		<div class="card">
