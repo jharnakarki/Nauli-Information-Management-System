@@ -15,68 +15,41 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.naulitraders.dao.DBConnection;
+import com.naulitraders.dao.LoginDao;
 
 @WebServlet("/login")
 public class ValidateUser extends HttpServlet {
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp");
-		dispatcher.forward(request, response);
-	}
-
-	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
+		RequestDispatcher dispatcher1 = request.getRequestDispatcher("/Login.jsp");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		PrintWriter pw = null;
+		// call DAO for validation logic
+		LoginDao dao = new LoginDao();
+		boolean isValidUser = dao.validateUser(username, password);
 
-		try {
-			pw = response.getWriter();
-			validateUser(username, password);
-			Connection con = DBConnection.getConnectionToDatabase();
-			String sql = "select * from admins";
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			while (rs.next()) {
-				String name = rs.getString("username");
-				String pass = rs.getString("password");
-				if (username.equals(name) && password.equals(pass)) {
-					HttpSession session = request.getSession();
-					session.setAttribute("userName", username);
-					
+		// check if user is valid and set up an error message
+		if (isValidUser) {
+			HttpSession session = request.getSession();
+			session.setAttribute("username", username);
+			dispatcher.forward(request, response);
+		} else {
 
-					response.sendRedirect("home");
-				}
-
-				else {
-					pw.println("<html><body>");
-					pw.println("<h2>login fail!!</h2>");
-					pw.println("</body></html>");
-				}
-
-			}
-
-			con.close();
-
-		} catch (IllegalArgumentException e) {
-			if (pw != null) {
-				pw.println(e.getMessage());
-			}
-		} catch (Exception ex) {
-			System.out.println(ex);
+			String successMessage = "Invalid Credentials,please login again!";
+			request.setAttribute("messageType", "alert-success");
+			request.setAttribute("message", successMessage);
+			dispatcher1.forward(request, response);
+			
 		}
 	}
-
-	private void validateUser(String username, String password) {
-		if (username == null || username == "") {
-			throw new IllegalArgumentException("Username cannot be empty");
-		}
-
-		if (password == null || password == "") {
-			throw new IllegalArgumentException("Password cannot be empty");
-		}
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

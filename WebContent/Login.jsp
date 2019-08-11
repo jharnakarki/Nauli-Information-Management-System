@@ -17,11 +17,6 @@
 	</nav>
 	<div class="container">
 		<article>
-
-			<div class="row">
-				<h2>Login to Admin Panel</h2>
-			</div>
-			<br />
 			<%
 				Object messageType = (request.getAttribute("messageType") != null) ? request.getAttribute("messageType")
 						: "";
@@ -29,6 +24,10 @@
 			%>
 
 			<div class="row alert <%=messageType%>"><%=message%></div>
+			<div class="row">
+				<h2>Login to Admin Panel</h2>
+			</div>
+			<br />
 			<div class="row">
 				<form method="POST" action="login">
 
