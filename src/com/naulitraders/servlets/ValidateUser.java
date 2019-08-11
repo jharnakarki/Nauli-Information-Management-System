@@ -22,8 +22,7 @@ public class ValidateUser extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
-		RequestDispatcher dispatcher1 = request.getRequestDispatcher("/Login.jsp");
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
@@ -35,14 +34,14 @@ public class ValidateUser extends HttpServlet {
 		if (isValidUser) {
 			HttpSession session = request.getSession();
 			session.setAttribute("username", username);
-			dispatcher.forward(request, response);
+			
+			response.sendRedirect("home");
 		} else {
 
 			String successMessage = "Invalid Credentials,please login again!";
 			request.setAttribute("messageType", "alert-success");
 			request.setAttribute("message", successMessage);
-			dispatcher1.forward(request, response);
-			
+			request.getRequestDispatcher("/Login.jsp").forward(request, response);
 		}
 	}
 	@Override
