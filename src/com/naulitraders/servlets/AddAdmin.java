@@ -21,7 +21,7 @@ public class AddAdmin extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddAdmins.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/AddAdmins.jsp");
 
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -57,7 +57,7 @@ public class AddAdmin extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/AddAdmins.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/AddAdmins.jsp");
 		dispatcher.forward(request, response);
 	}
 

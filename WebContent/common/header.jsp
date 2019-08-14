@@ -30,8 +30,8 @@
 						aria-haspopup="true" aria-expanded="false"> Vehicle </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							 <a class="dropdown-item" href="addVehicle">Add Vehicle</a>
-							<a class="dropdown-item" href="ShowTrucks">Show Vehicle</a>
+							<a class="dropdown-item" href="addVehicle">Add Vehicle</a> <a
+								class="dropdown-item" href="ShowTrucks">Show Vehicle</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -60,13 +60,14 @@
 							<a class="dropdown-item" href="addExpense">Add Expense</a> <a
 								class="dropdown-item" href="ShowExpenses">Show Expenses</a>
 						</div></li>
-						<li class="nav-item dropdown"><a
+					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">admin</a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="addAdmins">Create admin</a> <a
+							<a class="dropdown-item" href="addAdmins">Create Admin</a> <a
+								class="dropdown-item" href="ShowAdmin">Show Admin</a> <a
 								class="dropdown-item" href="LogoutServlet">logout</a>
 						</div></li>
 

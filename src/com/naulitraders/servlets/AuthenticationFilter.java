@@ -24,7 +24,7 @@ public class AuthenticationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest requests=(HttpServletRequest)request;
 		HttpServletResponse res=(HttpServletResponse)response;
-		if(!requests.getRequestURI().startsWith("/JavaProject/login")) {
+		if(!requests.getRequestURI().startsWith("/JavaProject/login") && !requests.getRequestURI().startsWith("/JavaProject/css")) {
 			HttpSession session=requests.getSession();
 			if(session.getAttribute("username")==null) {
 				res.sendRedirect("/JavaProject/login");
