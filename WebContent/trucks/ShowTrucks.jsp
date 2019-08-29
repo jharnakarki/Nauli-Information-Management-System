@@ -6,7 +6,24 @@
 
 <div class="container">
 	<article>
+
 		<div class="row">
+
+			<form method="get" action="ShowTrucks">
+
+				<div class="form-group">
+
+					<select class="form-control" name="status">
+						<option value="NA">--Select Status--</option>
+						<option value="active">Active</option>
+						<option value="active">InActive</option>
+						<option value="active">Sold</option>
+					</select>
+					<button type="submit" class="btn btn-primary mb-1">Process</button>
+				</div>
+			</form>
+			</div>
+<div class="row">
 			<h2>Trucks</h2>
 		</div>
 
@@ -28,30 +45,33 @@
 				</thead>
 
 				<tbody>
-					<% 
+					<%
 						List<TruckInfo> listOfTrucks = (ArrayList) request.getAttribute("listOfTrucks");
 
-						for(TruckInfo truckInfo : listOfTrucks) { %>
+						for (TruckInfo truckInfo : listOfTrucks) {
+					%>
 					<tr>
-						<td><%= truckInfo.getTruckNumber() %></td>
-						<td><%= truckInfo.getBrand() %></td>
-						<td><%= truckInfo.getModel() %></td>
-						<td><%= truckInfo.getCapacity() %></td>
-						<td><%= truckInfo.getTyres() %></td>
-						<td><%= truckInfo.getYear() %></td>
-						<td><%= truckInfo.getStatus() %></td>
-						<td><a class="btn btn-sm btn-secondary" href="editTruckDetail?truckNumber=<%= truckInfo.getTruckNumber()%>"><i class="fas fa-pencil-alt">edit</i></a>
-						
+						<td><%=truckInfo.getTruckNumber()%></td>
+						<td><%=truckInfo.getBrand()%></td>
+						<td><%=truckInfo.getModel()%></td>
+						<td><%=truckInfo.getCapacity()%></td>
+						<td><%=truckInfo.getTyres()%></td>
+						<td><%=truckInfo.getYear()%></td>
+						<td><%=truckInfo.getStatus()%></td>
+						<td><a class="btn btn-sm btn-secondary"
+							href="editTruckDetail?truckNumber=<%=truckInfo.getTruckNumber()%>"><i
+								class="fas fa-pencil-alt">edit</i></a>
 					</tr>
 
 					<%
 						}
 					%>
-					<tr>
-					<tr>
+
 				</tbody>
 			</table>
 		</div>
+
+
 
 	</article>
 </div>

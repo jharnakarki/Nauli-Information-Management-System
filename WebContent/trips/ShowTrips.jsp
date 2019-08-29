@@ -65,10 +65,12 @@
 						<%
 							}
 						%>
-						<tr>
-						<tr>
+						
 					</tbody>
+					
+					
 				</table>
+				
 			</div>
 
 		</article>

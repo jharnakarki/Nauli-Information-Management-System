@@ -99,6 +99,72 @@ public class TruckDao {
 		return listOfActiveTrucks;
 	}
 
+	// for displaying only Inactive truck list
+	public List<TruckInfo> getInActiveTrucksList() {
+
+		List<TruckInfo> listOfInActiveTrucks = new ArrayList<>();
+
+		String sql = "SELECT vehNumber, brand, model, capacity, tyres, year, status FROM tckInfo where status='InActive' ";
+
+		Statement statement;
+
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+
+			statement = conn.createStatement();
+
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				TruckInfo truckInfo = new TruckInfo();
+
+				truckInfo.setTruckNumber(rs.getString("vehNumber"));
+				truckInfo.setBrand(rs.getString("brand"));
+				truckInfo.setModel(rs.getInt("model"));
+				truckInfo.setCapacity(rs.getInt("capacity"));
+				truckInfo.setTyres(rs.getInt("tyres"));
+				truckInfo.setYear(rs.getInt("year"));
+				truckInfo.setStatus(rs.getString("status"));
+				listOfInActiveTrucks.add(truckInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listOfInActiveTrucks;
+	}
+
+	// for displaying only Sold truck list
+	public List<TruckInfo> getSoldTrucksList() {
+
+		List<TruckInfo> listOfSoldTrucks = new ArrayList<>();
+
+		String sql = "SELECT vehNumber, brand, model, capacity, tyres, year, status FROM tckInfo where status='Sold' ";
+
+		Statement statement;
+
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+
+			statement = conn.createStatement();
+
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				TruckInfo truckInfo = new TruckInfo();
+
+				truckInfo.setTruckNumber(rs.getString("vehNumber"));
+				truckInfo.setBrand(rs.getString("brand"));
+				truckInfo.setModel(rs.getInt("model"));
+				truckInfo.setCapacity(rs.getInt("capacity"));
+				truckInfo.setTyres(rs.getInt("tyres"));
+				truckInfo.setYear(rs.getInt("year"));
+				truckInfo.setStatus(rs.getString("status"));
+				listOfSoldTrucks.add(truckInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listOfSoldTrucks;
+	}
+
 	// for updating the truck detail
 	public void updateTruck(TruckInfo truckInfo) {
 		String sql = "UPDATE  tckInfo SET status= ? WHERE vehNumber = ?";
@@ -115,8 +181,6 @@ public class TruckDao {
 			e.printStackTrace();
 		}
 	}
-
-	
 
 	public TruckInfo getTruckDetail(String truckNumber) {
 		TruckInfo truckInfo = null;
@@ -141,7 +205,6 @@ public class TruckDao {
 				truckInfo.setTyres(rs.getInt("tyres"));
 				truckInfo.setYear(rs.getInt("year"));
 				truckInfo.setStatus(rs.getString("status"));
-				
 
 				// it should be only one result, so break out of loop
 				break;
@@ -152,27 +215,27 @@ public class TruckDao {
 
 		return truckInfo;
 	}
-	
-	//validation for unique truck number
-		public boolean isNumberAlreadyExist(String number) {
 
-			String sql = "SELECT vehNumber FROM tckInfo WHERE vehNumber = ?";
+	// validation for unique truck number
+	public boolean isNumberAlreadyExist(String number) {
 
-			try {
-				Connection conn = DBConnection.getConnectionToDatabase();
-				PreparedStatement pst = conn.prepareStatement(sql);
-				pst.setString(1, number);
+		String sql = "SELECT vehNumber FROM tckInfo WHERE vehNumber = ?";
 
-				ResultSet rs = pst.executeQuery();
+		try {
+			Connection conn = DBConnection.getConnectionToDatabase();
+			PreparedStatement pst = conn.prepareStatement(sql);
+			pst.setString(1, number);
 
-				while(rs.next()) {
-					// truck number already exist
-					return true;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+			ResultSet rs = pst.executeQuery();
+
+			while (rs.next()) {
+				// truck number already exist
+				return true;
 			}
-			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		return false;
+	}
 
 }
