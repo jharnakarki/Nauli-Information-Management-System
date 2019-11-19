@@ -51,7 +51,7 @@ public class EmployeeDao {
 	public boolean isEmployeeAlreadyExist(long phoneNumber, int empId) {
 		String sql;
 		if (empId == 0) {
-			sql = "SELECT empId FROM Employee WHERE phoneNumber = ?";
+			sql = "SELECT empId FROM Employee WHERE phoneNumber = ? ";
 		} else {
 			sql = "SELECT empId FROM Employee WHERE phoneNumber = ? and empId !=?";
 		}
@@ -79,7 +79,7 @@ public class EmployeeDao {
 	public EmployeeInfo getEmployee(int empId) {
 		EmployeeInfo employeeInfo = null;
 
-		String sql = "SELECT empId, name, position, phoneNumber, salary FROM Employee WHERE empId =?";
+		String sql = "SELECT empId, name, position, phoneNumber, salary FROM Employee  WHERE empId =?";
 
 		try {
 			Connection conn = DBConnection.getConnectionToDatabase();
@@ -110,7 +110,7 @@ public class EmployeeDao {
 
 	public List<EmployeeInfo> getEmployeesList() {
 		List<EmployeeInfo> listOfEmployees = new ArrayList<>();
-		String sql = "SELECT empId,name, position, phoneNumber, salary FROM Employee";
+		String sql = "SELECT empId,name, position, phoneNumber, salary FROM Employee ORDER BY name ASC";
 		Statement statement;
 
 		try {

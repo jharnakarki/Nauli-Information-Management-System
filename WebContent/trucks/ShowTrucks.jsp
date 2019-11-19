@@ -7,23 +7,8 @@
 <div class="container">
 	<article>
 
+
 		<div class="row">
-
-			<form method="get" action="ShowTrucks">
-
-				<div class="form-group">
-
-					<select class="form-control" name="status">
-						<option value="NA">--Select Status--</option>
-						<option value="active">Active</option>
-						<option value="active">InActive</option>
-						<option value="active">Sold</option>
-					</select>
-					<button type="submit" class="btn btn-primary mb-1">Process</button>
-				</div>
-			</form>
-			</div>
-<div class="row">
 			<h2>Trucks</h2>
 		</div>
 

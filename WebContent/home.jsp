@@ -7,10 +7,24 @@
 <%@ page import="com.naulitraders.model.TruckInfo"%>
 <%@ page import="com.naulitraders.model.ExpenseInfo"%>
 
+
 <div class="container">
 	<article>
-		<h2>Welcome to Nauli trader <% out.println(session.getAttribute("username")); %> </h2>
-				
+
+		<%
+			Object messageType = (request.getAttribute("messageType") != null) ? request.getAttribute("messageType")
+					: "";
+			Object message = (request.getAttribute("message") != null) ? request.getAttribute("message") : "";
+		%>
+
+		<div class="row alert <%=messageType%>"><%=message%></div>
+		<h2>
+			Welcome to Nauli trader
+			<%
+			out.println(session.getAttribute("username"));
+		%>
+		</h2>
+
 
 		<div class="card">
 			<div class="card-header">
@@ -21,9 +35,8 @@
 				<div class="jumbotron row">
 					<form method="GET" action="home" class="form-inline">
 						<div class="form-group mb-1">
-							<label for="vehicleNumber">Vehicle Number &nbsp; </label>
-							
-							<select class="form-control" name="vehicleNumber" required >
+							<label for="vehicleNumber">Vehicle Number &nbsp; </label> <select
+								class="form-control" name="vehicleNumber" id="isTitles" required>
 								<option value="NA">--Select Truck--</option>
 								<!-- Not Available -->
 								<%
@@ -49,6 +62,15 @@
 					</form>
 
 				</div>
+				<%
+					String vehicleNum = request.getAttribute("isTitles") + "";
+					if (!vehicleNum.equalsIgnoreCase("NA")) {
+						String errorMessage = "Select Truck Number";
+						request.setAttribute("messageType", "alert-danger");
+						request.setAttribute("message", errorMessage);
+						return;
+					}
+				%>
 
 				<%
 					ProfitLossAccount pl = (ProfitLossAccount) request.getAttribute("profitLoss");
@@ -142,6 +164,8 @@
 				<%
 					}
 				%>
+
+
 			</div>
 		</div>
 

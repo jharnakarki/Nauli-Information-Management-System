@@ -38,7 +38,7 @@ public class TruckDao {
 
 		List<TruckInfo> listOfTrucks = new ArrayList<>();
 
-		String sql = "SELECT vehNumber, brand, model, capacity, tyres, year, status FROM tckInfo ";
+		String sql = "SELECT vehNumber, brand, model, capacity, tyres, year, status FROM tckInfo order by status ASC ";
 
 		Statement statement;
 
@@ -132,38 +132,8 @@ public class TruckDao {
 		return listOfInActiveTrucks;
 	}
 
-	// for displaying only Sold truck list
-	public List<TruckInfo> getSoldTrucksList() {
 
-		List<TruckInfo> listOfSoldTrucks = new ArrayList<>();
 
-		String sql = "SELECT vehNumber, brand, model, capacity, tyres, year, status FROM tckInfo where status='Sold' ";
-
-		Statement statement;
-
-		try {
-			Connection conn = DBConnection.getConnectionToDatabase();
-
-			statement = conn.createStatement();
-
-			ResultSet rs = statement.executeQuery(sql);
-			while (rs.next()) {
-				TruckInfo truckInfo = new TruckInfo();
-
-				truckInfo.setTruckNumber(rs.getString("vehNumber"));
-				truckInfo.setBrand(rs.getString("brand"));
-				truckInfo.setModel(rs.getInt("model"));
-				truckInfo.setCapacity(rs.getInt("capacity"));
-				truckInfo.setTyres(rs.getInt("tyres"));
-				truckInfo.setYear(rs.getInt("year"));
-				truckInfo.setStatus(rs.getString("status"));
-				listOfSoldTrucks.add(truckInfo);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return listOfSoldTrucks;
-	}
 
 	// for updating the truck detail
 	public void updateTruck(TruckInfo truckInfo) {
@@ -185,7 +155,7 @@ public class TruckDao {
 	public TruckInfo getTruckDetail(String truckNumber) {
 		TruckInfo truckInfo = null;
 
-		String sql = "SELECT vehNumber, brand, model, capacity, tyres, year, status FROM tckInfo WHERE vehNumber =?";
+		String sql = "SELECT vehNumber, brand, model, capacity, tyres, year, status FROM tckInfo WHERE vehNumber =? ";
 
 		try {
 			Connection conn = DBConnection.getConnectionToDatabase();

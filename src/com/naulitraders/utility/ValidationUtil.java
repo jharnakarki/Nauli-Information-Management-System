@@ -18,5 +18,11 @@ public final class ValidationUtil {
 			throw new IllegalArgumentException("The phone number should be of 10 digits");
 		}
 	}
+	
+	public static void validateVehNumber(String vehNum) {
+		if (vehNum == null || vehNum.trim() == "") {
+			throw new IllegalArgumentException(vehNum + " cannot be empty");
+		}
+	}
 
 }

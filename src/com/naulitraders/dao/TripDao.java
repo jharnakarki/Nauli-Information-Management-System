@@ -139,7 +139,7 @@ public class TripDao {
 
 		List<TripInfo> listOfTrips = new ArrayList<>();
 
-		String sql = "SELECT tripID, vehNumber,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks FROM trip";
+		String sql = "SELECT tripID, vehNumber,dtStart,dtEnd,maStart,maEnd,origin,mulDes,rev,dName,remarks FROM trip order by dtStart DESC";
 
 		Statement statement;
 

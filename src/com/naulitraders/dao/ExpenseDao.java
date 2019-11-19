@@ -61,7 +61,7 @@ public class ExpenseDao {
 	public ExpenseInfo getExpense(int expenseId) {
 		ExpenseInfo expenseInfo = null;
 
-		String sql = "SELECT expenseId, vehNum,dates,amount,remarks FROM expenses WHERE expenseId = ?";
+		String sql = "SELECT expenseId, vehNum,dates,amount,remarks FROM expenses WHERE expenseId = ? ";
 
 		try {
 			Connection conn = DBConnection.getConnectionToDatabase();
@@ -94,7 +94,7 @@ public class ExpenseDao {
 
 		List<ExpenseInfo> listOfExpenses = new ArrayList<>();
 
-		String sql = "SELECT expenseId,vehNum,dates,amount,remarks FROM expenses";
+		String sql = "SELECT expenseId,vehNum,dates,amount,remarks FROM expenses order by dates DESC";
 
 		Statement statement;
 
@@ -124,7 +124,7 @@ public class ExpenseDao {
 		
 		List<ExpenseInfo> listOfExpenses = new ArrayList<>();
 		
-		String sql = "SELECT dates, remarks, amount FROM expenses WHERE vehNum = ? AND dates >= ? AND dates <= ?";
+		String sql = "SELECT dates, remarks, amount FROM expenses  WHERE vehNum = ? AND dates >= ? AND dates <= ?";
 		
 		try {
 			Connection conn = DBConnection.getConnectionToDatabase();

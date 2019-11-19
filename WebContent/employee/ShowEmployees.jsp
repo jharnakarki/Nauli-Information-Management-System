@@ -7,7 +7,7 @@
 <div class="container">
 	<article>
 		<div class="row">
-			<h2>Trips</h2>
+			<h2>Employee</h2>
 		</div>
 
 		<br>

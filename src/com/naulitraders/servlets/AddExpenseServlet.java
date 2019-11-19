@@ -1,6 +1,7 @@
 package com.naulitraders.servlets;
 
 import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,6 +10,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.List;
+//import java.lang.String;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -70,7 +73,7 @@ public class AddExpenseServlet extends HttpServlet {
 		int expenseId = expenseDao.insertExpenseInfo(expenseInfo);
 
 		// write file after inserting expenses into database
-		String outputFileName = String.valueOf(expenseId) + ".jpeg";
+		String outputFileName = String.valueOf(expenseId) + ".jpeg" ||".jpg";
 		writeFile(filePart, outputFileName);
 
 		// set the success message and send it through dispatcher
@@ -103,8 +106,8 @@ public class AddExpenseServlet extends HttpServlet {
 			throw new IllegalArgumentException("Date of a expense date cannot be future date");
 		}
 		
-		if (!receiptFileName.endsWith(".jpeg")) {
-			throw new IllegalArgumentException("File must be in jpeg format");
+		if (!receiptFileName.endsWith(".jpeg" || ".jpg")) {
+			throw new IllegalArgumentException("File must be in jpeg or jpg format");
 		}
 
 	}
