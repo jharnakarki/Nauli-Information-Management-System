@@ -34,7 +34,13 @@ public class ShowReceipt extends HttpServlet {
 		response.setHeader("Content-disposition", "inline; filename=receipt.jpeg");
 
 		String filePath = EnvironmentUtil.getWorkDirectoryPath() + File.separator + "receipt" + File.separator
-				+ receiptId + ".jpeg";
+				+ receiptId;
+		
+		if(new File(filePath + ".jpeg").exists()) {
+			filePath += ".jpeg"; 
+		} else {
+			filePath += ".jpg";
+		}
 
 		try (InputStream in = new FileInputStream(new File(filePath)); OutputStream out = response.getOutputStream()) {
 

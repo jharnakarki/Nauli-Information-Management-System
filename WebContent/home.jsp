@@ -11,13 +11,13 @@
 <div class="container">
 	<article>
 
-		<%-- <%
+		 <%
 			Object messageType = (request.getAttribute("messageType") != null) ? request.getAttribute("messageType")
 					: "";
 			Object message = (request.getAttribute("message") != null) ? request.getAttribute("message") : "";
 		%>
 
-		<div class="row alert <%=messageType%>"><%=message%></div> --%>
+		<div class="row alert <%=messageType%>"><%=message%></div>
 		<h2>
 			Welcome to Nauli trader
 			<%

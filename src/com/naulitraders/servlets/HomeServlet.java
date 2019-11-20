@@ -40,13 +40,18 @@ public class HomeServlet extends HttpServlet {
 		if (request.getParameter("vehicleNumber") != null) {
 			String vehicleNumber = request.getParameter("vehicleNumber");
 			if(!vehicleNumber.equalsIgnoreCase("NA")){
-			LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
-
-			LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
-			ProfitLossAccount pl = getProfitAndLoss(vehicleNumber, startDate, endDate);
-
-			request.setAttribute("profitLoss", pl);
-		}
+				LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
+		
+				LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
+				ProfitLossAccount pl = getProfitAndLoss(vehicleNumber, startDate, endDate);
+	
+				request.setAttribute("profitLoss", pl);	
+			} else {
+				String successMessage = "Please select truck number";
+				request.setAttribute("messageType", "alert-danger");
+				request.setAttribute("message", successMessage);
+			}
+			
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
