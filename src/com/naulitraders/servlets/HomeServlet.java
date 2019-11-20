@@ -39,7 +39,7 @@ public class HomeServlet extends HttpServlet {
 
 		if (request.getParameter("vehicleNumber") != null) {
 			String vehicleNumber = request.getParameter("vehicleNumber");
-
+			if(!vehicleNumber.equalsIgnoreCase("NA")){
 			LocalDate startDate = LocalDate.parse(request.getParameter("startDate"));
 
 			LocalDate endDate = LocalDate.parse(request.getParameter("endDate"));
@@ -47,7 +47,7 @@ public class HomeServlet extends HttpServlet {
 
 			request.setAttribute("profitLoss", pl);
 		}
-		
+		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
 		dispatcher.forward(request, response);
