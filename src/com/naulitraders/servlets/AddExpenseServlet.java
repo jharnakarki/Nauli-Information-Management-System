@@ -73,7 +73,7 @@ public class AddExpenseServlet extends HttpServlet {
 		int expenseId = expenseDao.insertExpenseInfo(expenseInfo);
 
 		// write file after inserting expenses into database
-		String outputFileName = String.valueOf(expenseId) + ".jpeg" ||".jpg";
+		String outputFileName = String.valueOf(expenseId) + "." + getFileExtensionName(fileName);
 		writeFile(filePart, outputFileName);
 
 		// set the success message and send it through dispatcher
@@ -106,10 +106,22 @@ public class AddExpenseServlet extends HttpServlet {
 			throw new IllegalArgumentException("Date of a expense date cannot be future date");
 		}
 		
-		if (!receiptFileName.endsWith(".jpeg" || ".jpg")) {
-			throw new IllegalArgumentException("File must be in jpeg or jpg format");
+		if (!receiptFileName.endsWith(".jpeg") && !receiptFileName.endsWith(".jpg")) {
+			throw new IllegalArgumentException("File must be in jpeg or jpg formats");
 		}
 
+	}
+	
+	private String getFileExtensionName(String fileName) {
+		
+		// let filename is mypic.jpeg, split as [mypic, jpeg]
+		String fileNameSplitted[] = fileName.split("\\."); // split with dot
+		
+		// return jpeg
+		if(fileNameSplitted.length >= 2) {
+			return fileNameSplitted[fileNameSplitted.length-1];
+		}
+		throw new IllegalArgumentException("Illegal filename");
 	}
 
 	private String getFileName(Part part) {
